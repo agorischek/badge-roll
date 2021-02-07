@@ -1,19 +1,14 @@
-# badge-roll [![NPM version][npm-image]][npm-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# badge-roll
+
+[![NPM version][npm-image]][npm-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 > README Badge Configurator
 
 ## Installation
 
 ```sh
-$ npm install --save badge-roll
+$ npm install --save-dev badge-roll
 ```
 
-## Usage
-
-```js
-const badgeRoll = require('badge-roll');
-
-badgeRoll('Rainbow');
-```
 ## License
 
 MIT © [Alex Gorischek]()
