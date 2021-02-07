@@ -90,5 +90,8 @@
   "jest": {
     "testEnvironment": "node"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "cosmiconfig": "^7.0.0"
+  }
 }
