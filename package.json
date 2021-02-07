@@ -25,7 +25,10 @@
     "jest": "^26.6.3",
     "lint-staged": "^10.5.4",
     "npm-check-updates": "^11.1.1",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "remark-cli": "^9.0.0",
+    "remark-lint": "^8.0.0",
+    "remark-preset-lint-recommended": "^5.0.0"
   },
   "engines": {
     "npm": ">= 4.0.0"
@@ -62,6 +65,7 @@
     ]
   },
   "scripts": {
+    "lint": "remark .",
     "pretest": "eslint .",
     "test": "jest",
     "update": "ncu -u"
@@ -70,7 +74,5 @@
   "jest": {
     "testEnvironment": "node"
   },
-  "license": "MIT",
-  "dependencies": {
-  }
+  "license": "MIT"
 }
