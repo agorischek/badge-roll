@@ -41,6 +41,10 @@
     "*.json": [
       "prettier --write",
       "git add"
+    ],
+    "*.md": [
+      "remark . --frail",
+      "git add"
     ]
   },
   "husky": {
@@ -64,8 +68,17 @@
       "prettier"
     ]
   },
+  "remarkConfig": {
+    "plugins": [
+      "remark-preset-lint-recommended"
+    ],
+    "settings": {
+      "emphasis": "*",
+      "strong": "*"
+    }
+  },
   "scripts": {
-    "lint": "remark .",
+    "lint": "remark . --frail",
     "pretest": "eslint .",
     "test": "jest",
     "update": "ncu -u"
