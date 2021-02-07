@@ -8,6 +8,9 @@
     "email": "alex.gorischek@gmail.com",
     "url": ""
   },
+  "badgeconfig": [
+    "loaded from package.json"
+  ],
   "files": [
     "lib"
   ],
@@ -83,6 +86,7 @@
     "build": "tsc",
     "lint": "remark . --frail",
     "pretest": "eslint .",
+    "start": "node lib/index.js",
     "test": "jest",
     "update": "ncu -u"
   },
