@@ -9,6 +9,7 @@
     "url": ""
   },
   "badgeconfig": [
+  "badgeConfig": [
     "loaded from package.json"
   ],
   "files": [
