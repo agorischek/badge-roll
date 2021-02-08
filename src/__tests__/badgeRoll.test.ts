@@ -1,5 +1,6 @@
-const assert = require("assert");
-const badgeRoll = require("../index.ts");
+import * as assert from "assert";
+
+import badgeRoll from "../index";
 
 describe("badgeRoll", () => {
   it("has a test", () => {
