@@ -75,7 +75,11 @@
   },
   "remarkConfig": {
     "plugins": [
-      "remark-preset-lint-recommended"
+      "remark-preset-lint-recommended",
+      [
+        "remark-lint-list-item-indent",
+        false
+      ]
     ],
     "settings": {
       "emphasis": "*",
@@ -84,6 +88,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "format": "prettier . --write",
     "lint": "remark . --frail",
     "pretest": "eslint .",
     "start": "node lib/index.js",
