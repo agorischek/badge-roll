@@ -90,7 +90,7 @@
     "build": "tsc",
     "format": "prettier . --write",
     "lint": "remark . --frail",
-    "pretest": "eslint .",
+    "pretest": "eslint \"src/**\"",
     "start": "node lib/index.js",
     "test": "jest",
     "update": "ncu -u"
