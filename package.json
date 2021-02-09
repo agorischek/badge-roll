@@ -101,8 +101,5 @@
   },
   "engines": {
     "npm": ">= 4.0.0"
-  },
-  "badgeConfig": [
-    "loaded from package.json"
-  ]
+  }
 }
