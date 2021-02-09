@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import { assert } from "chai";
 import * as configLoader from "../config-locations";
 
 describe("Config loader", () => {

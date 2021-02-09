@@ -7,5 +7,6 @@
     "preserveConstEnums": true,
     "sourceMap": true
   },
-  "files": ["src/index.ts"]
+  "include": ["src/**/*"],
+  "exclude": ["__tests__"]
 }
