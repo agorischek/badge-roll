@@ -10,8 +10,7 @@
   "license": "MIT",
   "author": {
     "name": "Alex Gorischek",
-    "email": "alex.gorischek@gmail.com",
-    "url": ""
+    "email": "alex.gorischek@gmail.com"
   },
   "main": "lib/index.js",
   "files": [
@@ -78,7 +77,9 @@
     "testEnvironment": "node"
   },
   "dependencies": {
-    "cosmiconfig": "^7.0.0"
+    "cosmiconfig": "^7.0.0",
+    "remark-stringify": "^9.0.1",
+    "unified": "^9.2.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
