@@ -1,2 +1,5 @@
 badges:
-  - loaded from `badgeconfig.yaml`
+  - id: npm/v
+  - id: github/license
+  - id: jsdelivr/npm
+style: flat
