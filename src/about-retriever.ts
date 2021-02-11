@@ -3,24 +3,30 @@
 import readPackageDetails from "read-pkg";
 import { NormalizedPackageJson } from "read-pkg";
 
-import * as repo from "./modules/about-repo";
+import { Config } from "./config-schema";
+
 import * as pkg from "./modules/about-package";
+import * as repo from "./modules/about-repo";
 
 export type About = Record<string, string>;
 export type Context = {
   package: NormalizedPackageJson;
 };
 
-export function retrieveAbout(): About {
+const modules = [pkg, repo];
+
+export function retrieveAbout(config: Config): About {
+  let about: About = config.about;
+
   const packageDetails: NormalizedPackageJson = readPackageDetails.sync();
 
-  let about = {};
-  const context = {
+  const context: Context = {
     package: packageDetails,
   };
 
-  about = repo.about(about, context);
-  about = pkg.about(about, context);
-  about;
+  about = modules.reduce((about: About, module) => {
+    return module.about(about, context);
+  }, about);
+
   return about;
 }

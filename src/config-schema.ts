@@ -1,6 +1,7 @@
 "use strict";
 
 import * as Joi from "joi";
+import { About } from "./about-retriever";
 
 export interface Config {
   badges: Array<{
@@ -10,7 +11,7 @@ export interface Config {
     to?: string;
   }>;
   style?: string;
-  about?: unknown;
+  about?: About;
   plugins: Array<string>;
 }
 
