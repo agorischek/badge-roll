@@ -1,13 +1,11 @@
-# badge-roll
+# 📛 Badge ⚙️ Roll
 
-[![NPM version][npm-image]][npm-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-
-> README Badge Configurator
+> README Badge Automator
 
 ## Installation
 
 ```sh
-$ npm install --save-dev badge-roll
+$ npm install badge-roll
 ```
 
 ## Commands
@@ -36,26 +34,17 @@ Load the configuration that `badge-roll` sees.
 
 ### `badges`
 
-Array of badge configurations.
+Array of badge configurations. A badge configuration can be either a string representing the badge's `id`, or it can be a full object.
 
-### `variables`
+### `about`
 
-Shared variables for use in badge generation.
+A dictionary of information about the project, used as variables in badge generation.
 
-### `insertionPoint`
+#### Insertion Location
 
-Where to insert the badges. Defaults to `after`.
+The insertion location of the badges can be specified by one of: `before`, `after`, `within`, or `at`.
 
-- `current`: Find the first badge in the target and replace the group
-- `before`: Insert before the specified selector
-- `after`: Insert after the specified selector
-- `within`: Insert inside the specified selector
-- `beginning`: Insert at the beginning of the file
-- `end`: Insert at the end of the file
-
-### `selector`
-
-Reference point in file if using `before` or `after` for `insertionPoint`. Defaults to `h1`.
+`before`, `after`, and `within` take jQuery-style selectors, while `at` accepts `beginning`, `end`, or `current`.
 
 ### `provider`
 
@@ -65,13 +54,18 @@ Badges host. Defaults to `shields`.
 
 Style of badges.
 
+## Plugins
+
+Badge Roll plugins let extend your badge automation workflows. Plugins can be loaded as npm packages or as local modules. If npm packages, they must be prefixed with `badge-roll-plugin-`.
+
+Plugins are added as an array under the `plugins` value in your badge config, either as paths to the module or as the portion of the published package name following `badge-roll-plugin-`. They are run in order, and subsequent plugins can modify the results of preceding plugins.
+
+### `about`
+
+The `about` contribution allows plugins to automatically gather additional information about the project, for example by reading config files. It is passed two parameters: `about`, which is the current set of about information, and `context`, which includes other potentially useful information for processing.
+
+At present, `context` includes a sole property of `package`, which is the contents of the `package.json` file, if present. About contributions should return an object representing the updated `about` information. Plugins can add, override, or even remove existing properties. The returned object must be a flat list of string values. The values added to about can be referenced in the `details` of badges.
+
 ## License
 
 MIT © [Alex Gorischek]()
-
-[npm-image]: https://badge.fury.io/js/badge-roll.svg
-[npm-url]: https://npmjs.org/package/badge-roll
-[daviddm-image]: https://david-dm.org/agorischek/badge-roll.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/agorischek/badge-roll
-[coveralls-image]: https://coveralls.io/repos/agorischek/badge-roll/badge.svg
-[coveralls-url]: https://coveralls.io/r/agorischek/badge-roll
