@@ -12,6 +12,7 @@ export function about(about: About, context: Context): About {
 
   let repoName = "";
   let repoOwner = "";
+
   switch (repoHost) {
     case "github.com":
       const parsedGithubUrl = parseGithubUrl(repoUrl);
@@ -19,10 +20,10 @@ export function about(about: About, context: Context): About {
       repoOwner = parsedGithubUrl.owner;
   }
 
-  about.host = repoHost;
-  about.url = repoUrl;
+  about.repoHost = repoHost;
+  about.repoUrl = repoUrl;
   about.repo = repoName;
-  about.owner = repoOwner;
+  about.user = repoOwner;
 
   return about;
 }

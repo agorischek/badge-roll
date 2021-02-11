@@ -11,13 +11,6 @@ badges:
       formula: abc
 
 about:
-  user: agorischek
-  packageName: badge-roll
-  moduleName:
-  namespace:
-  formula:
-  cask:
+  period: hw
 
 style: flat
-plugins:
-  - test
