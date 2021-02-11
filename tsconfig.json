@@ -6,7 +6,8 @@
     "outDir": "lib",
     "removeComments": true,
     "preserveConstEnums": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "esModuleInterop": true
   },
   "include": ["src/**/*"],
   "exclude": ["__tests__"]

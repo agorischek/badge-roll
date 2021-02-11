@@ -1,9 +1,11 @@
 "use strict";
 
 import { loadConfig } from "./config-loader";
+import { retrieveAbout } from "./about-retriever";
 
 export default true;
 
 const config = loadConfig();
-
-config;
+console.log(config);
+const about = retrieveAbout();
+console.log(about);

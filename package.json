@@ -5,8 +5,8 @@
   "keywords": [
     "badges"
   ],
-  "homepage": "",
-  "repository": "https://agorischek@github.com/louk-lang/louk.git",
+  "homepage": "https://github.com/agorischek/badge-roll",
+  "repository": "https://agorischek@github.com/agorischek/badge-roll.git",
   "license": "MIT",
   "author": {
     "name": "Alex Gorischek",
@@ -19,7 +19,7 @@
   "scripts": {
     "build": "tsc",
     "format": "prettier . --write",
-    "lint": "remark . --frail",
+    "lint": "eslint . --fix && remark . --frail",
     "start": "ts-node src/index.ts",
     "pretest": "eslint \"src/**\"",
     "test": "jest",
@@ -82,8 +82,12 @@
   "dependencies": {
     "cosmiconfig": "^7.0.0",
     "joi": "^17.4.0",
+    "package-json": "^6.5.0",
+    "parse-github-url": "^1.0.2",
+    "read-pkg": "^5.2.0",
     "remark-stringify": "^9.0.1",
-    "unified": "^9.2.0"
+    "unified": "^9.2.0",
+    "url-parse": "^1.4.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",
@@ -91,6 +95,8 @@
     "@babel/preset-typescript": "^7.12.13",
     "@types/chai": "^4.2.14",
     "@types/jest": "^26.0.20",
+    "@types/parse-github-url": "^1.0.0",
+    "@types/url-parse": "^1.4.3",
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "babel-jest": "^26.6.3",
     "chai": "^4.3.0",

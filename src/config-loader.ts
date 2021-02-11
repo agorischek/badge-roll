@@ -2,7 +2,7 @@
 
 import { cosmiconfigSync } from "cosmiconfig";
 import { configLocations, packageProperty } from "./config-locations";
-import { configSchema } from "./config-schema";
+import { configSchema, Config } from "./config-schema";
 
 const explorer = cosmiconfigSync(packageProperty, {
   searchPlaces: configLocations,
@@ -13,7 +13,7 @@ function findConfig() {
   return config;
 }
 
-function validateConfig(config: any) {
+function validateConfig(config: Config) {
   const { error, value } = configSchema.validate(config);
   if (error) {
     throw error;
@@ -22,7 +22,7 @@ function validateConfig(config: any) {
   }
 }
 
-export function loadConfig() {
+export function loadConfig(): Config {
   const result = findConfig();
   const config = result.config;
   validateConfig(config);
