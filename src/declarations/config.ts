@@ -1,13 +1,8 @@
-import { About } from ".";
+import { About, Badge, Plugins, Settings } from ".";
 
 export interface Config {
-  badges: Array<{
-    id: string;
-    details?: string;
-    display?: string;
-    to?: string;
-  }>;
-  style?: string;
   about?: About;
-  plugins: Array<string>;
+  badges?: Array<Badge>;
+  plugins?: Plugins;
+  settings?: Settings;
 }
