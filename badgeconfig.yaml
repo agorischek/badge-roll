@@ -3,14 +3,11 @@ badges:
     details: agorischek/badge-roll
     display: Version
     to: https://npmjs.org/badge-roll
-
   - id: github/license
-
   - id: jsdelivr/npm
     about:
       formula: abc
-
 about:
   period: hw
-
-style: flat
+settings:
+  style: flat
