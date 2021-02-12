@@ -1,8 +1,8 @@
 import { cosmiconfigSync } from "cosmiconfig";
 
-import { filePaths, packageProperty } from "./config-locations";
-import { configSchema } from "./schemas";
-import { Config } from "./declarations";
+import { filePaths, packageProperty } from "../options/config-locations";
+import { configSchema } from "../schemas";
+import { Config } from "../declarations";
 
 const explorer = cosmiconfigSync(packageProperty, {
   searchPlaces: filePaths,

@@ -1,6 +1,6 @@
 import { assert } from "chai";
 
-import * as configLocations from "../config-locations";
+import * as configLocations from "../options/config-locations";
 
 describe("Config loader", () => {
   it("has a package property", () => {

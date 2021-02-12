@@ -1,5 +1,5 @@
-import { loadConfig } from "./config-loader";
-import { collectAbout } from "./about-collecter";
+import { loadConfig } from "./loaders/config-loader";
+import { resolveAbout } from "./resolvers/about-resolver";
 
 export default true;
 
@@ -7,6 +7,6 @@ const config = loadConfig();
 console.log("Configuration:");
 console.log(config);
 
-const about = collectAbout(config);
+const about = resolveAbout(config);
 console.log("About:");
 console.log(about);
