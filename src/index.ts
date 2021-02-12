@@ -1,5 +1,5 @@
 import { loadConfig } from "./config-loader";
-import { retrieveAbout } from "./about-retriever";
+import { collectAbout } from "./about-collecter";
 
 export default true;
 
@@ -7,6 +7,6 @@ const config = loadConfig();
 console.log("Configuration:");
 console.log(config);
 
-const about = retrieveAbout(config);
+const about = collectAbout(config);
 console.log("About:");
 console.log(about);

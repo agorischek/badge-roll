@@ -1,11 +1,12 @@
 import { assert } from "chai";
-import * as configLoader from "../config-locations";
+
+import * as configLocations from "../config-locations";
 
 describe("Config loader", () => {
   it("has a package property", () => {
-    assert(configLoader.packageProperty);
+    assert(configLocations.packageProperty);
   });
   it("has config locations", () => {
-    assert(configLoader.configLocations);
+    assert(configLocations.filePaths);
   });
 });

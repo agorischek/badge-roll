@@ -7,8 +7,8 @@ import * as repo from "./modules/about-repo";
 
 const modules = [pkg, repo];
 
-export function retrieveAbout(config: Config): About {
-  let about: About = config.about;
+export function collectAbout(config: Config): About {
+  let about: About = config.about ? config.about : {};
 
   const packageDetails: Package = readPackageDetails.sync();
 

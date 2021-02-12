@@ -1,6 +1,6 @@
 export const packageProperty = "badgeConfig";
 
-export const configLocations = [
+export const filePaths = [
   "package.json",
   "badgeconfig.json",
   "badgeconfig.yaml",
