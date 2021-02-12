@@ -1,5 +1,3 @@
-"use strict";
-
 import { cosmiconfigSync } from "cosmiconfig";
 import { configLocations, packageProperty } from "./config-locations";
 import { configSchema } from "./schemas";

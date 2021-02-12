@@ -1,5 +1,3 @@
-"use strict";
-
 import { loadConfig } from "./config-loader";
 import { retrieveAbout } from "./about-retriever";
 

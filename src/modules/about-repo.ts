@@ -1,5 +1,3 @@
-"use strict";
-
 import parseUrl from "url-parse";
 import parseGithubUrl from "parse-github-url";
 

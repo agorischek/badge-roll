@@ -1,5 +1,3 @@
-"use strict";
-
 import { About, Context } from "../declarations";
 
 export function about(about: About, context: Context): About {

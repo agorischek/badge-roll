@@ -1,5 +1,3 @@
-"use strict";
-
 import readPackageDetails from "read-pkg";
 
 import { About, Config, Context, Package } from "./declarations";

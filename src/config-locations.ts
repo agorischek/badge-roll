@@ -1,5 +1,3 @@
-"use strict";
-
 export const packageProperty = "badgeConfig";
 
 export const configLocations = [

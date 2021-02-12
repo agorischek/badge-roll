@@ -1,5 +1,3 @@
-"use strict";
-
 import { Badge } from "./declarations";
 
 export function buildPath(badge: Badge): string {

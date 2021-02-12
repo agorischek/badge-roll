@@ -1,5 +1,3 @@
-"use strict";
-
 import unified from "unified";
 import stringify from "remark-stringify";
 import { Node } from "unist";

@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
     "module": "commonjs",
     "noImplicitAny": true,
     "outDir": "lib",
