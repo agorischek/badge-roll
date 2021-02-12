@@ -1,6 +1,6 @@
 # 📛 Badge ⚙️ Roll
 
-> README Badge Automator
+> Pluggable README Badge Automator
 
 ## Installation
 
@@ -56,7 +56,7 @@ Style of badges.
 
 ## Plugins
 
-Badge Roll plugins let extend your badge automation workflows. Plugins can be loaded as npm packages or as local modules. If npm packages, they must be prefixed with `badge-roll-plugin-`.
+Badge Roll plugins let you extend your badge automation workflows. Plugins can be loaded as npm packages or as local modules. If npm packages, they must be prefixed with `badge-roll-plugin-`.
 
 Plugins are added as an array under the `plugins` value in your badge config, either as paths to the module or as the portion of the published package name following `badge-roll-plugin-`. They are run in order, and subsequent plugins can modify the results of preceding plugins.
 
