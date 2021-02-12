@@ -2,7 +2,7 @@ import { assert } from "chai";
 
 import { resolveAbout } from "../resolvers/about-resolver";
 
-describe("About Collector", () => {
+describe("About Resolver", () => {
   it("should correctly retrieve the package name", () => {
     const about = resolveAbout({});
     assert.strictEqual(about.packageName, "badge-roll");
