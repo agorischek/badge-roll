@@ -2,7 +2,10 @@
 
 import { cosmiconfigSync } from "cosmiconfig";
 import { configLocations, packageProperty } from "./config-locations";
-import { configSchema, Config } from "./config-schema";
+import { configSchema } from "./schemas";
+import { Config } from "./declarations";
+
+configSchema;
 
 const explorer = cosmiconfigSync(packageProperty, {
   searchPlaces: configLocations,

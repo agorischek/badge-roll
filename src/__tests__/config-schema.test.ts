@@ -2,7 +2,7 @@
 
 import { assert } from "chai";
 
-import { configSchema } from "../config-schema";
+import { configSchema } from "../schemas";
 
 describe("Config schema", () => {
   it("should require a badges property", () => {
