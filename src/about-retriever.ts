@@ -1,24 +1,18 @@
 "use strict";
 
 import readPackageDetails from "read-pkg";
-import { NormalizedPackageJson } from "read-pkg";
 
-import { Config } from "./config-schema";
+import { About, Config, Context, Package } from "./declarations";
 
 import * as pkg from "./modules/about-package";
 import * as repo from "./modules/about-repo";
-
-export type About = Record<string, string>;
-export type Context = {
-  package: NormalizedPackageJson;
-};
 
 const modules = [pkg, repo];
 
 export function retrieveAbout(config: Config): About {
   let about: About = config.about;
 
-  const packageDetails: NormalizedPackageJson = readPackageDetails.sync();
+  const packageDetails: Package = readPackageDetails.sync();
 
   const context: Context = {
     package: packageDetails,

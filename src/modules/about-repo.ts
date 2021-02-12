@@ -3,7 +3,7 @@
 import parseUrl from "url-parse";
 import parseGithubUrl from "parse-github-url";
 
-import { About, Context } from "../about-retriever";
+import { About, Context } from "../declarations";
 
 export function about(about: About, context: Context): About {
   const repoUrl = context.package.repository.url || null;

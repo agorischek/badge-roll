@@ -1,6 +1,6 @@
 "use strict";
 
-import { About, Context } from "../about-retriever";
+import { About, Context } from "../declarations";
 
 export function about(about: About, context: Context): About {
   const packageName = context.package.name || null;
