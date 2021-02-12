@@ -1,11 +1,9 @@
 import merge from "lodash.merge";
 
-export function combine(
-  ...objects: Array<Record<string, unknown>>
-): Record<string, unknown> {
+import { Dictionary } from "../declarations";
+
+// Merges an arbitrary number of flat objects into a new object
+export function combine(...objects: Array<Dictionary>): Dictionary {
   const combined = merge({}, ...objects);
   return combined;
 }
-
-combine({ a: "b" }, { c: "d" });
-combine;

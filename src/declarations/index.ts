@@ -4,6 +4,7 @@ export * from "./badge-config";
 export * from "./badge-definition";
 export * from "./config";
 export * from "./context";
+export * from "./dictionary";
 export * from "./package";
 export * from "./path";
 export * from "./plugins";
