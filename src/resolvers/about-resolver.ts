@@ -3,8 +3,9 @@ import { About, Config, Context } from "../declarations";
 
 import * as pkg from "../modules/about-package";
 import * as repo from "../modules/about-repo";
+import * as registry from "../modules/about-registry";
 
-const modules = [pkg, repo];
+const modules = [pkg, repo, registry];
 
 export function resolveAbout(config: Config): About {
   let about: About = config.about ? config.about : {};

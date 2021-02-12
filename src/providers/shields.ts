@@ -3,7 +3,7 @@ export const shields = {
   badges: {
     "npm/v": {
       details: ":packageName",
-      to: "https://www.npmjs.com/package/",
+      to: ":packageRegistry",
       display: "Version",
     },
     "github/license": {
