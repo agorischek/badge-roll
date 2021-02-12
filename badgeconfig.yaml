@@ -11,3 +11,5 @@ about:
   period: hw
 settings:
   style: flat
+plugins:
+  - test

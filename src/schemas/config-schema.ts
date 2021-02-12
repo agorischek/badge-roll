@@ -1,20 +1,14 @@
 import Joi from "joi";
 
+import { aboutSchema } from "./about-schema";
+import { badgesSchema } from "./badges-schema";
+import { pluginsSchema } from "./plugins-schema";
+import { settingsSchema } from "./settings-schema";
+
 export const configSchema = Joi.object({
-  badges: Joi.array().items(
-    Joi.object({
-      id: Joi.string().required(),
-      details: Joi.string(),
-      display: Joi.string(),
-      to: Joi.string(),
-      about: Joi.object().unknown(),
-    }).required()
-  ),
-  about: Joi.object().unknown(),
-  settings: Joi.object({
-    style: Joi.string(),
-    provider: Joi.string(),
-  }),
+  badges: badgesSchema,
+  about: aboutSchema,
+  settings: settingsSchema,
   style: Joi.string(),
-  plugins: Joi.array(),
+  plugins: pluginsSchema,
 });
