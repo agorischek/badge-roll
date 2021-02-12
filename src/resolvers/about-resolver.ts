@@ -1,5 +1,5 @@
 import { loadPackage } from "../loaders/package-loader";
-import { About, Config, Context, Package } from "../declarations";
+import { About, Config, Context } from "../declarations";
 
 import * as pkg from "../modules/about-package";
 import * as repo from "../modules/about-repo";
