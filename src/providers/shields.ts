@@ -8,12 +8,12 @@ export const shields = {
     },
     "github/license": {
       details: ":user/:repo",
-      to: ":repoUrl",
+      to: ":packageHomepage",
       display: "License",
     },
     "jsdelivr/npm": {
       details: ":period/:packageName",
-      to: ":repoUrl",
+      to: ":packageHomepage",
       display: "Downloads",
     },
   },

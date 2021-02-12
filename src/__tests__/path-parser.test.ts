@@ -1,6 +1,6 @@
 import { assert } from "chai";
 
-import { parsePath } from "../path-parser";
+import { parsePath } from "../resolvers/path-resolver";
 
 describe("Path Parser", () => {
   it("should parse a path", () => {
