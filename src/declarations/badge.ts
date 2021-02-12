@@ -1,4 +1,4 @@
-import merge from "lodash.merge";
+import { combine } from "../utilities";
 
 import { About, BadgeConfig, Settings } from ".";
 import * as providers from "../providers";
@@ -19,7 +19,7 @@ export class Badge {
     settings: Settings,
     globalAbout: About
   ) {
-    const about = merge({}, globalAbout, badgeConfig.about);
+    const about = combine(globalAbout, badgeConfig.about);
     const id = badgeConfig.id;
     const provider = badgeConfig.provider || settings.provider;
     const style = badgeConfig.style || settings.style;

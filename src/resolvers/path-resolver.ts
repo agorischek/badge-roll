@@ -1,6 +1,6 @@
 import { About, Path } from "../declarations";
 
-export function resolvePath(path: string, about: About) {
+export function resolvePath(path: string, about: About): string {
   const parsed = parsePath(path);
   const resolved = parsed.reduce((acc, segment) => {
     if (segment.kind === "literal") {
