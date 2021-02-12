@@ -2,14 +2,19 @@ import { About, Path } from "../declarations";
 
 export function resolvePath(path: string, about: About): string {
   const parsed = parsePath(path);
-  const resolved = parsed.reduce((acc, segment) => {
+  const evaluated = evaluatePath(parsed, about);
+  return evaluated;
+}
+
+export function evaluatePath(path: Path, about: About) {
+  const evaluated = path.reduce((acc, segment) => {
     if (segment.kind === "literal") {
       return `${acc}/${segment.name}`;
     } else if (segment.kind === "variable") {
       return `${acc}/${about[segment.name]}`;
     }
   }, "");
-  return resolved;
+  return evaluated;
 }
 
 export function parsePath(unparsed: string): Path {
