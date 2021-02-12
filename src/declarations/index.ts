@@ -5,6 +5,7 @@ export * from "./badge-definition";
 export * from "./config";
 export * from "./context";
 export * from "./package";
+export * from "./path";
 export * from "./plugins";
 export * from "./provider-definition";
 export * from "./provider-directory";
