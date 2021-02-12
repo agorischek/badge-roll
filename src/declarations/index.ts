@@ -2,6 +2,7 @@ export * from "./about";
 export * from "./badge";
 export * from "./badge-config";
 export * from "./badge-definition";
+export * from "./badge-section";
 export * from "./config";
 export * from "./context";
 export * from "./dictionary";

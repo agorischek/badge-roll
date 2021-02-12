@@ -1,12 +1,50 @@
 import unified from "unified";
 import stringify from "remark-stringify";
 import { Node } from "unist";
+import { Badge, BadgeSection } from "../declarations";
 
 const generator = unified().use(stringify);
 
-function generateMarkdown(node: Node) {
+export function generateBadgeSectionMarkup(
+  badgeSection: BadgeSection,
+  language: string
+): string {
+  if (language === "markdown") {
+    const badgeSectionAst = generateBadgeSectionAst(badgeSection);
+    const markup = generateMarkdown(badgeSectionAst);
+    return markup;
+  } else {
+    throw "Unsupported markup language";
+  }
+}
+
+export function generateMarkdown(node: Node) {
   const generated = generator.stringify(node);
   return generated;
+}
+
+export function generateBadgeAst(badge: Badge): Node {
+  const badgeAst = {
+    type: "link",
+    url: badge.to,
+    title: badge.display,
+    children: [
+      {
+        type: "image",
+        url: badge.url,
+        alt: badge.display,
+      },
+    ],
+  };
+  return badgeAst;
+}
+
+export function generateBadgeSectionAst(badges: BadgeSection): Node {
+  const badgeSectionAst = {
+    type: "paragraph",
+    children: badges.map((badge) => generateBadgeAst(badge)),
+  };
+  return badgeSectionAst;
 }
 
 function generateImageMarkup(
