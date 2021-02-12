@@ -1,6 +1,6 @@
 import { cosmiconfigSync } from "cosmiconfig";
 
-import { filePaths, packageProperty } from "../options/config-locations";
+import { filePaths, packageProperty } from "../options";
 import { configSchema } from "../schemas";
 import { Config } from "../declarations";
 

@@ -1,12 +1,14 @@
-import merge from "lodash.merge";
-
-import { Config, Settings } from "../declarations";
-import { defaultSettings } from "../options/default-settings";
+import { Config, Dictionary, Settings } from "../declarations";
+import { defaultSettings } from "../options";
+import { combine } from "../utilities";
 
 export function resolveSettings(config: Config): Settings {
   const configSettings: Settings = config.settings ? config.settings : {};
 
-  const settings = merge({}, defaultSettings, configSettings);
+  const settings = combine(
+    defaultSettings as Dictionary,
+    configSettings as Dictionary
+  );
 
   return settings;
 }
