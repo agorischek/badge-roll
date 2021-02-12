@@ -1,8 +1,7 @@
 import { combine } from "../utilities";
 
 import { About, BadgeConfig, Settings } from ".";
-import * as providers from "../providers";
-import { resolvePath } from "../resolvers";
+import { resolvePath, resolveProviders } from "../resolvers";
 import { lookUpProvider } from "../utilities";
 export class Badge {
   basePath: string;
@@ -19,6 +18,8 @@ export class Badge {
     settings: Settings,
     globalAbout: About
   ) {
+    const providers = resolveProviders();
+
     const about = combine(globalAbout, badgeConfig.about);
     const id = badgeConfig.id;
     const provider = badgeConfig.provider || settings.provider;
