@@ -9,6 +9,5 @@ export const configSchema = Joi.object({
   badges: badgesSchema,
   about: aboutSchema,
   settings: settingsSchema,
-  style: Joi.string(),
   plugins: pluginsSchema,
 });
