@@ -23,15 +23,15 @@ const badges = config.badges.map((badge) => new Badge(badge, settings, about));
 log("Badges:");
 log(badges);
 
-const badgesMarkup = print.printers.markdown(badges, settings);
-log("Badges Markup:");
-log(badgesMarkup);
-
 const target: Target = loadTarget(settings.target);
 const extension = target.extension;
 
 const printers = resolvePrinters();
 const printer = lookUpPrinter(extension, printers);
+
+const badgesMarkup = printer(badges, settings);
+log("Badges Markup:");
+log(badgesMarkup);
 
 const markup = printer(badges, settings, target.content);
 log("Modified Target:");
