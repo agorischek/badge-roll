@@ -1,6 +1,6 @@
 import { loadConfig } from "./loaders";
 import { resolveAbout, resolvePrinters, resolveSettings } from "./resolvers";
-import { Badge, Target } from "./declarations";
+import { Badge, Target } from "./classes";
 import { log, writeFile } from "./utilities";
 
 export default true;

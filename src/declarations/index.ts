@@ -1,12 +1,10 @@
 export * from "./about";
-export * from "./badge";
 export * from "./badge-config";
 export * from "./badge-definition";
 export * from "./badge-section";
 export * from "./config";
 export * from "./context";
 export * from "./dictionary";
-export * from "./target";
 export * from "./package";
 export * from "./path";
 export * from "./plugins";
@@ -15,4 +13,3 @@ export * from "./printer-list";
 export * from "./provider-definition";
 export * from "./provider-directory";
 export * from "./settings";
-export * from "./target";

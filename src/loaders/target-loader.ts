@@ -1,5 +1,5 @@
 import { readFile } from "../utilities";
-import { Target } from "../declarations";
+import { Target } from "../classes";
 
 export function loadTarget(path: string): Target {
   const content = readFile(path);
