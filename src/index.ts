@@ -1,4 +1,4 @@
-import { loadConfig, loadTarget } from "./loaders";
+import { loadConfig } from "./loaders";
 import { resolveAbout, resolvePrinters, resolveSettings } from "./resolvers";
 import { Badge, Target } from "./declarations";
 import { log, writeFile } from "./utilities";
@@ -21,7 +21,7 @@ const badges = config.badges.map((badge) => new Badge(badge, settings, about));
 log("Badges:");
 log(badges);
 
-const target: Target = loadTarget(settings.target);
+const target = new Target(settings);
 const extension = target.extension;
 
 const printers = resolvePrinters();

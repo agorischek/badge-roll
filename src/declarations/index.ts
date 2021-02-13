@@ -6,6 +6,7 @@ export * from "./badge-section";
 export * from "./config";
 export * from "./context";
 export * from "./dictionary";
+export * from "./target";
 export * from "./package";
 export * from "./path";
 export * from "./plugins";
