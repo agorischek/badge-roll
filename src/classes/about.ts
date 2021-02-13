@@ -2,9 +2,9 @@ import { loadPackage } from "../loaders/package-loader";
 
 import { Config, Context } from "../declarations";
 
-import pkg from "../modules/about-package";
-import repo from "../modules/about-repo";
-import registry from "../modules/about-registry";
+import pkg from "../contributions/about-package";
+import repo from "../contributions/about-repo";
+import registry from "../contributions/about-registry";
 
 const modules = [pkg, repo, registry];
 export class About {

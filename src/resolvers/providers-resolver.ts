@@ -2,7 +2,7 @@ import merge from "lodash.merge";
 
 import { ProviderDirectory } from "../declarations";
 
-import shields from "../modules/provider-shields";
+import shields from "../contributions/provider-shields";
 
 const modules = [shields];
 

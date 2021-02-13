@@ -2,7 +2,7 @@ import merge from "lodash.merge";
 
 import { PrinterList } from "../declarations";
 
-import md from "../modules/printer-markdown";
+import md from "../contributions/printer-markdown";
 
 const modules = [md];
 
