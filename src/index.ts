@@ -1,7 +1,6 @@
 import { loadConfig, loadTarget } from "./loaders";
 import { resolveAbout, resolvePrinters, resolveSettings } from "./resolvers";
 import { Badge, Target } from "./declarations";
-import { lookUpPrinter } from "./utilities";
 import { log, writeFile } from "./utilities";
 
 export default true;
@@ -26,7 +25,7 @@ const target: Target = loadTarget(settings.target);
 const extension = target.extension;
 
 const printers = resolvePrinters();
-const printer = lookUpPrinter(extension, printers);
+const printer = printers[extension];
 
 const badgesMarkup = printer(badges, settings);
 log("Badges Markup:");

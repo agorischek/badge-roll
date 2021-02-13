@@ -1,3 +1,5 @@
 import { Printer } from ".";
 
-export type PrinterList = Record<string, Printer>;
+export type PrinterList = {
+  [printer: string]: Printer;
+};
