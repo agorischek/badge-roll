@@ -35,12 +35,15 @@ export class Badge {
     const path = resolvePath(details, about);
     const url = `${basePath}/${id}/${path}`;
 
-    this.id = id;
-    this.provider = provider;
-    this.style = style;
-    this.basePath = basePath;
-    this.to = to;
-    this.display = display;
-    this.url = url;
+    return {
+      basePath,
+      details,
+      display,
+      id,
+      provider,
+      style,
+      to,
+      url,
+    };
   }
 }
