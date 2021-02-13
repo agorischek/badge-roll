@@ -5,26 +5,37 @@ import { Badge, BadgeSection, Settings } from "../declarations";
 
 export default {
   printers: {
+    md: function (
+      badgeSection: BadgeSection,
+      settings: Settings,
+      target?: string
+    ) {
+      return affixMarkdown(badgeSection, settings, target);
+    },
     markdown: function (
       badgeSection: BadgeSection,
       settings: Settings,
       target?: string
     ) {
-      if (settings.printer === "markdown") {
-        const badgeSectionAst = generateBadgeSectionAst(badgeSection);
-        const markup = generateMarkdown(badgeSectionAst);
-        if (target) {
-          const modifiedTarget = `${markup}\n${target}`;
-          return modifiedTarget;
-        } else {
-          return markup;
-        }
-      } else {
-        throw new Error("Unsupported markup language");
-      }
+      return affixMarkdown(badgeSection, settings, target);
     },
   },
 };
+
+function affixMarkdown(
+  badgeSection: BadgeSection,
+  settings: Settings,
+  target?: string
+) {
+  const badgeSectionAst = generateBadgeSectionAst(badgeSection);
+  const markup = generateMarkdown(badgeSectionAst);
+  if (target) {
+    const modifiedTarget = `${markup}\n${target}`;
+    return modifiedTarget;
+  } else {
+    return markup;
+  }
+}
 
 function generateMarkdown(node: Node) {
   const generator = unified().use(stringify);

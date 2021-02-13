@@ -1,35 +1,40 @@
-import { loadConfig } from "./loaders";
-import { resolveAbout, resolveSettings } from "./resolvers";
-import { Badge } from "./declarations";
+import { loadConfig, loadTarget } from "./loaders";
+import { resolveAbout, resolvePrinters, resolveSettings } from "./resolvers";
+import { Badge, Target } from "./declarations";
 import print from "./modules/printer-markdown";
-import { readFile, writeFile } from "./utilities";
+import { lookUpPrinter } from "./utilities";
+import { log, writeFile } from "./utilities";
 
 export default true;
 
 const config = loadConfig();
-console.log("Configuration:");
-console.log(config);
+log("Configuration:");
+log(config);
 
 const settings = resolveSettings(config);
-console.log("Settings:");
-console.log(settings);
+log("Settings:");
+log(settings);
 
 const about = resolveAbout(config);
-console.log("About:");
-console.log(about);
+log("About:");
+log(about);
 
 const badges = config.badges.map((badge) => new Badge(badge, settings, about));
-console.log("Badges:");
-console.log(badges);
-
-const target = readFile(settings.target);
+log("Badges:");
+log(badges);
 
 const badgesMarkup = print.printers.markdown(badges, settings);
-console.log("Badges Markup:");
-console.log(badgesMarkup);
+log("Badges Markup:");
+log(badgesMarkup);
 
-const markup = print.printers.markdown(badges, settings, target);
-console.log("Modified Target:");
-console.log(markup);
+const target: Target = loadTarget(settings.target);
+const extension = target.extension;
+
+const printers = resolvePrinters();
+const printer = lookUpPrinter(extension, printers);
+
+const markup = printer(badges, settings, target.content);
+log("Modified Target:");
+log(markup);
 
 writeFile("./README.md", markup);
