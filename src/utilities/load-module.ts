@@ -1,12 +1,9 @@
 import { contribution } from "../declarations";
+import { contributionsPath } from "../options";
 
-export function loadModule(
-  moduleName: string,
-  isInternal: boolean
-): contribution {
+export function loadModule(name: string, isInternal: boolean): contribution {
   if (isInternal) {
-    const internalModulePath = "../contributions/";
-    return require(`${internalModulePath}${moduleName}`).default;
+    return require(`${contributionsPath}/${name}`).default;
   } else {
     throw new Error("External plugins not yet supported.");
   }
