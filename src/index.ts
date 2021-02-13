@@ -1,6 +1,6 @@
 import { loadConfig } from "./loaders";
-import { resolveAbout, resolvePrinters, resolveSettings } from "./resolvers";
-import { Badge, Target } from "./classes";
+import { resolvePrinters, resolveSettings } from "./resolvers";
+import { About, Badge, Target } from "./classes";
 import { log, writeFile } from "./utilities";
 
 export default true;
@@ -13,7 +13,7 @@ const settings = resolveSettings(config);
 log("Settings:");
 log(settings);
 
-const about = resolveAbout(config);
+const about = new About(config);
 log("About:");
 log(about);
 
