@@ -1,10 +1,8 @@
-import { loadConfig } from "./loaders/config-loader";
-import { resolveSettings } from "./resolvers/settings-resolver";
-import { resolveAbout } from "./resolvers/about-resolver";
+import { loadConfig } from "./loaders";
+import { resolveAbout, resolveSettings } from "./resolvers";
 import { Badge } from "./declarations";
-import { generateBadgeSectionMarkup } from "./generators/markup-generator";
-
-import fs from "fs";
+import print from "./modules/printer-markdown";
+import { readFile, writeFile } from "./utilities";
 
 export default true;
 
@@ -24,10 +22,14 @@ const badges = config.badges.map((badge) => new Badge(badge, settings, about));
 console.log("Badges:");
 console.log(badges);
 
-const markup = generateBadgeSectionMarkup(badges, "markdown");
-console.log("Markup:");
+const target = readFile(settings.target);
+
+const badgesMarkup = print.printers.markdown(badges, settings);
+console.log("Badges Markup:");
+console.log(badgesMarkup);
+
+const markup = print.printers.markdown(badges, settings, target);
+console.log("Modified Target:");
 console.log(markup);
 
-const readme = fs.readFileSync("./README.MD", "utf8");
-const newReadme = `${markup}\n\n${readme}`;
-fs.writeFileSync("./README.md", newReadme, "utf8");
+writeFile("./README.md", markup);
