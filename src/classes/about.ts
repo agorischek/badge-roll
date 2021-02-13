@@ -1,15 +1,12 @@
 import { loadPackage } from "../loaders/package-loader";
 
+import { ContributionSet } from "../classes";
 import { Config, Context } from "../declarations";
 
-import pkg from "../contributions/about-package";
-import repo from "../contributions/about-repo";
-import registry from "../contributions/about-registry";
-
-const modules = [pkg, repo, registry];
 export class About {
   [property: string]: string;
-  constructor(config: Config) {
+
+  constructor(config: Config, contributions: ContributionSet) {
     let about: About = config.about ? config.about : {};
 
     const packageDetails = loadPackage();
@@ -18,9 +15,9 @@ export class About {
       package: packageDetails,
     };
 
-    about = modules.reduce((about: About, module) => {
-      return module.about(about, context);
-    }, about);
+    contributions.about.forEach((contribution) => {
+      about = contribution(about, context);
+    });
 
     return about;
   }
