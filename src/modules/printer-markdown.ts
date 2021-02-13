@@ -9,14 +9,14 @@ export default {
       badgeSection: BadgeSection,
       settings: Settings,
       target?: string
-    ) {
+    ): string {
       return affixMarkdown(badgeSection, settings, target);
     },
     markdown: function (
       badgeSection: BadgeSection,
       settings: Settings,
       target?: string
-    ) {
+    ): string {
       return affixMarkdown(badgeSection, settings, target);
     },
   },

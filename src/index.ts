@@ -1,7 +1,6 @@
 import { loadConfig, loadTarget } from "./loaders";
 import { resolveAbout, resolvePrinters, resolveSettings } from "./resolvers";
 import { Badge, Target } from "./declarations";
-import print from "./modules/printer-markdown";
 import { lookUpPrinter } from "./utilities";
 import { log, writeFile } from "./utilities";
 

@@ -6,7 +6,7 @@ export function resolvePath(path: string, about: About): string {
   return evaluated;
 }
 
-export function evaluatePath(path: Path, about: About) {
+export function evaluatePath(path: Path, about: About): string {
   const evaluated = path.reduce((acc, segment) => {
     if (segment.kind === "literal") {
       return `${acc}/${segment.name}`;
