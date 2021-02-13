@@ -1,3 +1,5 @@
 import { ProviderDefinition } from ".";
 
-export type ProviderDirectory = Record<string, ProviderDefinition>;
+export type ProviderDirectory = {
+  [provider: string]: ProviderDefinition;
+};

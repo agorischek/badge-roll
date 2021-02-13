@@ -2,7 +2,6 @@ import { combine } from "../utilities";
 
 import { About, BadgeConfig, Settings } from ".";
 import { resolvePath, resolveProviders } from "../resolvers";
-import { lookUpProvider } from "../utilities";
 export class Badge {
   basePath: string;
   details: string;
@@ -19,13 +18,12 @@ export class Badge {
     globalAbout: About
   ) {
     const providers = resolveProviders();
-
     const about = combine(globalAbout, badgeConfig.about);
     const id = badgeConfig.id;
     const provider = badgeConfig.provider || settings.provider;
     const style = badgeConfig.style || settings.style;
 
-    const providerDefinition = lookUpProvider(provider, providers);
+    const providerDefinition = providers[provider];
     const basePath = providerDefinition.baseUrl;
 
     const badgeDefinition = providerDefinition.badges[id];
