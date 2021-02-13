@@ -1,4 +1,4 @@
-import { Printer, PrinterList, Target } from "../declarations";
+import { Printer, PrinterList } from "../declarations";
 
 export function lookUpPrinter(
   printer: keyof PrinterList,
