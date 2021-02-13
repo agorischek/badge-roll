@@ -1,4 +1,3 @@
-export * from "./about";
 export * from "./badge-config";
 export * from "./badge-definition";
 export * from "./badge-section";

@@ -1,4 +1,5 @@
-import { About, Path } from "../declarations";
+import { About } from "../classes";
+import { Path } from "../declarations";
 
 export function resolvePath(path: string, about: About): string {
   const parsed = parsePath(path);
