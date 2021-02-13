@@ -5,6 +5,7 @@ export class Target {
   content: string;
   path: string;
   extension: string;
+
   constructor(settings: Settings) {
     const target = loadTarget(settings.target);
     this.content = target.content;

@@ -1,17 +1,13 @@
-import { About } from ".";
-import { Context } from "../declarations";
+import { AboutContribution } from "../declarations";
 import { contributions } from "../options";
+import { loadModule } from "../utilities";
 
 export class ContributionSet {
-  about: Array<(about: About, context: Context) => About>;
+  about: Array<AboutContribution>;
 
   constructor() {
-    this.about = [];
-    const contributionsPath = "../contributions/";
-    contributions.about.map((contributionName: string): void => {
-      this.about.push(
-        require(`${contributionsPath}${contributionName}`).default.about
-      );
+    this.about = contributions.about.map((name: string) => {
+      return loadModule(name, true).about;
     });
   }
 }
