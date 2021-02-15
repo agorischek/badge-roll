@@ -1,13 +1,12 @@
-import { loadConfig } from "./loaders";
 import { resolvePrinters, resolveSettings } from "./resolvers";
-import { About, Badge, ContributionSet, Target } from "./classes";
+import { About, Badge, Config, ContributionSet, Target } from "./classes";
 import { log, writeFile } from "./utilities";
 
 export default true;
 
-const config = loadConfig();
-log("Configuration:");
-log(config);
+const config = new Config();
+log("Config:");
+log(Config);
 
 const settings = resolveSettings(config);
 log("Settings:");

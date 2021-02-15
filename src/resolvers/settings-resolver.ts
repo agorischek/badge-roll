@@ -1,4 +1,5 @@
-import { Config, Dictionary, Settings } from "../declarations";
+import { Config } from "../classes";
+import { Dictionary, Settings } from "../declarations";
 import { defaultSettings } from "../options";
 import { combine } from "../utilities";
 

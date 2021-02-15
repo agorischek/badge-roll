@@ -2,7 +2,6 @@ export * from "./about-contribution";
 export * from "./badge-config";
 export * from "./badge-definition";
 export * from "./badge-section";
-export * from "./config";
 export * from "./context";
 export * from "./contribution";
 export * from "./dictionary";
