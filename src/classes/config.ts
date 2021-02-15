@@ -1,6 +1,6 @@
 import { About } from ".";
 import { BadgeConfig, Plugins, Settings } from "../declarations";
-import { loadConfig } from "../loaders";
+import { findConfig, validateConfig } from "../loaders";
 
 export class Config {
   about?: About;
@@ -9,6 +9,9 @@ export class Config {
   settings?: Settings;
 
   constructor() {
-    return loadConfig();
+    const result = findConfig();
+    const config = result.config;
+    validateConfig(config);
+    return config;
   }
 }
