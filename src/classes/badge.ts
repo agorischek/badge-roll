@@ -1,7 +1,7 @@
 import { combine } from "../utilities";
 
 import { About, ProvidersDirectory } from "../classes";
-import { BadgeConfig, Settings } from "../declarations";
+import { BadgeConfig, SettingsData } from "../declarations";
 import { resolvePath } from "../resolvers";
 export class Badge {
   basePath: string;
@@ -15,7 +15,7 @@ export class Badge {
 
   constructor(
     badgeConfig: BadgeConfig,
-    settings: Settings,
+    settings: SettingsData,
     globalAbout: About,
     providers: ProvidersDirectory
   ) {

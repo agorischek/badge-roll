@@ -1,7 +1,7 @@
-import { contribution } from "../declarations";
+import { plugin } from "../declarations";
 import { contributionsPath } from "../options";
 
-export function loadModule(name: string, isInternal: boolean): contribution {
+export function loadModule(name: string, isInternal: boolean): plugin {
   if (isInternal) {
     return require(`${contributionsPath}/${name}`).default;
   } else {

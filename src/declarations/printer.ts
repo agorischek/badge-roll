@@ -1,7 +1,7 @@
-import { BadgeSection, Settings } from ".";
+import { BadgeSection, SettingsData } from ".";
 
 export type Printer = (
   badgeSection: BadgeSection,
-  settings: Settings,
+  settings: SettingsData,
   target?: string
 ) => string;

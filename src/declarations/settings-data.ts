@@ -1,4 +1,4 @@
-export interface Settings {
+export interface SettingsData {
   style?: string;
   provider?: string;
   baseUrl?: string;

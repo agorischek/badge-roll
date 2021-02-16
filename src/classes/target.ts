@@ -1,4 +1,4 @@
-import { Settings } from "../declarations";
+import { Settings } from "../classes";
 import { loadTarget } from "../loaders";
 import { writeFile } from "../utilities";
 

@@ -11,6 +11,6 @@ export * from "./plugins";
 export * from "./printer";
 export * from "./printers-contribution";
 export * from "./provider-definition";
-export * from "../classes/providers-directory";
 export * from "./providers-contribution";
-export * from "./settings";
+export * from "./settings-contribution";
+export * from "./settings-data";

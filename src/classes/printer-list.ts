@@ -8,8 +8,8 @@ export class PrinterList {
 
   constructor(contributions: ContributionSet) {
     const printers = contributions.printers.reduce(
-      (providers: PrinterList, contribution) => {
-        return merge(providers, contribution);
+      (printers: PrinterList, contribution) => {
+        return merge(printers, contribution);
       },
       {}
     );

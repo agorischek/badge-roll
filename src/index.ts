@@ -1,4 +1,3 @@
-import { resolveSettings } from "./resolvers";
 import {
   About,
   Badge,
@@ -6,6 +5,7 @@ import {
   ContributionSet,
   PrinterList,
   ProvidersDirectory,
+  Settings,
   Target,
 } from "./classes";
 
@@ -13,7 +13,7 @@ export default true;
 
 const config = new Config();
 const contributions = new ContributionSet();
-const settings = resolveSettings(config);
+const settings = new Settings(config, contributions);
 const about = new About(config, contributions);
 const providers = new ProvidersDirectory(contributions);
 

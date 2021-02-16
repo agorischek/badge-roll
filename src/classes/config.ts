@@ -1,12 +1,12 @@
 import { About } from ".";
-import { BadgeConfig, Plugins, Settings } from "../declarations";
+import { BadgeConfig, Plugins, SettingsData } from "../declarations";
 import { findConfig, validateConfig } from "../loaders";
 
 export class Config {
   about?: About;
   badges?: Array<BadgeConfig>;
   plugins?: Plugins;
-  settings?: Settings;
+  settings?: SettingsData;
 
   constructor() {
     const result = findConfig();
