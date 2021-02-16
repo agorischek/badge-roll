@@ -1,6 +1,6 @@
-import { About } from "../classes";
-import { Context } from "../declarations";
+import { AboutContribution, PrintersContribution } from "../declarations";
 
 export interface contribution {
-  about?: (about: About, context: Context) => About;
+  about?: AboutContribution;
+  printers?: PrintersContribution;
 }

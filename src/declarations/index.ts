@@ -9,7 +9,7 @@ export * from "./package";
 export * from "./path";
 export * from "./plugins";
 export * from "./printer";
-export * from "./printer-list";
+export * from "./printers-contribution";
 export * from "./provider-definition";
 export * from "./provider-directory";
 export * from "./settings";

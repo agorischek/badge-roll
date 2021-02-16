@@ -1,5 +1,12 @@
-import { resolvePrinters, resolveSettings } from "./resolvers";
-import { About, Badge, Config, ContributionSet, Target } from "./classes";
+import { resolveSettings } from "./resolvers";
+import {
+  About,
+  Badge,
+  Config,
+  ContributionSet,
+  PrinterList,
+  Target,
+} from "./classes";
 import { log } from "./utilities";
 
 export default true;
@@ -27,7 +34,7 @@ log(badges);
 const target = new Target(settings);
 const extension = target.extension;
 
-const printers = resolvePrinters();
+const printers = new PrinterList(contributions);
 const printer = printers[extension];
 
 const badgesMarkup = printer(badges, settings);
