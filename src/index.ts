@@ -1,6 +1,6 @@
 import { resolvePrinters, resolveSettings } from "./resolvers";
 import { About, Badge, Config, ContributionSet, Target } from "./classes";
-import { log, writeFile } from "./utilities";
+import { log } from "./utilities";
 
 export default true;
 
@@ -34,8 +34,8 @@ const badgesMarkup = printer(badges, settings);
 log("Badges Markup:");
 log(badgesMarkup);
 
-const markup = printer(badges, settings, target.content);
+const markup = printer(badges, settings, target.originalContent);
 log("Modified Target:");
 log(markup);
 
-writeFile("./README.md", markup);
+target.write(markup);

@@ -1,9 +1,11 @@
 import { readFile } from "../utilities";
-import { Target } from "../classes";
+import { extractFileExtension } from "../utilities";
 
-export function loadTarget(path: string): Target {
+export function loadTarget(
+  path: string
+): { content: string; path: string; extension: string } {
   const content = readFile(path);
-  const extension = path.match(/\.([^\.]+?)$/)[1];
+  const extension = extractFileExtension(path);
   return {
     content: content,
     path: path,
