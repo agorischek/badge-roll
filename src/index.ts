@@ -5,31 +5,21 @@ import {
   Config,
   ContributionSet,
   PrinterList,
+  ProvidersDirectory,
   Target,
 } from "./classes";
-import { log } from "./utilities";
 
 export default true;
 
 const config = new Config();
-log("Config:");
-log(Config);
-
-const settings = resolveSettings(config);
-log("Settings:");
-log(settings);
-
 const contributions = new ContributionSet();
-log("Contributions:");
-log(contributions);
-
+const settings = resolveSettings(config);
 const about = new About(config, contributions);
-log("About:");
-log(about);
+const providers = new ProvidersDirectory(contributions);
 
-const badges = config.badges.map((badge) => new Badge(badge, settings, about));
-log("Badges:");
-log(badges);
+const badges = config.badges.map(
+  (badge) => new Badge(badge, settings, about, providers)
+);
 
 const target = new Target(settings);
 const extension = target.extension;
@@ -37,12 +27,6 @@ const extension = target.extension;
 const printers = new PrinterList(contributions);
 const printer = printers[extension];
 
-const badgesMarkup = printer(badges, settings);
-log("Badges Markup:");
-log(badgesMarkup);
-
 const markup = printer(badges, settings, target.originalContent);
-log("Modified Target:");
-log(markup);
 
 target.write(markup);

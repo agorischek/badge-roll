@@ -1,8 +1,8 @@
 import { combine } from "../utilities";
 
-import { About } from "../classes";
+import { About, ProvidersDirectory } from "../classes";
 import { BadgeConfig, Settings } from "../declarations";
-import { resolvePath, resolveProviders } from "../resolvers";
+import { resolvePath } from "../resolvers";
 export class Badge {
   basePath: string;
   details: string;
@@ -16,9 +16,9 @@ export class Badge {
   constructor(
     badgeConfig: BadgeConfig,
     settings: Settings,
-    globalAbout: About
+    globalAbout: About,
+    providers: ProvidersDirectory
   ) {
-    const providers = resolveProviders();
     const about = combine(globalAbout, badgeConfig.about);
     const id = badgeConfig.id;
     const provider = badgeConfig.provider || settings.provider;

@@ -1,5 +1,5 @@
 import { ProviderDefinition } from ".";
 
-export type ProviderDirectory = {
+export type ProvidersContribution = {
   [provider: string]: ProviderDefinition;
 };
