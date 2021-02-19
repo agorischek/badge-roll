@@ -1,8 +1,8 @@
 import parseUrl from "url-parse";
 import parseGithubUrl from "parse-github-url";
 
-import { About } from "../classes";
-import { Context } from "../declarations";
+import { About } from "../../classes";
+import { Context } from "../../declarations";
 
 export default {
   about: function (about: About, context: Context): About {

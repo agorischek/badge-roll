@@ -1,5 +1,5 @@
-import { About } from "../classes";
-import { Context } from "../declarations";
+import { About } from "../../classes";
+import { Context } from "../../declarations";
 
 export default {
   about: function (about: About, context: Context): About {
