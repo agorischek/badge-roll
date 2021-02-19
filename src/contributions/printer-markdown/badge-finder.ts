@@ -19,12 +19,33 @@ import {
 
 import { getFirstChild } from "./utils";
 
-type badgeFinderState = {
+class badgeFinderState {
+  firstBadgeParent: Node;
   previousNode: Node;
   currentNode: Node;
+  nextNode: Node;
   mostRecentBadge: Node;
   lastBadge: Node;
-};
+  constructor(firstBadge: Node, firstBadgeParent: Node) {
+    this.previousNode = null;
+    this.currentNode = firstBadge;
+    this.mostRecentBadge = firstBadge;
+    this.lastBadge = null;
+    this.firstBadgeParent = firstBadgeParent;
+    this.nextNode = findAfter(this.firstBadgeParent, this.currentNode);
+  }
+  remember() {
+    this.mostRecentBadge = this.currentNode;
+  }
+  step() {
+    this.previousNode = this.currentNode;
+    this.currentNode = this.nextNode;
+    this.nextNode = findAfter(this.firstBadgeParent, this.currentNode);
+  }
+  complete() {
+    this.lastBadge = this.mostRecentBadge;
+  }
+}
 
 type badgeSectionLocation = {
   start: number;
@@ -38,29 +59,21 @@ function findBadgeSection(doc: string): badgeSectionLocation {
   const firstBadge = find(treeWithParents, wrappedNodeMatchesPattern);
   const firstBadgeParent = firstBadge.parent;
 
-  const state: badgeFinderState = {
-    previousNode: null,
-    currentNode: firstBadge,
-    mostRecentBadge: firstBadge,
-    lastBadge: null,
-  };
+  let state = new badgeFinderState(firstBadge, firstBadgeParent);
 
   while (!state.lastBadge) {
-    const nextNode = findAfter(firstBadgeParent, state.currentNode);
     const currentNodeIsBadge = is(state.currentNode, wrappedNodeMatchesPattern);
-    const nextNodeIsNewLine = is(nextNode, { type: "text", value: "\n" });
-    const nextNodeIsBadge = is(nextNode, wrappedNodeMatchesPattern);
+    const nextNodeIsNewLine = is(state.nextNode, { type: "text", value: "\n" });
+    const nextNodeIsBadge = is(state.nextNode, wrappedNodeMatchesPattern);
     if (currentNodeIsBadge) {
-      state.mostRecentBadge = state.currentNode;
+      state.remember();
     }
     if (nextNodeIsBadge) {
-      state.previousNode = state.currentNode;
-      state.currentNode = nextNode;
+      state.step();
     } else if (nextNodeIsNewLine) {
-      state.previousNode = state.currentNode;
-      state.currentNode = nextNode;
+      state.step();
     } else {
-      state.lastBadge = state.mostRecentBadge;
+      state.complete();
     }
   }
   const lastBadge = state.lastBadge;
