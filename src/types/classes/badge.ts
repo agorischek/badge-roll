@@ -1,8 +1,7 @@
-import { combine } from "../utilities";
+import { combine } from "../../utilities";
 
-import { About, ProvidersDirectory } from "../classes";
-import { BadgeConfig, SettingsData } from "../declarations";
-import { resolvePath } from "../resolvers";
+import { About, BadgeConfig, ProvidersDirectory, SettingsData } from "../";
+import { resolvePath } from "../../resolvers";
 export class Badge {
   basePath: string;
   details: string;

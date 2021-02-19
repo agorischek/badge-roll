@@ -1,6 +1,5 @@
-import { About } from ".";
-import { BadgeConfig, Plugins, SettingsData } from "../declarations";
-import { findConfig, validateConfig } from "../loaders";
+import { About, BadgeConfig, Plugins, SettingsData } from "../";
+import { findConfig, validateConfig } from "../../loaders";
 
 export class Config {
   about?: About;

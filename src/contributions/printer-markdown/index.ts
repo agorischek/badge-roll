@@ -1,8 +1,7 @@
 import unified from "unified";
 import stringify from "remark-stringify";
 import { Node } from "unist";
-import { Badge, Settings } from "../../classes";
-import { BadgeSection } from "../../declarations";
+import { Badge, BadgeSection, Settings } from "../../types";
 
 export default {
   printers: {

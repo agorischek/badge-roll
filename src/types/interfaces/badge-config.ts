@@ -1,4 +1,4 @@
-import { About } from "../classes";
+import { About } from "../";
 
 export interface BadgeConfig {
   about?: About;

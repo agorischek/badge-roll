@@ -1,5 +1,4 @@
-import { ContributionSet } from "../classes";
-import { Printer } from "../declarations";
+import { ContributionSet, Printer } from "../";
 
 import merge from "lodash.merge";
 

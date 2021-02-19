@@ -1,3 +1,3 @@
-import { SettingsData } from ".";
+import { SettingsData } from "../";
 
 export type SettingsContribution = SettingsData;

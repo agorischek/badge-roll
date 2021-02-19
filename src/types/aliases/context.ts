@@ -1,4 +1,4 @@
-import { Package } from ".";
+import { Package } from "../";
 
 export type Context = {
   package: Package;

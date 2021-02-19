@@ -1,6 +1,6 @@
 import { assert } from "chai";
 
-import { About, ContributionSet } from "../classes";
+import { About, ContributionSet } from "../types/classes";
 
 describe("About Resolver", () => {
   const contributions = new ContributionSet();

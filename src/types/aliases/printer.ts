@@ -1,4 +1,4 @@
-import { BadgeSection, SettingsData } from ".";
+import { BadgeSection, SettingsData } from "../";
 
 export type Printer = (
   badgeSection: BadgeSection,

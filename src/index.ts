@@ -7,7 +7,7 @@ import {
   ProvidersDirectory,
   Settings,
   Target,
-} from "./classes";
+} from "./types";
 
 export default true;
 

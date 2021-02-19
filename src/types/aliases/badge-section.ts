@@ -1,3 +1,3 @@
-import { Badge } from "../classes";
+import { Badge } from "../";
 
 export type BadgeSection = Array<Badge>;

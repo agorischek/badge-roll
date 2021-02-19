@@ -3,7 +3,7 @@ import {
   PrintersContribution,
   ProvidersContribution,
   SettingsContribution,
-} from ".";
+} from "../";
 
 export interface plugin {
   about?: AboutContribution;

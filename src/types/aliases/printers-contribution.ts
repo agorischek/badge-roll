@@ -1,4 +1,4 @@
-import { BadgeSection, SettingsData } from "../declarations";
+import { BadgeSection, SettingsData } from "../";
 
 export type PrintersContribution = {
   [format: string]: (

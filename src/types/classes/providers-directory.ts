@@ -1,5 +1,4 @@
-import { ContributionSet } from "../classes";
-import { ProviderDefinition } from "../declarations";
+import { ContributionSet, ProviderDefinition } from "../";
 
 import merge from "lodash.merge";
 

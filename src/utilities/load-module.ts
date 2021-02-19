@@ -1,4 +1,4 @@
-import { plugin } from "../declarations";
+import { plugin } from "../types";
 import { contributionsPath } from "../options";
 
 export function loadModule(name: string, isInternal: boolean): plugin {

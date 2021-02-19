@@ -2,7 +2,7 @@ import { cosmiconfigSync } from "cosmiconfig";
 
 import { filePaths, packageProperty } from "../options";
 import { configSchema } from "../schemas";
-import { Config } from "../classes";
+import { Config } from "../types/classes";
 
 const explorer = cosmiconfigSync(packageProperty, {
   searchPlaces: filePaths,

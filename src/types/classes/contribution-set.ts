@@ -3,9 +3,9 @@ import {
   PrintersContribution,
   ProvidersContribution,
   SettingsContribution,
-} from "../declarations";
-import { contributions } from "../options";
-import { loadModule } from "../utilities";
+} from "../";
+import { contributions } from "../../options";
+import { loadModule } from "../../utilities";
 
 export class ContributionSet {
   about: Array<AboutContribution>;

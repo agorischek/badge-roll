@@ -1,7 +1,6 @@
-import { loadPackage } from "../loaders/package-loader";
+import { loadPackage } from "../../loaders/package-loader";
 
-import { Config, ContributionSet } from "../classes";
-import { Context } from "../declarations";
+import { Config, Context, ContributionSet } from "../";
 
 export class About {
   [property: string]: string;
