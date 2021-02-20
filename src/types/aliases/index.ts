@@ -2,7 +2,7 @@ export * from "./about-contribution";
 export * from "./badge-section";
 export * from "./context";
 export * from "./dictionary";
-export * from "./path";
+export * from "./path-segment";
 export * from "./plugins";
 export * from "./printer";
 export * from "./printers-contribution";

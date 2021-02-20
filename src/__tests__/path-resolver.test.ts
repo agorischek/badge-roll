@@ -1,10 +1,6 @@
 import { assert } from "chai";
 
-import {
-  evaluatePath,
-  parsePath,
-  resolvePath,
-} from "../resolvers/path-resolver";
+import { evaluatePath, parsePath, Path } from "../types/classes/Path";
 
 describe("Path Resolver", () => {
   it("should parse a path", () => {
@@ -21,7 +17,7 @@ describe("Path Resolver", () => {
   });
   it("should resolve a path", () => {
     const about = { def: "123", jkl: "456" };
-    const resolved = resolvePath("abc/:def/ghi/:jkl", about);
+    const resolved = new Path("abc/:def/ghi/:jkl", about).evaluated;
     assert.strictEqual(resolved, "/abc/123/ghi/456");
   });
 });
