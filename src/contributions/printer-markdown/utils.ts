@@ -1,5 +1,6 @@
 import select from "unist-util-select";
-import { Node, Position } from "unist";
+
+import { Node } from "unist";
 
 export function getFirstChild(node: Node): Node {
   const firstChild: Node = select.select(":first-child", node);
@@ -11,4 +12,9 @@ export function getFirstGrandchildren(node: Node): Array<Node> {
     ? [].concat(firstChild.children)
     : [];
   return grandchildren;
+}
+
+export function removeTrailingNewLine(markup: string): string {
+  const stringWithOutTrailingNewLine = markup.match(/^(.*)\n$/)[1];
+  return stringWithOutTrailingNewLine;
 }
