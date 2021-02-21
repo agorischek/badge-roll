@@ -1,10 +1,28 @@
-<img width="125" src="img/logo.png" alt="Badge Roll logo" />
+<img width="125" src="img/logo.svg" alt="Badge Roll logo" />
 
 # Badge Roll
 
 Pluggable README Badge Automator
 
-[![Version](https://img.shields.io/npm/v//badge-roll)](/https://www.npmjs.com/package/badge-roll "Version")[![License](https://img.shields.io/github/license//agorischek/badge-roll)](/https://github.com/agorischek/badge-roll "License")[![Downloads](https://img.shields.io/jsdelivr/npm//hw/badge-roll)](/https://github.com/agorischek/badge-roll "Downloads")
+[![Version](https://img.shields.io/npm/v//badge-roll)](/https://www.npmjs.com/package/badge-roll "Version")[![License](https://img.shields.io/github/license//agorischek/badge-roll)](/https://github.com/agorischek/badge-roll "License")[![Downloads](https://img.shields.io/jsdelivr/npm//hw/badge-roll)](/https://github.com/agorischek/badge-roll "Downloads")[![Dependencies](https://img.shields.io/depfu//agorischek/badge-roll)](/https://github.com/agorischek/badge-roll "Dependencies")
+
+```yml
+# badgeconfig.yml
+# Here's the config for this README
+
+badges:
+  - id: npm/v
+  - id: github/license
+  - id: jsdelivr/npm
+  - id: depfu
+
+settings:
+  position: below-intro
+  provider: shields
+
+about:
+  period: hw
+```
 
 ## Setup
 
@@ -57,7 +75,7 @@ Where the badges will be inserted into the target file. Options are:
 - `above-title`: Insert badges immediately above the first `h1` in the file.
 - `end-of-title`: Insert badges at the end of the first `h1` in the file.
 - `below-title`: Insert badges immediately below the first `h1` in the file.
-- `after-intro`: Insert badges below the first paragraph in the file.
+- `below-intro`: Insert badges below the first paragraph in the file.
 - `section`: Insert badges into the first `span` with class `badges`.
 - `auto`: Default. First attempts `section`. If no matching element is found, attempts `current`. If no badges are found, falls back to `after-title`.
 
