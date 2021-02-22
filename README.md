@@ -1,4 +1,4 @@
-<img width="125" src="img/logo.svg" alt="Badge Roll logo" />
+<img width="135" src="img/logo.svg" alt="Badge Roll logo" />
 
 # Badge Roll
 
