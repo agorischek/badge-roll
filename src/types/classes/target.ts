@@ -9,7 +9,7 @@ export class Target {
   extension: string;
   printer: string;
 
-  constructor(settings: Settings, source: string) {
+  constructor(settings: Settings, source?: string) {
     if (source) {
       this.originalContent = source;
       this.printer = settings.printer;

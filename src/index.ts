@@ -3,26 +3,24 @@ import {
   Badge,
   Config,
   ContributionSet,
+  Printer,
   PrinterList,
   ProvidersDirectory,
   Settings,
   Target,
 } from "./types";
+import { RunContext } from "./types/classes/run-context";
 
 export function affix(source: string, configData: Config): string {
-  const config = new Config(configData);
-  const contributions = new ContributionSet();
-  const settings = new Settings(config, contributions);
-  const about = new About(config, contributions);
-  const providers = new ProvidersDirectory(contributions);
-  const printers = new PrinterList(contributions);
-  const target = new Target(settings, source);
+  const run = new RunContext(configData);
 
-  const printer = printers[target.printer];
-  const badges = config.badges.map(
-    (badge) => new Badge(badge, settings, about, providers)
+  const target = new Target(run.settings, source);
+  const printer = new Printer(run.printers, target.printer);
+
+  const badges = run.badges.map(
+    (badge) => new Badge(badge, run.settings, run.about, run.providers)
   );
-  const markup = printer(badges, settings, target.originalContent);
+  const markup = printer.print(badges, run.settings, target.originalContent);
   return markup;
 }
 
