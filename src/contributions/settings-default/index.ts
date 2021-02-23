@@ -3,6 +3,6 @@ export default {
     style: null,
     provider: "shields",
     printer: "markdown",
-    target: "./README.md",
+    file: "./README.md",
   },
 };
