@@ -7,10 +7,10 @@ import { removeTrailingNewLine } from "./utils";
 import { generateBadgeSectionAst } from "./tree-generator";
 import { findBadgeSection } from "./badge-finder";
 
-import { BadgeSection, Settings } from "../../types";
+import { Badge, Settings } from "../../types";
 
 export function affixMarkdown(
-  badgeSection: BadgeSection,
+  badgeSection: Array<Badge>,
   settings: Settings,
   target?: string
 ) {

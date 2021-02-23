@@ -1,18 +1,18 @@
 import { affixMarkdown } from "./markup-processor";
 
-import { BadgeSection, Settings } from "../../types";
+import { Badge, Settings } from "../../types";
 
 export default {
   printers: {
     md: function (
-      badgeSection: BadgeSection,
+      badgeSection: Array<Badge>,
       settings: Settings,
       target?: string
     ): string {
       return affixMarkdown(badgeSection, settings, target);
     },
     markdown: function (
-      badgeSection: BadgeSection,
+      badgeSection: Array<Badge>,
       settings: Settings,
       target?: string
     ): string {

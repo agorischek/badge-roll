@@ -6,7 +6,7 @@ export class Settings {
   style?: string;
   provider?: string;
   printer?: string;
-  target?: string;
+  file?: string;
   baseUrl?: string;
 
   constructor(config: Config, contributions: ContributionSet) {

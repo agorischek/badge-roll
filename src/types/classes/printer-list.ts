@@ -1,10 +1,10 @@
-import { BadgeSection, ContributionSet, SettingsData } from "../";
+import { Badge, ContributionSet, SettingsData } from "../";
 
 import merge from "lodash.merge";
 
 export class PrinterList {
   [printer: string]: (
-    badgeSection: BadgeSection,
+    badgeSection: Array<Badge>,
     settings: SettingsData,
     target?: string
   ) => string;

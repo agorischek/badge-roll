@@ -1,8 +1,8 @@
-import { BadgeSection, PrinterList, SettingsData } from "..";
+import { Badge, BadgeSection, PrinterList, SettingsData } from "..";
 
 export class Printer {
   print: (
-    badgeSection: BadgeSection,
+    badgeSection: Array<Badge>,
     settings: SettingsData,
     target?: string
   ) => string;

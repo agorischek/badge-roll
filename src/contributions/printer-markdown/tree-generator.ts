@@ -18,7 +18,7 @@ function generateBadgeAst(badge: Badge): Node {
   return badgeAst;
 }
 
-export function generateBadgeSectionAst(badges: BadgeSection): Node {
+export function generateBadgeSectionAst(badges: Array<Badge>): Node {
   const badgeSectionAst = {
     type: "paragraph",
     children: badges.map((badge) => generateBadgeAst(badge)),

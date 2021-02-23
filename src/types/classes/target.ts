@@ -14,10 +14,11 @@ export class Target {
       this.originalContent = source;
       this.printer = settings.printer;
     } else {
-      const target = loadTarget(settings.target);
+      const target = loadTarget(settings.file);
       this.originalContent = target.content;
       this.path = target.path;
       this.extension = target.extension;
+      this.printer = this.extension;
     }
   }
 
