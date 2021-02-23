@@ -5,18 +5,24 @@ import { writeFile } from "../../utilities";
 export class Target {
   originalContent: string;
   modifiedContent: string;
-  path: string;
+  path?: string;
   extension: string;
+  printer: string;
 
-  constructor(settings: Settings) {
-    const target = loadTarget(settings.target);
-    this.originalContent = target.content;
-    this.path = target.path;
-    this.extension = target.extension;
+  constructor(settings: Settings, source: string) {
+    if (source) {
+      this.originalContent = source;
+      this.printer = settings.printer;
+    } else {
+      const target = loadTarget(settings.target);
+      this.originalContent = target.content;
+      this.path = target.path;
+      this.extension = target.extension;
+    }
   }
 
   write(modifiedContent: string): void {
-    writeFile("./README.md", modifiedContent);
+    writeFile(this.path, modifiedContent);
     this.modifiedContent = modifiedContent;
   }
 }
