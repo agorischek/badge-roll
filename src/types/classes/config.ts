@@ -7,9 +7,8 @@ export class Config {
   plugins?: Plugins;
   settings?: SettingsData;
 
-  constructor() {
-    const result = findConfig();
-    const config = result.config;
+  constructor(configData?: Config) {
+    const config = configData || findConfig().config;
     validateConfig(config);
     return config;
   }
