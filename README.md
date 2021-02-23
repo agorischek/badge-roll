@@ -87,6 +87,14 @@ Badges host. Defaults to `shields`.
 
 Style of badges.
 
+### `file`
+
+Target file to affix badges to. Defaults to `README.md`.
+
+### `printer`
+
+ID of printer to use. Defaults to the file extension of `file`. Badge Roll only provides a built-in printer for Markdown (`md`), but plugins can add others.
+
 ## Commands
 
 ### `init`
@@ -108,6 +116,32 @@ Verify that badges conform to config.
 ### `load-config`
 
 Load the configuration that `badge-roll` sees.
+
+## API
+
+Badge Roll can be run programmatically, such as in scaffolding generators.
+
+```js
+const badges = require("badge-roll");
+```
+
+### Affix
+
+```js
+badges.affix(source, config);
+```
+
+`affix` accepts a string for the source file and an object representing the configuration, and returns a string with badges affixed.
+
+### Check
+
+```js
+badges.check(source, config);
+```
+
+`check` accepts the same inputs as `affix`, but returns a `boolean` indicating whether the source satisfies the configuration. Useful for CI scenarios.
+
+### Check
 
 ## Plugins
 
