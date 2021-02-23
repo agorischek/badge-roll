@@ -14,9 +14,17 @@ export class Path {
 export function evaluatePath(path: Array<PathSegment>, about: About): string {
   const evaluated = path.reduce((acc: string, segment: PathSegment) => {
     if (segment.kind === "literal") {
-      return `${acc}/${segment.name}`;
+      if (acc === "") {
+        return `${segment.name}`;
+      } else {
+        return `${acc}/${segment.name}`;
+      }
     } else if (segment.kind === "variable") {
-      return `${acc}/${about[segment.name]}`;
+      if (acc === "") {
+        return `${about[segment.name]}`;
+      } else {
+        return `${acc}/${about[segment.name]}`;
+      }
     }
   }, "");
   return evaluated;
