@@ -3,6 +3,7 @@ export * from "./badge";
 export * from "./config";
 export * from "./contribution-set";
 export * from "./path";
+export * from "./printer";
 export * from "./printer-list";
 export * from "./providers-directory";
 export * from "./settings";
