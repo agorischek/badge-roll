@@ -1,28 +1,26 @@
-import { assert } from "chai";
-
 import { configSchema } from "../schemas";
 
 describe("Config schema", () => {
-  it("should require a badges property", () => {
+  test("should require a badges property", () => {
     const config: unknown = { notBadges: "ABC" };
     const { error } = configSchema.validate(config);
-    assert(error);
+    expect(error).toBeTruthy();
   });
-  it("should require a badges items to have ids", () => {
+  test("should require a badges items to have ids", () => {
     const config: unknown = { badges: [{ notID: "ABC" }] };
     const { error } = configSchema.validate(config);
-    assert(error);
+    expect(error).toBeTruthy();
   });
 
-  it("should not allow an arbitrary property", () => {
+  test("should not allow an arbitrary property", () => {
     const config: unknown = { notARealProperty: "ABC" };
     const { error } = configSchema.validate(config);
-    assert(error);
+    expect(error).toBeTruthy();
   });
 
-  it("should accept a valid config", () => {
+  test("should accept a valid config", () => {
     const config: unknown = { badges: [{ id: "ABC" }, { id: "DEF" }] };
     const { error } = configSchema.validate(config);
-    assert(!error);
+    expect(error).toBeFalsy();
   });
 });

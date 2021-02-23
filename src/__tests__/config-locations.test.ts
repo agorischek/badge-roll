@@ -2,11 +2,11 @@ import { assert } from "chai";
 
 import * as configLocations from "../options/config-locations";
 
-describe("Config loader", () => {
-  it("has a package property", () => {
-    assert(configLocations.packageProperty);
+describe("Config locations", () => {
+  test("has a package property", () => {
+    expect(configLocations.packageProperty).toBeTruthy();
   });
   it("has config locations", () => {
-    assert(configLocations.filePaths);
+    expect(configLocations.filePaths).toBeTruthy();
   });
 });

@@ -1,23 +1,21 @@
-import { assert } from "chai";
-
 import { evaluatePath, parsePath, Path } from "../types/classes/Path";
 
 describe("Path Resolver", () => {
-  it("should parse a path", () => {
+  test("should parse a path", () => {
     const parsed = parsePath("abc/:def/ghi/:jkl");
-    assert.strictEqual(parsed[0].kind, "literal");
-    assert.strictEqual(parsed[1].kind, "variable");
-    assert.strictEqual(parsed.length, 4);
+    expect(parsed[0].kind).toBe("literal");
+    expect(parsed[1].kind).toBe("variable");
+    expect(parsed.length).toBe(4);
   });
-  it("should evaluate a path", () => {
+  test("should evaluate a path", () => {
     const parsed = parsePath("abc/:def/ghi");
     const about = { def: "123" };
     const evaluated = evaluatePath(parsed, about);
-    assert.strictEqual(evaluated, "abc/123/ghi");
+    expect(evaluated).toBe("abc/123/ghi");
   });
-  it("should resolve a path", () => {
+  test("should resolve a path", () => {
     const about = { def: "123", jkl: "456" };
     const resolved = new Path("abc/:def/ghi/:jkl", about).evaluated;
-    assert.strictEqual(resolved, "abc/123/ghi/456");
+    expect(resolved).toBe("abc/123/ghi/456");
   });
 });

@@ -1,26 +1,24 @@
-import { assert } from "chai";
-
 import { About, ContributionSet } from "../types";
 
-describe("About Resolver", () => {
+describe("About", () => {
   const contributions = new ContributionSet();
 
-  it("should correctly retrieve the package name", () => {
+  test("should correctly retrieve the package name", () => {
     const about = new About({}, contributions);
-    assert.strictEqual(about.packageName, "badge-roll");
+    expect(about.packageName).toBe("badge-roll");
   });
-  it("should correctly retrieve the user name", () => {
+  test("should correctly retrieve the user name", () => {
     const about = new About({}, contributions);
-    assert.strictEqual(about.user, "agorischek");
+    expect(about.user).toBe("agorischek");
   });
-  it("should correctly overwrite a value", () => {
+  test("should correctly overwrite a value", () => {
     const config = { about: { name: "wrong-name" } };
     const about = new About(config, contributions);
-    assert.strictEqual(about.packageName, "badge-roll");
+    expect(about.packageName).toBe("badge-roll");
   });
-  it("should pass through an arbitrary property", () => {
+  test("should pass through an arbitrary property", () => {
     const config = { about: { arbitraryProperty: "something" } };
     const about = new About(config, contributions);
-    assert.strictEqual(about.arbitraryProperty, "something");
+    expect(about.arbitraryProperty).toBe("something");
   });
 });
