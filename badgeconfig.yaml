@@ -3,5 +3,10 @@ badges:
   - id: github/license
   - id: jsdelivr/npm
 
+settings:
+  separator: " "
+  position: below-intro
+  provider: shields
+
 about:
   period: hw

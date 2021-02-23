@@ -4,4 +4,5 @@ export interface SettingsData {
   baseUrl?: string;
   printer?: string;
   target?: string;
+  separator?: string;
 }

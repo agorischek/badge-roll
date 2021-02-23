@@ -8,15 +8,16 @@ export class Settings {
   printer?: string;
   file?: string;
   baseUrl?: string;
+  separator?: string;
 
   constructor(config: Config, contributions: ContributionSet) {
-    const settings = contributions.settings.reduce(
+    const contributedSettings = contributions.settings.reduce(
       (settings: SettingsData, contribution) => {
         return merge(settings, contribution);
       },
       {}
     );
-
+    const settings = merge(contributedSettings, config.settings);
     return settings;
   }
 }

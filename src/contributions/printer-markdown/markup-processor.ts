@@ -14,11 +14,18 @@ export function affixMarkdown(
   settings: Settings,
   target?: string
 ): string {
-  const badgeSectionAst = generateBadgeSectionAst(badgeSection);
+  const badgeSectionAst = generateBadgeSectionAst(
+    badgeSection,
+    settings.separator
+  );
   const markupWithNewLine = generateMarkdown(badgeSectionAst);
   const markup = removeTrailingNewLine(markupWithNewLine);
   if (target) {
-    const modifiedTarget = affixBadgeSection(target, markup);
+    const modifiedTarget = affixBadgeSection(
+      target,
+      markup,
+      settings.separator
+    );
     return modifiedTarget;
   } else {
     return markup;
@@ -27,9 +34,10 @@ export function affixMarkdown(
 
 export function affixBadgeSection(
   doc: string,
-  newBadgeSection: string
+  newBadgeSection: string,
+  separator: string
 ): string {
-  const badgeSectionLocation = findBadgeSection(doc);
+  const badgeSectionLocation = findBadgeSection(doc, separator);
   const beforeBadges = doc.substring(0, badgeSectionLocation.start);
   const afterBadges = doc.substring(badgeSectionLocation.end);
   const documentWithNewBadges = beforeBadges.concat(

@@ -4,7 +4,7 @@
 
 Pluggable README Badge Automator
 
-[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")[![License](https://img.shields.io/github/license/agorischek/badge-roll)](https://github.com/agorischek/badge-roll "License")[![Downloads](https://img.shields.io/jsdelivr/npm/hw/badge-roll)](https://github.com/agorischek/badge-roll "Downloads")
+[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version") [![License](https://img.shields.io/github/license/agorischek/badge-roll)](https://github.com/agorischek/badge-roll "License") [![Downloads](https://img.shields.io/jsdelivr/npm/hw/badge-roll)](https://github.com/agorischek/badge-roll "Downloads")
 
 ```yml
 # badgeconfig.yml
@@ -13,15 +13,11 @@ Pluggable README Badge Automator
 badges:
   - id: npm/v
   - id: github/license
-  - id: jsdelivr/npm
   - id: depfu
 
 settings:
   position: below-intro
   provider: shields
-
-about:
-  period: hw
 ```
 
 ## Setup
@@ -94,6 +90,10 @@ Target file to affix badges to. Defaults to `README.md`.
 ### `printer`
 
 ID of printer to use. Defaults to the file extension of `file`. Badge Roll only provides a built-in printer for Markdown (`md`), but plugins can add others.
+
+### `separator`
+
+String to render between badges. Defaults to one space.
 
 ## Commands
 

@@ -9,7 +9,10 @@ import { wrappedNodeMatchesPattern } from "./badge-tester";
 
 import { badgeSectionLocation, badgeFinderState } from "./types";
 
-export function findBadgeSection(doc: string): badgeSectionLocation {
+export function findBadgeSection(
+  doc: string,
+  separator: string
+): badgeSectionLocation {
   const processor = unified().use(markdown);
   const tree = processor.parse(doc);
   const treeWithParents = parents(tree);
@@ -20,14 +23,19 @@ export function findBadgeSection(doc: string): badgeSectionLocation {
 
   while (!state.lastBadge) {
     const currentNodeIsBadge = is(state.currentNode, wrappedNodeMatchesPattern);
-    const nextNodeIsNewLine = is(state.nextNode, { type: "text", value: "\n" });
+    const nextNodeIsWhiteSpace = is(state.nextNode, {
+      type: "text",
+      value: "s",
+    });
+    const nextNodeIsSeparator = is(state.nextNode, {
+      type: "text",
+      value: separator,
+    });
     const nextNodeIsBadge = is(state.nextNode, wrappedNodeMatchesPattern);
     if (currentNodeIsBadge) {
       state.remember();
     }
-    if (nextNodeIsBadge) {
-      state.step();
-    } else if (nextNodeIsNewLine) {
+    if (nextNodeIsBadge | nextNodeIsWhiteSpace | nextNodeIsSeparator) {
       state.step();
     } else {
       state.complete();

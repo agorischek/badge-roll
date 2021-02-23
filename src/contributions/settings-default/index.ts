@@ -4,5 +4,6 @@ export default {
     provider: "shields",
     printer: "markdown",
     file: "./README.md",
+    separator: " ",
   },
 };
