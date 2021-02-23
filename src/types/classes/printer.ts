@@ -1,4 +1,4 @@
-import { Badge, BadgeSection, PrinterList, SettingsData } from "..";
+import { Badge, PrinterList, SettingsData } from "..";
 
 export class Printer {
   print: (

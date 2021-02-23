@@ -1,5 +1,3 @@
-import { assert } from "chai";
-
 import * as configLocations from "../options/config-locations";
 
 describe("Config locations", () => {

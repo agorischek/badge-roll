@@ -1,6 +1,6 @@
 import { Node } from "unist";
 
-import { Badge, BadgeSection } from "../../types";
+import { Badge } from "../../types";
 
 function generateBadgeAst(badge: Badge): Node {
   const badgeAst = {

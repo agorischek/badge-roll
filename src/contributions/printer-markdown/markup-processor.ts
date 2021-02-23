@@ -13,7 +13,7 @@ export function affixMarkdown(
   badgeSection: Array<Badge>,
   settings: Settings,
   target?: string
-) {
+): string {
   const badgeSectionAst = generateBadgeSectionAst(badgeSection);
   const markupWithNewLine = generateMarkdown(badgeSectionAst);
   const markup = removeTrailingNewLine(markupWithNewLine);
@@ -25,7 +25,10 @@ export function affixMarkdown(
   }
 }
 
-export function affixBadgeSection(doc: string, newBadgeSection: string) {
+export function affixBadgeSection(
+  doc: string,
+  newBadgeSection: string
+): string {
   const badgeSectionLocation = findBadgeSection(doc);
   const beforeBadges = doc.substring(0, badgeSectionLocation.start);
   const afterBadges = doc.substring(badgeSectionLocation.end);

@@ -20,15 +20,15 @@ export class badgeFinderState {
     this.firstBadgeParent = firstBadgeParent;
     this.nextNode = findAfter(this.firstBadgeParent, this.currentNode);
   }
-  remember() {
+  remember(): void {
     this.mostRecentBadge = this.currentNode;
   }
-  step() {
+  step(): void {
     this.previousNode = this.currentNode;
     this.currentNode = this.nextNode;
     this.nextNode = findAfter(this.firstBadgeParent, this.currentNode);
   }
-  complete() {
+  complete(): void {
     this.lastBadge = this.mostRecentBadge;
   }
 }
