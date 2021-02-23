@@ -10,7 +10,7 @@ export class Target {
   printer: string;
 
   constructor(settings: Settings, source?: string) {
-    if (source) {
+    if (source !== undefined) {
       this.originalContent = source;
       this.printer = settings.printer;
     } else {
