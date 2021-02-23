@@ -10,8 +10,6 @@ export class Settings {
   baseUrl?: string;
 
   constructor(config: Config, contributions: ContributionSet) {
-    const a = config;
-    const b = contributions;
     const settings = contributions.settings.reduce(
       (settings: SettingsData, contribution) => {
         return merge(settings, contribution);
