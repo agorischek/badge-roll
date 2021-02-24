@@ -6,6 +6,7 @@ export class Settings {
   style?: string;
   provider?: string;
   printer?: string;
+  position?: string;
   file?: string;
   baseUrl?: string;
   separator?: string;
