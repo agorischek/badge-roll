@@ -4,7 +4,7 @@ badges:
   - id: jsdelivr/npm
 
 settings:
-  separator: " "
+  separator: space
   position: below-intro
   provider: shields
 

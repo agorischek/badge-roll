@@ -15,6 +15,13 @@ export function getFirstGrandchildren(node: Node): Array<Node> {
 }
 
 export function removeTrailingNewLine(markup: string): string {
-  const stringWithOutTrailingNewLine = markup.match(/^(.*)\n$/)[1];
-  return stringWithOutTrailingNewLine;
+  const trailingNewlinePattern = /^([^]*?)\n*$/s;
+  if (markup.match(trailingNewlinePattern)) {
+    const markupWithOutTrailingNewLine = markup.match(
+      trailingNewlinePattern
+    )[1];
+    return markupWithOutTrailingNewLine;
+  } else {
+    return markup;
+  }
 }

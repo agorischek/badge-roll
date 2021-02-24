@@ -93,7 +93,7 @@ ID of printer to use. Defaults to the file extension of `file`. Badge Roll only 
 
 ### `separator`
 
-String to render between badges. Defaults to one space.
+String to place between badges. Options are `space` (default), `newline`, and `none`.
 
 ## Commands
 

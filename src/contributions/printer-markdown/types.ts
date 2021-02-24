@@ -5,6 +5,10 @@ export type WrappedNode = {
   node: Node;
 };
 
+export type Separators = {
+  [id: string]: string;
+};
+
 export class badgeFinderState {
   firstBadgeParent: Node;
   previousNode: Node;

@@ -6,6 +6,7 @@ import { Node } from "unist";
 import { removeTrailingNewLine } from "./utils";
 import { generateBadgeSectionAst } from "./tree-generator";
 import { findBadgeSection } from "./badge-finder";
+import { separators } from "./separators";
 
 import { Badge, Settings } from "../../types";
 
@@ -14,18 +15,12 @@ export function affixMarkdown(
   settings: Settings,
   target?: string
 ): string {
-  const badgeSectionAst = generateBadgeSectionAst(
-    badgeSection,
-    settings.separator
-  );
+  const separator = separators[settings.separator];
+  const badgeSectionAst = generateBadgeSectionAst(badgeSection, separator);
   const markupWithNewLine = generateMarkdown(badgeSectionAst);
   const markup = removeTrailingNewLine(markupWithNewLine);
   if (target) {
-    const modifiedTarget = affixBadgeSection(
-      target,
-      markup,
-      settings.separator
-    );
+    const modifiedTarget = affixBadgeSection(target, markup, separator);
     return modifiedTarget;
   } else {
     return markup;

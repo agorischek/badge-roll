@@ -16,20 +16,33 @@ describe("Affix function", () => {
       '[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")';
     expect(modified).toBe(expected);
   });
+
   test("should render two badges with no target content", () => {
-    const config = { badges: [{ id: "npm/v" }, { id: "npm/v" }] };
+    const config = {
+      badges: [{ id: "npm/v" }, { id: "npm/v" }],
+    };
     const modified = affix("", config);
     const expected = `[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version") [![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")`;
     expect(modified).toBe(expected);
   });
 
-  test("should render two badges with custom separator and no target content", () => {
+  test("should render two badges with newline separator and no target content", () => {
     const config = {
       badges: [{ id: "npm/v" }, { id: "npm/v" }],
-      settings: { separator: " / " },
+      settings: { separator: "newline" },
     };
     const modified = affix("", config);
-    const expected = `[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version") / [![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")`;
+    const expected = `[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")\n[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")`;
     expect(modified).toBe(expected);
   });
+});
+
+test("should render two badges with space separator and no target content", () => {
+  const config = {
+    badges: [{ id: "npm/v" }, { id: "npm/v" }],
+    settings: { separator: "space" },
+  };
+  const modified = affix("", config);
+  const expected = `[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version") [![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")`;
+  expect(modified).toBe(expected);
 });

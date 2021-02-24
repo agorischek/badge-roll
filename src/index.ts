@@ -33,5 +33,3 @@ function affixFile() {
   );
   writeFile(target.path, markup);
 }
-
-affixFile();
