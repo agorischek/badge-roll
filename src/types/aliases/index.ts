@@ -1,4 +1,5 @@
 export * from "./about-contribution";
+export * from "./badge-config";
 export * from "./context";
 export * from "./dictionary";
 export * from "./path-segment";

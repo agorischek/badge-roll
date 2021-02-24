@@ -23,19 +23,22 @@ export class Badge {
     globalAbout: About,
     providers: ProvidersDirectory
   ) {
-    const about = combine(globalAbout, badgeConfig.about);
-    const id = badgeConfig.id;
-    const provider = badgeConfig.provider || settings.provider;
-    const style = badgeConfig.style || settings.style;
+    const badge =
+      typeof badgeConfig === "string" ? { id: badgeConfig } : badgeConfig;
+
+    const about = combine(globalAbout, badge.about);
+    const id = badge.id;
+    const provider = badge.provider || settings.provider;
+    const style = badge.style || settings.style;
 
     const providerDefinition = providers[provider];
     const basePath = providerDefinition.baseUrl;
 
     const badgeDefinition = providerDefinition.badges[id];
-    const to = new Path(badgeConfig.to || badgeDefinition.to, about).evaluated;
-    const display = badgeDefinition.display || badgeConfig.display;
+    const to = new Path(badge.to || badgeDefinition.to, about).evaluated;
+    const display = badgeDefinition.display || badge.display;
 
-    const details = badgeDefinition.details || badgeConfig.details;
+    const details = badgeDefinition.details || badge.details;
     const path = new Path(details, about).evaluated;
     const url = `${basePath}/${id}/${path}`;
 

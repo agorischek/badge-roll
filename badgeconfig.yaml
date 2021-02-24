@@ -1,7 +1,7 @@
 badges:
-  - id: npm/v
-  - id: github/license
-  - id: jsdelivr/npm
+  - npm/v
+  - github/license
+  - jsdelivr/npm
 
 settings:
   separator: space
