@@ -23,9 +23,9 @@ export function findBadgeSection(
 
   while (!state.lastBadge) {
     const currentNodeIsBadge = is(state.currentNode, wrappedNodeMatchesPattern);
-    const nextNodeIsWhiteSpace = is(state.nextNode, {
+    const nextNodeIsSpace = is(state.nextNode, {
       type: "text",
-      value: "s",
+      value: " ",
     });
     const nextNodeIsSeparator = is(state.nextNode, {
       type: "text",
@@ -35,7 +35,7 @@ export function findBadgeSection(
     if (currentNodeIsBadge) {
       state.remember();
     }
-    if (nextNodeIsBadge | nextNodeIsWhiteSpace | nextNodeIsSeparator) {
+    if (nextNodeIsBadge | nextNodeIsSpace | nextNodeIsSeparator) {
       state.step();
     } else {
       state.complete();
