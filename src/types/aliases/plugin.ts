@@ -3,11 +3,11 @@ import {
   PrintersContribution,
   ProvidersContribution,
   SettingsContribution,
-} from "../";
+} from "..";
 
-export interface plugin {
+export type Plugin = {
   about?: AboutContribution;
   printers?: PrintersContribution;
   providers?: ProvidersContribution;
   settings?: SettingsContribution;
-}
+};

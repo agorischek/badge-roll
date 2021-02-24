@@ -1,7 +1,7 @@
-import { plugin } from "../types";
+import { Plugin } from "../types";
 import { contributionsPath } from "../options";
 
-export function loadModule(name: string, isInternal: boolean): plugin {
+export function loadModule(name: string, isInternal: boolean): Plugin {
   if (isInternal) {
     return require(`${contributionsPath}/${name}`).default;
   } else {
