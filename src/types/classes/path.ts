@@ -1,4 +1,4 @@
-import { About, PathSegment } from "../";
+import { About, PathSegment } from "..";
 
 export class Path {
   segments: Array<PathSegment>;

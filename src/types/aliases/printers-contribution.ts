@@ -1,4 +1,4 @@
-import { Badge, SettingsData } from "../";
+import { Badge, SettingsData } from "..";
 
 export type PrintersContribution = {
   [format: string]: (

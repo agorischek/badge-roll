@@ -1,4 +1,4 @@
-import { About, BadgeConfig, Plugins, SettingsData } from "../";
+import { About, BadgeConfig, Plugins, SettingsData } from "..";
 import { findConfig, validateConfig } from "../../loaders";
 
 export class Config {

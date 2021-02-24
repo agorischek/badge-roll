@@ -1,4 +1,4 @@
-import { BadgeDefinition } from "../";
+import { BadgeDefinition } from "..";
 
 export type ProviderDefinition = {
   baseUrl: string;

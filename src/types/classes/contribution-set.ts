@@ -3,7 +3,7 @@ import {
   PrintersContribution,
   ProvidersContribution,
   SettingsContribution,
-} from "../";
+} from "..";
 import { contributions } from "../../options";
 import { loadModule } from "../../utilities";
 

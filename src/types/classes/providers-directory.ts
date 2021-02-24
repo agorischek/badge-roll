@@ -1,4 +1,4 @@
-import { ContributionSet, ProviderDefinition } from "../";
+import { ContributionSet, ProviderDefinition } from "..";
 
 import merge from "lodash.merge";
 

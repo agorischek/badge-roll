@@ -1,4 +1,4 @@
-import { Badge, ContributionSet, SettingsData } from "../";
+import { Badge, ContributionSet, SettingsData } from "..";
 
 import merge from "lodash.merge";
 

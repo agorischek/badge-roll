@@ -1,4 +1,4 @@
-import { Config, ContributionSet, SettingsData } from "../";
+import { Config, ContributionSet, SettingsData } from "..";
 
 import merge from "lodash.merge";
 
