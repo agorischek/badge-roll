@@ -9,7 +9,7 @@ export type Separators = {
   [id: string]: string;
 };
 
-export class badgeFinderState {
+export class BadgeFinderState {
   firstBadgeParent: Node;
   previousNode: Node;
   currentNode: Node;
@@ -37,7 +37,7 @@ export class badgeFinderState {
   }
 }
 
-export type badgeSectionLocation = {
+export type BadgeSectionLocation = {
   start: number;
   end: number;
 };

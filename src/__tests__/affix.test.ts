@@ -63,3 +63,12 @@ test("should render two badges with space separator and no target content", () =
   const expected = `[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version") [![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")`;
   expect(modified).toBe(expected);
 });
+
+// test("should render a badge with no badges in source", () => {
+//   const config = {
+//     badges: [{ id: "npm/v" }],
+//   };
+//   const modified = affix("# Title\n\nTest content", config);
+//   const expected = `# Title\n\n[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")\n\nTest content`;
+//   expect(modified).toBe(expected);
+// });

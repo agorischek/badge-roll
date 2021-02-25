@@ -7,45 +7,50 @@ const position = require("unist-util-position");
 
 import { wrappedNodeMatchesPattern } from "./badge-tester";
 
-import { badgeSectionLocation, badgeFinderState } from "./types";
+import { BadgeSectionLocation, BadgeFinderState } from "./types";
 
 export function findBadgeSection(
-  doc: string,
+  tree: Node,
   separator: string
-): badgeSectionLocation {
-  const processor = unified().use(markdown);
-  const tree = processor.parse(doc);
-  const treeWithParents = parents(tree);
-  const firstBadge = find(treeWithParents, wrappedNodeMatchesPattern);
-  const firstBadgeParent = firstBadge.parent;
+): BadgeSectionLocation {
+  const firstBadge = find(tree, wrappedNodeMatchesPattern);
+  if (firstBadge) {
+    const firstBadgeParent = firstBadge.parent;
 
-  const state = new badgeFinderState(firstBadge, firstBadgeParent);
+    const state = new BadgeFinderState(firstBadge, firstBadgeParent);
 
-  while (!state.lastBadge) {
-    const currentNodeIsBadge = is(state.currentNode, wrappedNodeMatchesPattern);
-    const nextNodeIsSpace = is(state.nextNode, {
-      type: "text",
-      value: " ",
-    });
-    const nextNodeIsSeparator = is(state.nextNode, {
-      type: "text",
-      value: separator,
-    });
-    const nextNodeIsBadge = is(state.nextNode, wrappedNodeMatchesPattern);
-    if (currentNodeIsBadge) {
-      state.remember();
+    while (!state.lastBadge) {
+      const currentNodeIsBadge = is(
+        state.currentNode,
+        wrappedNodeMatchesPattern
+      );
+      const nextNodeIsSpace = is(state.nextNode, {
+        type: "text",
+        value: " ",
+      });
+      const nextNodeIsSeparator = is(state.nextNode, {
+        type: "text",
+        value: separator,
+      });
+      const nextNodeIsBadge = is(state.nextNode, wrappedNodeMatchesPattern);
+
+      if (currentNodeIsBadge) {
+        state.remember();
+      }
+      if (nextNodeIsBadge | nextNodeIsSpace | nextNodeIsSeparator) {
+        state.step();
+      } else {
+        state.complete();
+      }
     }
-    if (nextNodeIsBadge | nextNodeIsSpace | nextNodeIsSeparator) {
-      state.step();
-    } else {
-      state.complete();
-    }
+    const lastBadge = state.lastBadge;
+    const badgeSectionStart = position(firstBadge).start.offset;
+    const badgeSectionEnd = position(lastBadge).end.offset;
+    return {
+      start: badgeSectionStart,
+      end: badgeSectionEnd,
+    };
+  } else {
+    return null;
   }
-  const lastBadge = state.lastBadge;
-  const badgeSectionStart = position(firstBadge).start.offset;
-  const badgeSectionEnd = position(lastBadge).end.offset;
-  return {
-    start: badgeSectionStart,
-    end: badgeSectionEnd,
-  };
 }

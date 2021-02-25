@@ -1,5 +1,7 @@
 import unified from "unified";
 import stringify from "remark-stringify";
+import markdown from "remark-parse";
+const parents = require("unist-util-parents");
 
 import { Node } from "unist";
 
@@ -9,6 +11,7 @@ import { findBadgeSection } from "./badge-finder";
 import { separators } from "./separators";
 
 import { Badge, Settings } from "../../types";
+import { BadgeSectionLocation } from "./types";
 
 export function affixMarkdown(
   badgeSection: Array<Badge>,
@@ -38,15 +41,53 @@ export function affixBadgeSection(
   separator: string,
   position: string
 ): string {
-  // current, top, above-title, end-of-title, below-title, below-lead, below-intro, section, auto
-  const badgeSectionLocation = findBadgeSection(doc, separator);
-  const beforeBadges = doc.substring(0, badgeSectionLocation.start);
-  const afterBadges = doc.substring(badgeSectionLocation.end);
-  const documentWithNewBadges = beforeBadges.concat(
-    newBadgeSection,
-    afterBadges
+  const processor = unified().use(markdown);
+  const tree = parents(processor.parse(doc));
+  const badgeSectionLocation: BadgeSectionLocation = findBadgeSection(
+    tree,
+    separator
   );
-  return documentWithNewBadges;
+
+  // current, top, above-title, end-of-title, below-title, below-lead, below-intro, section, auto
+  let modifiedDoc: string;
+  let beforeBadges: string;
+  let afterBadges: string;
+  let anchor: string;
+
+  switch (position) {
+    case "current":
+      if (badgeSectionLocation) {
+        beforeBadges = doc.substring(0, badgeSectionLocation.start);
+        afterBadges = doc.substring(badgeSectionLocation.end);
+        modifiedDoc = beforeBadges.concat(newBadgeSection, afterBadges);
+      } else {
+        throw new Error(
+          "Badge section position was set to `current`, but no badges were found in current target file."
+        );
+      }
+    case "below-title":
+      anchor = "title";
+      beforeBadges = "";
+      if (badgeSectionLocation) {
+        beforeBadges = doc.substring(0, badgeSectionLocation.start);
+      } else {
+        throw new Error(
+          "Badge section position was set to `current`, but no badges were found in current target file."
+        );
+      }
+    default:
+      if (badgeSectionLocation) {
+        beforeBadges = doc.substring(0, badgeSectionLocation.start);
+        afterBadges = doc.substring(badgeSectionLocation.end);
+        modifiedDoc = beforeBadges.concat(newBadgeSection, afterBadges);
+      } else {
+        throw new Error(
+          "Badge section position was set to `current`, but no badges were found in current target file."
+        );
+      }
+  }
+
+  return modifiedDoc;
 }
 
 function generateMarkdown(node: Node) {

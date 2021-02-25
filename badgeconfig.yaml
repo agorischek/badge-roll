@@ -5,7 +5,6 @@ badges:
 
 settings:
   separator: space
-  position: below-intro
   provider: shields
 
 about:
