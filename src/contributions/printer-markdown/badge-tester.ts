@@ -7,13 +7,13 @@ import { getFirstChild, getFirstGrandchildren } from "./utils";
 
 import { WrappedNode } from "./types";
 
-export function wrappedNodeMatchesPattern(wrappedNode: WrappedNode): boolean {
+export function badgePatternTest(wrappedNode: WrappedNode): boolean {
   const node = (wrappedNode.node as unknown) as Node;
   const matches = nodeMatchesPattern(node);
   return matches;
 }
 
-function nodeMatchesPattern(node: Node): boolean {
+export function nodeMatchesPattern(node: Node): boolean {
   const firstChild = getFirstChild(node);
 
   const isLink: boolean = nodeIsLink(node);

@@ -1,5 +1,9 @@
 const findAfter = require("unist-util-find-after");
 
+import { nodeMatchesPattern } from "./badge-tester";
+
+import { Node } from "unist";
+
 export type WrappedNode = {
   parent: Node;
   node: Node;
@@ -10,19 +14,21 @@ export type Separators = {
 };
 
 export class BadgeFinderState {
-  firstBadgeParent: Node;
+  starterParent: Node;
   previousNode: Node;
   currentNode: Node;
   nextNode: Node;
   mostRecentBadge: Node;
+  firstBadge: Node;
   lastBadge: Node;
-  constructor(firstBadge: Node, firstBadgeParent: Node) {
+  constructor(starter: Node, starterParent: Node) {
     this.previousNode = null;
-    this.currentNode = firstBadge;
-    this.mostRecentBadge = firstBadge;
+    this.firstBadge = nodeMatchesPattern(starter) ? starter : null;
+    this.currentNode = starter;
+    this.mostRecentBadge = this.firstBadge;
     this.lastBadge = null;
-    this.firstBadgeParent = firstBadgeParent;
-    this.nextNode = findAfter(this.firstBadgeParent, this.currentNode);
+    this.starterParent = starterParent;
+    this.nextNode = findAfter(this.starterParent, this.currentNode);
   }
   remember(): void {
     this.mostRecentBadge = this.currentNode;
@@ -30,7 +36,7 @@ export class BadgeFinderState {
   step(): void {
     this.previousNode = this.currentNode;
     this.currentNode = this.nextNode;
-    this.nextNode = findAfter(this.firstBadgeParent, this.currentNode);
+    this.nextNode = findAfter(this.starterParent, this.currentNode);
   }
   complete(): void {
     this.lastBadge = this.mostRecentBadge;

@@ -5,5 +5,6 @@ export default {
     printer: "markdown",
     file: "./README.md",
     separator: "space",
+    position: "below-title",
   },
 };

@@ -5,25 +5,24 @@ const find = require("unist-util-find");
 const is = require("unist-util-is");
 const position = require("unist-util-position");
 
-import { wrappedNodeMatchesPattern } from "./badge-tester";
+import { badgePatternTest } from "./badge-tester";
 
 import { BadgeSectionLocation, BadgeFinderState } from "./types";
 
+import { Node } from "unist";
+
 export function findBadgeSection(
   tree: Node,
+  startingNode: Node,
   separator: string
 ): BadgeSectionLocation {
-  const firstBadge = find(tree, wrappedNodeMatchesPattern);
-  if (firstBadge) {
-    const firstBadgeParent = firstBadge.parent;
+  const starter = find(tree, startingNode);
 
-    const state = new BadgeFinderState(firstBadge, firstBadgeParent);
+  if (starter) {
+    const state = new BadgeFinderState(starter, starter.parent);
 
     while (!state.lastBadge) {
-      const currentNodeIsBadge = is(
-        state.currentNode,
-        wrappedNodeMatchesPattern
-      );
+      const currentNodeIsBadge = is(state.currentNode, badgePatternTest);
       const nextNodeIsSpace = is(state.nextNode, {
         type: "text",
         value: " ",
@@ -32,7 +31,7 @@ export function findBadgeSection(
         type: "text",
         value: separator,
       });
-      const nextNodeIsBadge = is(state.nextNode, wrappedNodeMatchesPattern);
+      const nextNodeIsBadge = is(state.nextNode, badgePatternTest);
 
       if (currentNodeIsBadge) {
         state.remember();
