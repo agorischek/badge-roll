@@ -56,6 +56,11 @@ export function checkFile(): void {
   }
 }
 
+export function loadConfig(): Config {
+  const config = new Config();
+  return config;
+}
+
 const program = new Command();
 
 program
@@ -72,6 +77,15 @@ program
   .action(() => {
     console.log("Checking badges...");
     checkFile();
+  });
+
+program
+  .command("load-config")
+  .description("Check whether badges in target file match config")
+  .action(() => {
+    console.log("Loading config...");
+    const config = loadConfig();
+    console.log(config);
   });
 
 program.parse(process.argv);
