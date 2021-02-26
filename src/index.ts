@@ -1,3 +1,5 @@
+import { Command } from "commander";
+
 import { BadgeSection, Config, Printer, Target } from "./types";
 import { RunContext } from "./types/classes/run-context";
 import { writeFile } from "./utilities";
@@ -33,4 +35,43 @@ export function affixFile() {
   );
   writeFile(target.path, markup);
 }
-affixFile();
+
+export function checkFile(): void {
+  const run = new RunContext();
+  const target = new Target(run.settings);
+  const printer = new Printer(run.printers, target.printer);
+  const section = new BadgeSection(run);
+  const markup = printer.print(
+    section.badges,
+    run.settings,
+    target.originalContent
+  );
+  const match = markup === target.originalContent;
+  if (match) console.log("Target file badges matched config!");
+  else {
+    console.log(
+      "Target file badges did not match config. Run `badge-roll` affix to fix."
+    );
+    process.exitCode = 1;
+  }
+}
+
+const program = new Command();
+
+program
+  .command("affix")
+  .description("Affix badges to the target file")
+  .action(() => {
+    console.log("Affixing badges...");
+    affixFile();
+  });
+
+program
+  .command("check")
+  .description("Check whether badges in target file match config")
+  .action(() => {
+    console.log("Checking badges...");
+    checkFile();
+  });
+
+program.parse(process.argv);
