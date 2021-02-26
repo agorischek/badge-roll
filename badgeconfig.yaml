@@ -6,6 +6,7 @@ badges:
 settings:
   separator: space
   provider: shields
+  position: below-lead
 
 about:
   period: hw

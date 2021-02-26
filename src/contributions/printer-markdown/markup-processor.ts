@@ -19,6 +19,7 @@ export function processMarkdown(
   const badgeSectionAst = generateBadgeSectionAst(badgeSection, separator);
   const markupWithNewLine = generateMarkdown(badgeSectionAst);
   const markup = removeTrailingNewLine(markupWithNewLine);
+
   if (target) {
     const modifiedTarget = affixBadgeSection(
       target,

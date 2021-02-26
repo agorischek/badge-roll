@@ -1,3 +1,3 @@
 import { affixFile } from ".";
 
-affixFile();
+// affixFile();

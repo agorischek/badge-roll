@@ -22,7 +22,12 @@ export function affixBadgeSection(
 
   if (!anchor) throw new Error("Couldn't find anchor in target file");
 
-  const badgeSectionLocation = findBadgeSection(tree, anchor, separator);
+  const badgeSectionLocation = findBadgeSection(
+    tree,
+    anchor,
+    separator,
+    position
+  );
   const anchorLocation = {
     start: nav.position(anchor).start.offset,
     end: nav.position(anchor).end.offset,

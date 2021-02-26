@@ -17,11 +17,11 @@
     "lib"
   ],
   "scripts": {
-    "badge": "ts-node src/run.ts",
+    "badge": "ts-node src/index.ts",
     "build": "rimraf lib && tsc",
     "format": "prettier . --write",
     "lint": "eslint . --fix && remark . --frail",
-    "start": "ts-node src/run.ts",
+    "start": "ts-node src/index.ts",
     "start:lib": "tsc && node lib/index.js",
     "pretest": "eslint \"src/**\"",
     "test": "jest",

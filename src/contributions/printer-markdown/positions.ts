@@ -53,7 +53,7 @@ export const positions: Positions = {
     },
     affix: (source, badges, anchorLoc, badgesLoc) => {
       const head = before(anchorLoc.end, source);
-      const tail = after(badgesLoc.end | anchorLoc.end, source);
+      const tail = after(badgesLoc.end || anchorLoc.end, source);
       return concat(head, br, badges, tail);
     },
   },

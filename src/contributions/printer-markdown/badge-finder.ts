@@ -8,7 +8,8 @@ import { Node } from "unist";
 export function findBadgeSection(
   tree: Node,
   startingNode: Node,
-  separator: string
+  separator: string,
+  position: string
 ): Location {
   const starter = nav.find(tree, startingNode);
 
@@ -21,8 +22,17 @@ export function findBadgeSection(
 
       if (currentNode.isBadge) state.rememberBadge();
 
-      if (currentNode.isParagraph) state.stepDown();
-      else if (!nextNode.exists) state.complete();
+      if (
+        currentNode.isParagraph &&
+        position === "below-lead" &&
+        state.paragraphCount === 0
+      ) {
+        state.countParagraph();
+        state.stepForward();
+      } else if (currentNode.isParagraph) {
+        state.countParagraph();
+        state.stepDown();
+      } else if (!nextNode.exists) state.complete();
       else if (nextNode.isParagraph) state.stepForward();
       else if (nextNode.isBadge) state.stepForward();
       else if (nextNode.isSpace || nextNode.isSeparator || nextNode.isNewline)
