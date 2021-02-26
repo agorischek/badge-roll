@@ -4,7 +4,7 @@ import { Node } from "unist";
 
 export function getFirstChild(node: Node): Node {
   const firstChild: Node = select.select(":first-child", node);
-  return firstChild;
+  return firstChild ? firstChild : null;
 }
 export function getFirstGrandchildren(node: Node): Array<Node> {
   const firstChild: Node = getFirstChild(node);

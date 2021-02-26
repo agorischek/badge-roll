@@ -5,7 +5,7 @@ const find = require("unist-util-find");
 const is = require("unist-util-is");
 const position = require("unist-util-position");
 
-import { badgePatternTest } from "./badge-tester";
+import { badgePatternTest, nodeMatchesPattern } from "./badge-tester";
 
 import { BadgeSectionLocation, BadgeFinderState } from "./types";
 
@@ -21,30 +21,59 @@ export function findBadgeSection(
   if (starter) {
     const state = new BadgeFinderState(starter, starter.parent);
 
-    while (!state.lastBadge) {
-      const currentNodeIsBadge = is(state.currentNode, badgePatternTest);
-      const nextNodeIsSpace = is(state.nextNode, {
-        type: "text",
-        value: " ",
-      });
-      const nextNodeIsSeparator = is(state.nextNode, {
-        type: "text",
-        value: separator,
-      });
-      const nextNodeIsBadge = is(state.nextNode, badgePatternTest);
+    while (!state.searchComplete) {
+      const currentNodeIsBadge = nodeMatchesPattern(state.currentNode);
+      const currentNodeIsParagraph = is(state.currentNode, "paragraph");
+      const nextNodeIsParagraph = is(state.nextNode, "paragraph");
+      const nextNodeExists = state.nextNode ? true : false;
+      const nextNodeIsSpace = nextNodeExists
+        ? is(state.nextNode, {
+            type: "text",
+            value: " ",
+          })
+        : false;
+      const nextNodeIsNewline = nextNodeExists
+        ? is(state.nextNode, {
+            type: "text",
+            value: "\n",
+          })
+        : false;
+      const nextNodeIsSeparator = nextNodeExists
+        ? is(state.nextNode, {
+            type: "text",
+            value: separator,
+          })
+        : false;
+      const nextNodeIsBadge = nextNodeExists
+        ? nodeMatchesPattern(state.nextNode)
+        : false;
 
       if (currentNodeIsBadge) {
-        state.remember();
+        state.rememberBadge();
       }
-      if (nextNodeIsBadge | nextNodeIsSpace | nextNodeIsSeparator) {
-        state.step();
+      if (currentNodeIsParagraph) {
+        state.stepDown();
+      } else if (!nextNodeExists) {
+        state.complete();
+      } else if (nextNodeIsParagraph) {
+        state.stepForward();
+      } else if (
+        nextNodeIsBadge ||
+        nextNodeIsSpace ||
+        nextNodeIsSeparator ||
+        nextNodeIsNewline
+      ) {
+        state.stepForward();
       } else {
         state.complete();
       }
     }
+
+    const firstBadge = state.firstBadge;
     const lastBadge = state.lastBadge;
     const badgeSectionStart = position(firstBadge).start.offset;
     const badgeSectionEnd = position(lastBadge).end.offset;
+
     return {
       start: badgeSectionStart,
       end: badgeSectionEnd,
