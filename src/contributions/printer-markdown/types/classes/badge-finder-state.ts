@@ -1,44 +1,9 @@
 const findAfter = require("unist-util-find-after");
-const is = require("unist-util-is");
-
-import { getFirstChild } from "./utils";
 
 import { Node } from "unist";
 
-import test from "./node-tests";
-
-export class NodeAnalysis {
-  exists: boolean;
-  isParagraph: boolean;
-  isSpace: boolean;
-  isNewline: boolean;
-  isSeparator: boolean;
-  isBadge: boolean;
-  constructor(node: Node, separator: string) {
-    (this.exists = node ? true : false),
-      (this.isParagraph = is(node, "paragraph")),
-      (this.isSpace = test.isSpace(node)),
-      (this.isNewline = test.isNewline(node)),
-      (this.isSeparator = test.isSpecificText(node, separator)),
-      (this.isBadge = test.isBadge(node));
-  }
-}
-
-export type WrappedNode = {
-  parent: Node;
-  node: Node;
-};
-
-export type Separators = {
-  [id: string]: string;
-};
-
-export type Positions = {
-  [position: string]: {
-    relation: string;
-    findAnchor: (node: Node) => Node;
-  };
-};
+import test from "../../node-tests";
+import { getFirstChild } from "../../utils";
 
 export class BadgeFinderState {
   currentParent: Node;
@@ -81,8 +46,3 @@ export class BadgeFinderState {
     this.searchComplete = true;
   }
 }
-
-export type BadgeSectionLocation = {
-  start: number;
-  end: number;
-};

@@ -1,11 +1,8 @@
-import unified from "unified";
-import markdown from "remark-parse";
-const parents = require("unist-util-parents");
 const find = require("unist-util-find");
-const is = require("unist-util-is");
 const position = require("unist-util-position");
 
-import { BadgeSectionLocation, BadgeFinderState, NodeAnalysis } from "./types";
+import { BadgeSectionLocation, BadgeFinderState } from "./types";
+import { NodeAnalysis } from "./types/classes/node-analysis";
 
 import { Node } from "unist";
 

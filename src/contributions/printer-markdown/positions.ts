@@ -17,12 +17,15 @@ const anchors = {
     type: "heading",
     depth: 2,
   },
+  root: {
+    type: "root",
+  },
 };
 
 export const positions: Positions = {
   top: {
     relation: "below",
-    findAnchor: (tree) => find(tree, "root"),
+    findAnchor: (tree) => find(tree, anchors.root),
   },
   "above-title": {
     relation: "above",

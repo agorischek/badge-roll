@@ -5,8 +5,6 @@ import { Node } from "unist";
 
 import { getFirstChild, getFirstGrandchildren } from "./utils";
 
-import { WrappedNode } from "./types";
-
 export default {
   isSpace,
   isNewline,
