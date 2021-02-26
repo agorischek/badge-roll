@@ -1,8 +1,9 @@
 export type SettingsData = {
-  style?: string;
-  provider?: string;
   baseUrl?: string;
+  position?: string;
   printer?: string;
-  target?: string;
+  provider?: string;
   separator?: string;
+  style?: string;
+  target?: string;
 };

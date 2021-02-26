@@ -1,5 +1,4 @@
-const find = require("unist-util-find");
-const position = require("unist-util-position");
+import nav from "./tree-navigator";
 
 import { BadgeSectionLocation, BadgeFinderState } from "./types";
 import { NodeAnalysis } from "./types/classes/node-analysis";
@@ -11,7 +10,7 @@ export function findBadgeSection(
   startingNode: Node,
   separator: string
 ): BadgeSectionLocation {
-  const starter = find(tree, startingNode);
+  const starter = nav.find(tree, startingNode);
 
   if (starter) {
     const state = new BadgeFinderState(starter, starter.parent);
@@ -31,8 +30,8 @@ export function findBadgeSection(
       else state.complete();
     }
 
-    const badgeSectionStart = position(state.firstBadge).start.offset;
-    const badgeSectionEnd = position(state.lastBadge).end.offset;
+    const badgeSectionStart = nav.position(state.firstBadge).start.offset;
+    const badgeSectionEnd = nav.position(state.lastBadge).end.offset;
 
     return {
       start: badgeSectionStart,
