@@ -5,9 +5,7 @@ const find = require("unist-util-find");
 const is = require("unist-util-is");
 const position = require("unist-util-position");
 
-import { badgePatternTest, nodeMatchesPattern } from "./badge-tester";
-
-import { BadgeSectionLocation, BadgeFinderState } from "./types";
+import { BadgeSectionLocation, BadgeFinderState, NodeAnalysis } from "./types";
 
 import { Node } from "unist";
 
@@ -22,46 +20,23 @@ export function findBadgeSection(
     const state = new BadgeFinderState(starter, starter.parent);
 
     while (!state.searchComplete) {
-      const currentNodeIsBadge = nodeMatchesPattern(state.currentNode);
-      const currentNodeIsParagraph = is(state.currentNode, "paragraph");
-      const nextNodeIsParagraph = is(state.nextNode, "paragraph");
-      const nextNodeExists = state.nextNode ? true : false;
-      const nextNodeIsSpace = nextNodeExists
-        ? is(state.nextNode, {
-            type: "text",
-            value: " ",
-          })
-        : false;
-      const nextNodeIsNewline = nextNodeExists
-        ? is(state.nextNode, {
-            type: "text",
-            value: "\n",
-          })
-        : false;
-      const nextNodeIsSeparator = nextNodeExists
-        ? is(state.nextNode, {
-            type: "text",
-            value: separator,
-          })
-        : false;
-      const nextNodeIsBadge = nextNodeExists
-        ? nodeMatchesPattern(state.nextNode)
-        : false;
+      const currentNode = new NodeAnalysis(state.currentNode, separator);
+      const nextNode = new NodeAnalysis(state.nextNode, separator);
 
-      if (currentNodeIsBadge) {
+      if (currentNode.isBadge) {
         state.rememberBadge();
       }
-      if (currentNodeIsParagraph) {
+      if (currentNode.isParagraph) {
         state.stepDown();
-      } else if (!nextNodeExists) {
+      } else if (!nextNode.exists) {
         state.complete();
-      } else if (nextNodeIsParagraph) {
+      } else if (nextNode.isParagraph) {
         state.stepForward();
       } else if (
-        nextNodeIsBadge ||
-        nextNodeIsSpace ||
-        nextNodeIsSeparator ||
-        nextNodeIsNewline
+        nextNode.isBadge ||
+        nextNode.isSpace ||
+        nextNode.isSeparator ||
+        nextNode.isNewline
       ) {
         state.stepForward();
       } else {

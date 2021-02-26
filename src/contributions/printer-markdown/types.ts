@@ -1,9 +1,34 @@
 const findAfter = require("unist-util-find-after");
+const is = require("unist-util-is");
 
-import { nodeMatchesPattern } from "./badge-tester";
 import { getFirstChild } from "./utils";
 
 import { Node } from "unist";
+
+import {
+  badgePatternTest,
+  nodeMatchesPattern,
+  nodeIsSpace,
+  nodeIsNewline,
+  nodeIsSpecificText,
+} from "./badge-tester";
+
+export class NodeAnalysis {
+  exists: boolean;
+  isParagraph: boolean;
+  isSpace: boolean;
+  isNewline: boolean;
+  isSeparator: boolean;
+  isBadge: boolean;
+  constructor(node: Node, separator: string) {
+    (this.exists = node ? true : false),
+      (this.isParagraph = is(node, "paragraph")),
+      (this.isSpace = nodeIsSpace(node)),
+      (this.isNewline = nodeIsNewline(node)),
+      (this.isSeparator = nodeIsSpecificText(node, separator)),
+      (this.isBadge = nodeMatchesPattern(node));
+  }
+}
 
 export type WrappedNode = {
   parent: Node;

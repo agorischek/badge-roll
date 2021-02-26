@@ -14,6 +14,8 @@ export function badgePatternTest(wrappedNode: WrappedNode): boolean {
 }
 
 export function nodeMatchesPattern(node: Node): boolean {
+  if (node === null) return null;
+
   const firstChild = getFirstChild(node);
 
   const isLink: boolean = nodeIsLink(node);
@@ -23,6 +25,33 @@ export function nodeMatchesPattern(node: Node): boolean {
 
   const matchesPattern = childIsShieldsImg && hasExactlyOneChild;
   return matchesPattern;
+}
+
+export function nodeIsSpace(node: Node) {
+  return node
+    ? is(node, {
+        type: "text",
+        value: " ",
+      })
+    : null;
+}
+
+export function nodeIsNewline(node: Node) {
+  return node
+    ? is(node, {
+        type: "text",
+        value: "\n",
+      })
+    : null;
+}
+
+export function nodeIsSpecificText(node: Node, specificText: string) {
+  return node
+    ? is(node, {
+        type: "text",
+        value: specificText,
+      })
+    : null;
 }
 
 export function nodeHasExactlyOneChild(node: Node): boolean {
