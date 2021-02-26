@@ -1,0 +1,3 @@
+import { affixFile } from ".";
+
+affixFile();

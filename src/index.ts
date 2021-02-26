@@ -21,7 +21,7 @@ export function check(source: string, config: Config): boolean {
   return match;
 }
 
-function affixFile() {
+export function affixFile() {
   const run = new RunContext();
   const target = new Target(run.settings);
   const printer = new Printer(run.printers, target.printer);
@@ -33,5 +33,3 @@ function affixFile() {
   );
   writeFile(target.path, markup);
 }
-
-affixFile();
