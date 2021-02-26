@@ -1,5 +1,4 @@
-import select from "unist-util-select";
-import is from "unist-util-is";
+import nav from "./tree-navigator";
 
 import { Node } from "unist";
 
@@ -36,17 +35,17 @@ export function hasNoGrandchildren(node: Node): boolean {
 
 export function isShieldsImg(node: Node): boolean {
   return node
-    ? select.matches("image[url^=https://img.shields.io]:empty", node)
+    ? nav.matches("image[url^=https://img.shields.io]:empty", node)
     : null;
 }
 
 export function isLink(node: Node): boolean {
-  return node ? is("link", node) : null;
+  return node ? nav.is("link", node) : null;
 }
 
 function isSpace(node: Node) {
   return node
-    ? is(node, {
+    ? nav.is(node, {
         type: "text",
         value: " ",
       })
@@ -55,7 +54,7 @@ function isSpace(node: Node) {
 
 export function isNewline(node: Node) {
   return node
-    ? is(node, {
+    ? nav.is(node, {
         type: "text",
         value: "\n",
       })
@@ -64,7 +63,7 @@ export function isNewline(node: Node) {
 
 export function isSpecificText(node: Node, specificText: string) {
   return node
-    ? is(node, {
+    ? nav.is(node, {
         type: "text",
         value: specificText,
       })

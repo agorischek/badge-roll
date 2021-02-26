@@ -6,10 +6,9 @@ import { Node } from "unist";
 import { removeTrailingNewLine } from "./utils";
 import { generateBadgeSectionAst } from "./tree-generator";
 import { separators } from "./separators";
+import { affixBadgeSection } from "./badge-affixer";
 
 import { Badge, Settings } from "../../types";
-
-import { affixBadgeSection } from "./badge-affixer";
 
 export function processMarkdown(
   badgeSection: Array<Badge>,
