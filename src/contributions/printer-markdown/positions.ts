@@ -26,7 +26,7 @@ export const positions: Positions = {
     relation: "below",
     findAnchor: (tree) => nav.find(tree, anchors.root),
     affix: (source, badges, anchorLoc, badgesLoc) => {
-      const tail = after(badgesLoc.end | 0, source);
+      const tail = after(badgesLoc.end || 0, source);
       return concat(badges, br, tail);
     },
   },
@@ -40,7 +40,7 @@ export const positions: Positions = {
     findAnchor: (tree) => nav.find(tree, anchors.h1),
     affix: (source, badges, anchorLoc, badgesLoc) => {
       const head = before(anchorLoc.end, source);
-      const tail = after(badgesLoc.end | anchorLoc.end, source);
+      const tail = after(badgesLoc.end || anchorLoc.end, source);
       return concat(head, br, badges, tail);
     },
   },
@@ -69,7 +69,11 @@ export const positions: Positions = {
   section: {
     relation: "inside",
     findAnchor: (tree) => nav.position(nav.select("[class=badges]", tree)),
-    affix: (source, badges, anchorLoc, badgesLoc) => "Placeholder",
+    affix: (source, badges, anchorLoc, badgesLoc) => {
+      const head = before(anchorLoc.start, source);
+      const tail = after(anchorLoc.end, source);
+      return concat(head, br, badges, tail);
+    },
   },
   current: {
     relation: "inside",
