@@ -13,6 +13,13 @@ import {
   nodeIsSpecificText,
 } from "./badge-tester";
 
+export type Positions = {
+  [position: string]: {
+    relation: string;
+    findAnchor: (node: Node) => Node;
+  };
+};
+
 export class NodeAnalysis {
   exists: boolean;
   isParagraph: boolean;
