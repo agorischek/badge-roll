@@ -1,6 +1,6 @@
 import { Node } from "unist";
 
-import { BadgeSectionLocation } from "..";
+import { Location } from "..";
 
 export type Positions = {
   [position: string]: Position;
@@ -12,6 +12,7 @@ type Position = {
   affix: (
     doc: string,
     badges: string,
-    badgeSectionLocation: BadgeSectionLocation
+    anchorLocation: Location,
+    badgeSectionLocation: Location
   ) => string;
 };

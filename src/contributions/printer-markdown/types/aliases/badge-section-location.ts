@@ -1,4 +1,4 @@
-export type BadgeSectionLocation = {
+export type Location = {
   start: number;
   end: number;
 };

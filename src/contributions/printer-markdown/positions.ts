@@ -1,6 +1,7 @@
 import nav from "./tree-navigator";
 
 import test from "./node-tests";
+import { after, before, concat } from "./utils";
 
 import { Positions } from "./types";
 
@@ -18,25 +19,29 @@ const anchors = {
   },
 };
 
+const br = "\n\n";
+
 export const positions: Positions = {
   top: {
     relation: "below",
     findAnchor: (tree) => nav.find(tree, anchors.root),
-    affix: (doc, badges, badgeSectionLocation) => "Placeholder",
+    affix: (source, badges, anchorLoc, badgesLoc) => {
+      const tail = after(badgesLoc.end | 0, source);
+      return concat(badges, br, tail);
+    },
   },
   "above-title": {
     relation: "above",
     findAnchor: (tree) => nav.find(tree, anchors.h1),
-    affix: (doc, badges, badgeSectionLocation) => "Placeholder",
+    affix: (source, badges, anchorLoc, badgesLoc) => "Placeholder",
   },
   "below-title": {
     relation: "below",
     findAnchor: (tree) => nav.find(tree, anchors.h1),
-    affix: (doc, badges, badgeSectionLocation) => {
-      const beforeBadges = doc.substring(0, badgeSectionLocation.start);
-      const afterBadges = doc.substring(badgeSectionLocation.end);
-      const modifiedDoc = beforeBadges.concat(badges, afterBadges);
-      return modifiedDoc;
+    affix: (source, badges, anchorLoc, badgesLoc) => {
+      const head = before(anchorLoc.end, source);
+      const tail = after(badgesLoc.end | anchorLoc.end, source);
+      return concat(head, br, badges, tail);
     },
   },
   "below-lead": {
@@ -46,7 +51,11 @@ export const positions: Positions = {
       const lead = nav.findAfter(h1.parent, h1, "paragraph");
       return lead;
     },
-    affix: (doc, badges, badgeSectionLocation) => "Placeholder",
+    affix: (source, badges, anchorLoc, badgesLoc) => {
+      const head = before(anchorLoc.end, source);
+      const tail = after(badgesLoc.end | anchorLoc.end, source);
+      return concat(head, br, badges, tail);
+    },
   },
   "below-intro": {
     relation: "above",
@@ -55,27 +64,24 @@ export const positions: Positions = {
       const introEnd = nav.findBefore(h2.parent, h2, "paragraph");
       return introEnd;
     },
-    affix: (doc, badges, badgeSectionLocation) => "Placeholder",
+    affix: (source, badges, anchorLoc, badgesLoc) => "Placeholder",
   },
   section: {
     relation: "inside",
     findAnchor: (tree) => nav.position(nav.select("[class=badges]", tree)),
-    affix: (doc, badges, badgeSectionLocation) => "Placeholder",
+    affix: (source, badges, anchorLoc, badgesLoc) => "Placeholder",
   },
   current: {
     relation: "inside",
     findAnchor: (tree) => nav.find(tree, test.isBadge),
-    affix: (doc, badges, badgeSectionLocation) => {
-      if (badgeSectionLocation) {
-        const beforeBadges = doc.substring(0, badgeSectionLocation.start);
-        const afterBadges = doc.substring(badgeSectionLocation.end);
-        const modifiedDoc = beforeBadges.concat(badges, afterBadges);
-        return modifiedDoc;
-      } else {
+    affix: (source, badges, anchorLoc, badgesLoc) => {
+      if (!badgesLoc.start)
         throw new Error(
           "Badge section position was set to `current`, but no badges were found in current target file."
         );
-      }
+      const head = source.substring(0, anchorLoc.end);
+      const tail = source.substring(badgesLoc.end | anchorLoc.end);
+      return concat(head, br, badges, tail);
     },
   },
 };

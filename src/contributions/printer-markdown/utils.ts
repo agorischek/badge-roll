@@ -25,3 +25,15 @@ export function removeTrailingNewLine(markup: string): string {
     return markup;
   }
 }
+
+export function concat(first: string, ...rest: Array<string>) {
+  return first.concat(...rest);
+}
+
+export function before(endingOffset: number, document: string) {
+  return document.substring(0, endingOffset);
+}
+
+export function after(beginningOffset: number, document: string) {
+  return document.substring(beginningOffset);
+}

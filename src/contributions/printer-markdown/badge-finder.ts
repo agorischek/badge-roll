@@ -1,6 +1,6 @@
 import nav from "./tree-navigator";
 
-import { BadgeSectionLocation, BadgeFinderState } from "./types";
+import { Location, BadgeFinderState } from "./types";
 import { NodeAnalysis } from "./types/classes/node-analysis";
 
 import { Node } from "unist";
@@ -9,7 +9,7 @@ export function findBadgeSection(
   tree: Node,
   startingNode: Node,
   separator: string
-): BadgeSectionLocation {
+): Location {
   const starter = nav.find(tree, startingNode);
 
   if (starter) {

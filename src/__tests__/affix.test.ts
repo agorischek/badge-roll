@@ -52,35 +52,58 @@ describe("Affix function", () => {
     const expected = `[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")\n[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")`;
     expect(modified).toBe(expected);
   });
-});
 
-test("should render two badges with space separator and no target content", () => {
-  const config = {
-    badges: [{ id: "npm/v" }, { id: "npm/v" }],
-    settings: { separator: "space" },
-  };
-  const modified = affix("", config);
-  const expected = `[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version") [![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")`;
-  expect(modified).toBe(expected);
-});
+  test("should render two badges with space separator and no target content", () => {
+    const config = {
+      badges: [{ id: "npm/v" }, { id: "npm/v" }],
+      settings: { separator: "space" },
+    };
+    const modified = affix("", config);
+    const expected = `[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version") [![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")`;
+    expect(modified).toBe(expected);
+  });
 
-test("should throw if position is current but there are no badges", () => {
-  const config = {
-    badges: [{ id: "npm/v" }],
-    settings: { position: "current" },
-  };
-  const expected = `# Title\n\n[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")\n\nTest content`;
-  expect(() => {
-    affix("# Title\n\nTest content", config);
-  }).toThrow();
-});
+  test("should throw if position is current but there are no badges", () => {
+    const config = {
+      badges: [{ id: "npm/v" }],
+      settings: { position: "current" },
+    };
+    const expected = `# Title\n\n[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")\n\nTest content`;
+    expect(() => {
+      affix("# Title\n\nTest content", config);
+    }).toThrow();
+  });
 
-// test.only("should render a badge below the title", () => {
-//   const config = {
-//     badges: [{ id: "npm/v" }],
-//     settings: { position: "below-title" },
-//   };
-//   const modified = affix("# Title\n\nSome body content", config);
-//   const expected = `# Title\n\n[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")\n\nSome body content`;
-//   expect(modified).toBe(expected);
-// });
+  test("should render a badge below the title", () => {
+    const config = {
+      badges: [{ id: "npm/v" }],
+      settings: { position: "below-title" },
+    };
+    const modified = affix("# Title\n\nSome body content", config);
+    const expected = `# Title\n\n[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")\n\nSome body content`;
+    expect(modified).toBe(expected);
+  });
+
+  test("should render a badge at the top", () => {
+    const config = {
+      badges: [{ id: "npm/v" }],
+      settings: { position: "top" },
+    };
+    const modified = affix("# Title\n\nSome body content", config);
+    const expected = `[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")\n\n# Title\n\nSome body content`;
+    expect(modified).toBe(expected);
+  });
+
+  test("should render a badge after the lead", () => {
+    const config = {
+      badges: [{ id: "npm/v" }],
+      settings: { position: "below-lead" },
+    };
+    const modified = affix(
+      "# Title\n\nSome body content\n\nSome more body content",
+      config
+    );
+    const expected = `# Title\n\nSome body content\n\n[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")\n\nSome more body content`;
+    expect(modified).toBe(expected);
+  });
+});

@@ -21,7 +21,9 @@ export class BadgeFinderState {
     this.mostRecentBadge = this.firstBadge;
     this.lastBadge = null;
     this.currentParent = starterParent;
-    this.nextNode = findAfter(this.currentParent, this.currentNode);
+    this.nextNode = starterParent
+      ? findAfter(this.currentParent, this.currentNode)
+      : null;
     this.searchComplete = false;
   }
   rememberBadge(): void {
