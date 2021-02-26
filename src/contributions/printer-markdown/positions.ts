@@ -4,7 +4,7 @@ const findAfter = require("unist-util-find-after");
 const findBefore = require("unist-util-find-before");
 const position = require("unist-util-position");
 
-import { badgePatternTest } from "./badge-tester";
+import test from "./node-tests";
 
 import { Positions } from "./types";
 
@@ -54,6 +54,6 @@ export const positions: Positions = {
   },
   current: {
     relation: "inside",
-    findAnchor: (tree) => find(tree, badgePatternTest),
+    findAnchor: (tree) => find(tree, test.isBadge),
   },
 };

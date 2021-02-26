@@ -5,20 +5,7 @@ import { getFirstChild } from "./utils";
 
 import { Node } from "unist";
 
-import {
-  badgePatternTest,
-  nodeMatchesPattern,
-  nodeIsSpace,
-  nodeIsNewline,
-  nodeIsSpecificText,
-} from "./badge-tester";
-
-export type Positions = {
-  [position: string]: {
-    relation: string;
-    findAnchor: (node: Node) => Node;
-  };
-};
+import test from "./node-tests";
 
 export class NodeAnalysis {
   exists: boolean;
@@ -30,10 +17,10 @@ export class NodeAnalysis {
   constructor(node: Node, separator: string) {
     (this.exists = node ? true : false),
       (this.isParagraph = is(node, "paragraph")),
-      (this.isSpace = nodeIsSpace(node)),
-      (this.isNewline = nodeIsNewline(node)),
-      (this.isSeparator = nodeIsSpecificText(node, separator)),
-      (this.isBadge = nodeMatchesPattern(node));
+      (this.isSpace = test.isSpace(node)),
+      (this.isNewline = test.isNewline(node)),
+      (this.isSeparator = test.isSpecificText(node, separator)),
+      (this.isBadge = test.isBadge(node));
   }
 }
 
@@ -44,6 +31,13 @@ export type WrappedNode = {
 
 export type Separators = {
   [id: string]: string;
+};
+
+export type Positions = {
+  [position: string]: {
+    relation: string;
+    findAnchor: (node: Node) => Node;
+  };
 };
 
 export class BadgeFinderState {
@@ -58,7 +52,7 @@ export class BadgeFinderState {
   constructor(starter: Node, starterParent: Node) {
     this.previousNode = null;
     this.currentNode = starter;
-    this.firstBadge = nodeMatchesPattern(starter) ? starter : null;
+    this.firstBadge = test.isBadge(starter) ? starter : null;
     this.mostRecentBadge = this.firstBadge;
     this.lastBadge = null;
     this.currentParent = starterParent;

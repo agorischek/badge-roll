@@ -47,6 +47,7 @@ export function affixBadgeSection(
   const processor = unified().use(markdown);
   const tree = parents(processor.parse(doc));
   const anchor: Node = positions[position].findAnchor(tree);
+  if (!anchor) throw new Error("Couldn't find anchor in target file");
 
   const badgeSectionLocation: BadgeSectionLocation = findBadgeSection(
     tree,
