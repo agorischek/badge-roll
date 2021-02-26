@@ -23,31 +23,19 @@ export function findBadgeSection(
       const currentNode = new NodeAnalysis(state.currentNode, separator);
       const nextNode = new NodeAnalysis(state.nextNode, separator);
 
-      if (currentNode.isBadge) {
-        state.rememberBadge();
-      }
-      if (currentNode.isParagraph) {
-        state.stepDown();
-      } else if (!nextNode.exists) {
-        state.complete();
-      } else if (nextNode.isParagraph) {
+      if (currentNode.isBadge) state.rememberBadge();
+
+      if (currentNode.isParagraph) state.stepDown();
+      else if (!nextNode.exists) state.complete();
+      else if (nextNode.isParagraph) state.stepForward();
+      else if (nextNode.isBadge) state.stepForward();
+      else if (nextNode.isSpace || nextNode.isSeparator || nextNode.isNewline)
         state.stepForward();
-      } else if (
-        nextNode.isBadge ||
-        nextNode.isSpace ||
-        nextNode.isSeparator ||
-        nextNode.isNewline
-      ) {
-        state.stepForward();
-      } else {
-        state.complete();
-      }
+      else state.complete();
     }
 
-    const firstBadge = state.firstBadge;
-    const lastBadge = state.lastBadge;
-    const badgeSectionStart = position(firstBadge).start.offset;
-    const badgeSectionEnd = position(lastBadge).end.offset;
+    const badgeSectionStart = position(state.firstBadge).start.offset;
+    const badgeSectionEnd = position(state.lastBadge).end.offset;
 
     return {
       start: badgeSectionStart,
