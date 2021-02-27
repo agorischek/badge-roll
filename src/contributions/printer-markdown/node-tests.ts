@@ -40,12 +40,12 @@ export function isShieldsImg(node: Node): boolean {
 }
 
 export function isLink(node: Node): boolean {
-  return node ? nav.is("link", node) : null;
+  return node ? nav.test(node).is("link") : null;
 }
 
 function isSpace(node: Node) {
   return node
-    ? nav.is(node, {
+    ? nav.test(node).is({
         type: "text",
         value: " ",
       })
@@ -54,7 +54,7 @@ function isSpace(node: Node) {
 
 export function isNewline(node: Node) {
   return node
-    ? nav.is(node, {
+    ? nav.test(node).is({
         type: "text",
         value: "\n",
       })
@@ -63,7 +63,7 @@ export function isNewline(node: Node) {
 
 export function isSpecificText(node: Node, specificText: string) {
   return node
-    ? nav.is(node, {
+    ? nav.test(node).is({
         type: "text",
         value: specificText,
       })
