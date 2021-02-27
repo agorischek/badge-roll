@@ -61,31 +61,31 @@ export function loadConfig(): Config {
   return config;
 }
 
-const program = new Command();
+// const program = new Command();
 
-program
-  .command("affix")
-  .description("Affix badges to the target file")
-  .action(() => {
-    console.log("Affixing badges...");
-    affixFile();
-  });
+// program
+//   .command("affix")
+//   .description("Affix badges to the target file")
+//   .action(() => {
+//     console.log("Affixing badges...");
+//     affixFile();
+//   });
 
-program
-  .command("check")
-  .description("Check whether badges in target file match config")
-  .action(() => {
-    console.log("Checking badges...");
-    checkFile();
-  });
+// program
+//   .command("check")
+//   .description("Check whether badges in target file match config")
+//   .action(() => {
+//     console.log("Checking badges...");
+//     checkFile();
+//   });
 
-program
-  .command("load-config")
-  .description("Check whether badges in target file match config")
-  .action(() => {
-    console.log("Loading config...");
-    const config = loadConfig();
-    console.log(config);
-  });
+// program
+//   .command("load-config")
+//   .description("Check whether badges in target file match config")
+//   .action(() => {
+//     console.log("Loading config...");
+//     const config = loadConfig();
+//     console.log(config);
+//   });
 
-program.parse(process.argv);
+// program.parse(process.argv);

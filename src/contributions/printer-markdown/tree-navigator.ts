@@ -5,9 +5,16 @@ import is from "unist-util-is";
 const parents = require("unist-util-parents");
 const position = require("unist-util-position");
 import { select, matches } from "unist-util-select";
+import { Node } from "unist";
 
 export default {
-  find,
+  find: (test: unknown) => {
+    return {
+      in: (tree: Node) => {
+        return find(tree, test);
+      },
+    };
+  },
   findAfter,
   findBefore,
   is,
