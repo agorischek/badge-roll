@@ -35,7 +35,7 @@ export function hasNoGrandchildren(node: Node): boolean {
 
 export function isShieldsImg(node: Node): boolean {
   return node
-    ? nav.matches("image[url^=https://img.shields.io]:empty", node)
+    ? nav.test(node).matches("image[url^=https://img.shields.io]:empty")
     : null;
 }
 

@@ -69,7 +69,7 @@ export const positions: Positions = {
   },
   section: {
     relation: "inside",
-    findAnchor: (tree) => nav.select("[class=badges]", tree),
+    findAnchor: (tree) => nav.select("[class=badges]").in(tree),
     affix: (source, badges, anchorLoc, badgesLoc) => {
       const head = before(anchorLoc.start).in(source);
       const tail = after(anchorLoc.end).in(source);

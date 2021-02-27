@@ -34,10 +34,18 @@ export default {
       is: (test: string | any[] | Partial<Node> | TestFunction<Node>) => {
         return is(node, test);
       },
+      matches: (test: string) => {
+        return matches(test, node);
+      },
     };
   },
-  matches,
   parents,
   position,
-  select,
+  select: (selector: string) => {
+    return {
+      in: (tree: Node) => {
+        return select(selector, tree);
+      },
+    };
+  },
 };
