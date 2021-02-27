@@ -26,7 +26,7 @@ export const positions: Positions = {
     relation: "below",
     findAnchor: (tree) => nav.find(tree, anchors.root),
     affix: (source, badges, anchorLoc, badgesLoc) => {
-      const tail = after(badgesLoc.end || 0, source);
+      const tail = after(badgesLoc.end || 0).in(source);
       return concat(badges, br, tail);
     },
   },
@@ -39,8 +39,8 @@ export const positions: Positions = {
     relation: "below",
     findAnchor: (tree) => nav.find(tree, anchors.h1),
     affix: (source, badges, anchorLoc, badgesLoc) => {
-      const head = before(anchorLoc.end, source);
-      const tail = after(badgesLoc.end || anchorLoc.end, source);
+      const head = before(anchorLoc.end).in(source);
+      const tail = after(badgesLoc.end || anchorLoc.end).in(source);
       return concat(head, br, badges, tail);
     },
   },
@@ -52,8 +52,8 @@ export const positions: Positions = {
       return lead;
     },
     affix: (source, badges, anchorLoc, badgesLoc) => {
-      const head = before(anchorLoc.end, source);
-      const tail = after(badgesLoc.end || anchorLoc.end, source);
+      const head = before(anchorLoc.end).in(source);
+      const tail = after(badgesLoc.end || anchorLoc.end).in(source);
       return concat(head, br, badges, tail);
     },
   },
@@ -70,8 +70,8 @@ export const positions: Positions = {
     relation: "inside",
     findAnchor: (tree) => nav.position(nav.select("[class=badges]", tree)),
     affix: (source, badges, anchorLoc, badgesLoc) => {
-      const head = before(anchorLoc.start, source);
-      const tail = after(anchorLoc.end, source);
+      const head = before(anchorLoc.start).in(source);
+      const tail = after(anchorLoc.end).in(source);
       return concat(head, br, badges, tail);
     },
   },
@@ -83,8 +83,8 @@ export const positions: Positions = {
         throw new Error(
           "Badge section position was set to `current`, but no badges were found in current target file."
         );
-      const head = source.substring(0, anchorLoc.end);
-      const tail = source.substring(badgesLoc.end | anchorLoc.end);
+      const head = before(anchorLoc.end).in(source);
+      const tail = after(badgesLoc.end | anchorLoc.end).in(source);
       return concat(head, br, badges, tail);
     },
   },

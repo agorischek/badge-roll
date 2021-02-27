@@ -30,10 +30,18 @@ export function concat(first: string, ...rest: Array<string>) {
   return first.concat(...rest);
 }
 
-export function before(endingOffset: number, document: string) {
-  return document.substring(0, endingOffset);
+export function before(endingOffset: number) {
+  return {
+    in: (document: string): string => {
+      return document.substring(0, endingOffset);
+    },
+  };
 }
 
-export function after(beginningOffset: number, document: string) {
-  return document.substring(beginningOffset);
+export function after(beginningOffset: number) {
+  return {
+    in: (document: string): string => {
+      return document.substring(beginningOffset);
+    },
+  };
 }
