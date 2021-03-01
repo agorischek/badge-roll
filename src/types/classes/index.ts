@@ -7,6 +7,7 @@ export * from "./path";
 export * from "./printer";
 export * from "./printer-list";
 export * from "./providers-directory";
+export * from "./run";
 export * from "./run-context";
 export * from "./settings";
 export * from "./target";
