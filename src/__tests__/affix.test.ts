@@ -1,7 +1,7 @@
 import { affix } from "..";
 
 const placeholderBadge =
-  '[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")';
+  '[![Example](https://img.shields.io/example)](https://www.npmjs.com/example "Example")';
 
 const expectedBadge =
   '[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")';
