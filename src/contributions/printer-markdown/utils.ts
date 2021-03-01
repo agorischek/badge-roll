@@ -3,7 +3,7 @@ import nav from "./tree-navigator";
 import { Node } from "unist";
 
 export function getFirstChild(node: Node): Node {
-  const firstChild: Node = nav.select(":first-child").in(node);
+  const firstChild: Node = nav.select(":first-child", node);
   return firstChild ? firstChild : null;
 }
 export function getFirstGrandchildren(node: Node): Array<Node> {

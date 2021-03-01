@@ -1,5 +1,5 @@
+const is = require("unist-util-is");
 import { Node } from "unist";
-import nav from "../../tree-navigator";
 import test from "../../node-tests";
 
 export class NodeAnalysis {
@@ -11,7 +11,7 @@ export class NodeAnalysis {
   isBadge: boolean;
   constructor(node: Node, separator: string) {
     (this.exists = node ? true : false),
-      (this.isParagraph = nav.test(node).is("paragraph")),
+      (this.isParagraph = is(node, "paragraph")),
       (this.isSpace = test.isSpace(node)),
       (this.isNewline = test.isNewline(node)),
       (this.isSeparator = test.isSpecificText(node, separator)),

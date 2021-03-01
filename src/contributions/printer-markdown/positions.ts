@@ -24,7 +24,7 @@ const br = "\n\n";
 export const positions: Positions = {
   top: {
     relation: "below",
-    findAnchor: (tree) => nav.find(anchors.root).in(tree),
+    findAnchor: (tree) => nav.find(tree, anchors.root),
     affix: (source, badges, anchorLoc, badgesLoc) => {
       const tail = after(badgesLoc.end || 0).in(source);
       return concat(badges, br, tail);
@@ -32,12 +32,12 @@ export const positions: Positions = {
   },
   "above-title": {
     relation: "above",
-    findAnchor: (tree) => nav.find(anchors.h1).in(tree),
+    findAnchor: (tree) => nav.find(tree, anchors.h1),
     affix: (source, badges, anchorLoc, badgesLoc) => "Placeholder",
   },
   "below-title": {
     relation: "below",
-    findAnchor: (tree) => nav.find(anchors.h1).in(tree),
+    findAnchor: (tree) => nav.find(tree, anchors.h1),
     affix: (source, badges, anchorLoc, badgesLoc) => {
       const head = before(anchorLoc.end).in(source);
       const tail = after(badgesLoc.end || anchorLoc.end).in(source);
@@ -47,9 +47,8 @@ export const positions: Positions = {
   "below-lead": {
     relation: "below",
     findAnchor: (tree) => {
-      const h1 = nav.find(anchors.h1).in(tree);
-      const lead = nav.find("paragraph").after(h1).in(h1.parent);
-
+      const h1 = nav.find(tree, anchors.h1);
+      const lead = nav.findAfter(h1.parent, h1, "paragraph");
       return lead;
     },
     affix: (source, badges, anchorLoc, badgesLoc) => {
@@ -61,15 +60,15 @@ export const positions: Positions = {
   "below-intro": {
     relation: "above",
     findAnchor: (tree) => {
-      const h2 = nav.find(anchors.h2).in(tree);
-      const introEnd = nav.find("paragraph").after(h2).in(h2.parent);
+      const h2 = nav.find(tree, anchors.h2);
+      const introEnd = nav.findBefore(h2.parent, h2, "paragraph");
       return introEnd;
     },
     affix: (source, badges, anchorLoc, badgesLoc) => "Placeholder",
   },
   section: {
     relation: "inside",
-    findAnchor: (tree) => nav.select("[class=badges]").in(tree),
+    findAnchor: (tree) => nav.select("[class=badges]", tree),
     affix: (source, badges, anchorLoc, badgesLoc) => {
       const head = before(anchorLoc.start).in(source);
       const tail = after(anchorLoc.end).in(source);
@@ -78,7 +77,7 @@ export const positions: Positions = {
   },
   current: {
     relation: "inside",
-    findAnchor: (tree) => nav.find(test.isBadge).in(tree),
+    findAnchor: (tree) => nav.find(tree, test.isBadge),
     affix: (source, badges, anchorLoc, badgesLoc) => {
       if (!badgesLoc.start)
         throw new Error(

@@ -11,7 +11,7 @@ export function findBadgeSection(
   separator: string,
   position: string
 ): Location {
-  const starter = nav.find(startingNode).in(tree);
+  const starter = nav.find(tree, startingNode);
 
   if (starter) {
     const state = new BadgeFinderState(starter, starter.parent);
