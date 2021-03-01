@@ -26,8 +26,10 @@ export const positions: Positions = {
     relation: "below",
     findAnchor: (tree) => nav.find(tree, anchors.root),
     affix: (source, badges, anchorLoc, badgesLoc) => {
-      const tail = after(badgesLoc.end || 0).in(source);
-      return concat(badges, br, tail);
+      if (badgesLoc.end) {
+        const tail = after(badgesLoc.end).in(source);
+        return concat(badges, tail);
+      } else return concat(badges, br, source);
     },
   },
   "above-title": {
@@ -79,13 +81,13 @@ export const positions: Positions = {
     relation: "inside",
     findAnchor: (tree) => nav.find(tree, test.isBadge),
     affix: (source, badges, anchorLoc, badgesLoc) => {
-      if (!badgesLoc.start)
+      if (!badgesLoc.start || !badgesLoc.end)
         throw new Error(
           "Badge section position was set to `current`, but no badges were found in current target file."
         );
-      const head = before(anchorLoc.end).in(source);
-      const tail = after(badgesLoc.end | anchorLoc.end).in(source);
-      return concat(head, br, badges, tail);
+      const head = before(badgesLoc.start).in(source);
+      const tail = after(badgesLoc.end).in(source);
+      return concat(head, badges, tail);
     },
   },
 };

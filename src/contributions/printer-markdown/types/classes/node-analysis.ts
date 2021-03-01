@@ -9,12 +9,14 @@ export class NodeAnalysis {
   isNewline: boolean;
   isSeparator: boolean;
   isBadge: boolean;
+  isRoot: boolean;
   constructor(node: Node, separator: string) {
-    (this.exists = node ? true : false),
+    (this.exists = Boolean(node)),
       (this.isParagraph = is(node, "paragraph")),
       (this.isSpace = test.isSpace(node)),
       (this.isNewline = test.isNewline(node)),
       (this.isSeparator = test.isSpecificText(node, separator)),
-      (this.isBadge = test.isBadge(node));
+      (this.isBadge = test.isBadge(node)),
+      (this.isRoot = test.isRoot(node));
   }
 }

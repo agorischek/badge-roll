@@ -1,27 +1,30 @@
 import { affix } from "..";
 
+const placeholderBadge =
+  '[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")';
+
+const expectedBadge =
+  '[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")';
+
 describe("Affix function", () => {
   test("should affix one badge with simple badge definition", () => {
     const config = { badges: [{ id: "npm/v" }] };
-    const source =
-      '# Title\n\n[![Example](https://img.shields.io/npm/v/badge-roll)](https://example.org "Version")';
+    const source = `# Title\n\n${placeholderBadge}`;
     const modified = affix(source, config);
-    const expected = `# Title\n\n[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")`;
+    const expected = `# Title\n\n${expectedBadge}`;
     expect(modified).toBe(expected);
   });
   test("should affix one badge with object badge definition", () => {
     const config = { badges: ["npm/v"] };
-    const source =
-      '# Title\n\n[![Example](https://img.shields.io/npm/v/badge-roll)](https://example.org "Version")';
+    const source = `# Title\n\n${placeholderBadge}`;
     const modified = affix(source, config);
-    const expected = `# Title\n\n[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")`;
+    const expected = `# Title\n\n${expectedBadge}`;
     expect(modified).toBe(expected);
   });
   test("should render a badge with no target content", () => {
     const config = { badges: [{ id: "npm/v" }] };
     const modified = affix("", config);
-    const expected =
-      '[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")';
+    const expected = `${expectedBadge}`;
     expect(modified).toBe(expected);
   });
 
@@ -30,7 +33,7 @@ describe("Affix function", () => {
       badges: [{ id: "npm/v" }, { id: "npm/v" }],
     };
     const modified = affix("", config);
-    const expected = `[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version") [![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")`;
+    const expected = `${expectedBadge} ${expectedBadge}`;
     expect(modified).toBe(expected);
   });
 
@@ -39,7 +42,7 @@ describe("Affix function", () => {
       badges: ["npm/v", { id: "npm/v" }],
     };
     const modified = affix("", config);
-    const expected = `[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version") [![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")`;
+    const expected = `${expectedBadge} ${expectedBadge}`;
     expect(modified).toBe(expected);
   });
 
@@ -49,7 +52,7 @@ describe("Affix function", () => {
       settings: { separator: "newline" },
     };
     const modified = affix("", config);
-    const expected = `[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")\n[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")`;
+    const expected = `${expectedBadge}\n${expectedBadge}`;
     expect(modified).toBe(expected);
   });
 
@@ -59,7 +62,7 @@ describe("Affix function", () => {
       settings: { separator: "space" },
     };
     const modified = affix("", config);
-    const expected = `[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version") [![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")`;
+    const expected = `${expectedBadge} ${expectedBadge}`;
     expect(modified).toBe(expected);
   });
 
@@ -68,42 +71,8 @@ describe("Affix function", () => {
       badges: [{ id: "npm/v" }],
       settings: { position: "current" },
     };
-    const expected = `# Title\n\n[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")\n\nTest content`;
     expect(() => {
       affix("# Title\n\nTest content", config);
     }).toThrow();
-  });
-
-  test("should render a badge below the title", () => {
-    const config = {
-      badges: [{ id: "npm/v" }],
-      settings: { position: "below-title" },
-    };
-    const modified = affix("# Title\n\nSome body content", config);
-    const expected = `# Title\n\n[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")\n\nSome body content`;
-    expect(modified).toBe(expected);
-  });
-
-  test("should render a badge at the top", () => {
-    const config = {
-      badges: [{ id: "npm/v" }],
-      settings: { position: "top" },
-    };
-    const modified = affix("# Title\n\nSome body content", config);
-    const expected = `[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")\n\n# Title\n\nSome body content`;
-    expect(modified).toBe(expected);
-  });
-
-  test("should render a badge after the lead", () => {
-    const config = {
-      badges: [{ id: "npm/v" }],
-      settings: { position: "below-lead" },
-    };
-    const modified = affix(
-      "# Title\n\nSome body content\n\nSome more body content",
-      config
-    );
-    const expected = `# Title\n\nSome body content\n\n[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")\n\nSome more body content`;
-    expect(modified).toBe(expected);
   });
 });

@@ -13,6 +13,7 @@ export default {
   hasExactlyOneChild,
   hasNoGrandchildren,
   isLink,
+  isRoot,
 };
 
 export function isBadge(node: Node): boolean {
@@ -42,6 +43,14 @@ export function isShieldsImg(node: Node): boolean {
 
 export function isLink(node: Node): boolean {
   return node ? is("link", node) : null;
+}
+
+function isRoot(node: Node) {
+  return node
+    ? is(node, {
+        type: "root",
+      })
+    : null;
 }
 
 function isSpace(node: Node) {

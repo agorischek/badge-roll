@@ -22,7 +22,9 @@ export function findBadgeSection(
 
       if (currentNode.isBadge) state.rememberBadge();
 
-      if (
+      if (currentNode.isRoot) {
+        state.stepDown();
+      } else if (
         currentNode.isParagraph &&
         position === "below-lead" &&
         state.paragraphCount === 0
