@@ -13,6 +13,7 @@
     "email": "alex.gorischek@gmail.com"
   },
   "main": "lib/index.js",
+  "bin": "lib/cli.js",
   "files": [
     "lib"
   ],
