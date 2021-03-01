@@ -13,6 +13,7 @@ program
   .action(() => {
     log("Affixing badges...");
     affixFile();
+    log("Done!");
   });
 
 program
