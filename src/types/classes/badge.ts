@@ -1,26 +1,26 @@
-import { combine } from "../../utilities";
+import { combine, stringifyQuery } from "../../utilities";
 
 import {
   About,
   BadgeConfig,
+  BadgeSpec,
   Path,
   ProvidersDirectory,
+  QueryParams,
   SettingsData,
 } from "../";
-import { concat } from "../../contributions/printer-markdown/utils";
 export class Badge {
   basePath: string;
   details: string;
   display: string;
   id: string;
   provider: string;
-  queryParams: {
-    [param: string]: string;
-  };
+  queryParams: QueryParams;
   queryString: string;
   style: string;
   to: string;
   url: string;
+  variation: string;
 
   constructor(
     badgeConfig: BadgeConfig,
@@ -28,27 +28,26 @@ export class Badge {
     globalAbout: About,
     providers: ProvidersDirectory
   ) {
-    const badge =
+    const badge: BadgeConfig =
       typeof badgeConfig === "string" ? { id: badgeConfig } : badgeConfig;
 
     const about = combine(globalAbout, badge.about);
     const id = badge.id;
     const provider = badge.provider || settings.provider;
     const style = badge.style || settings.style;
+    const variation = badge.variation || null;
 
     const providerDefinition = providers[provider];
     const basePath = providerDefinition.baseUrl;
 
-    const badgeDefinition = providerDefinition.badges[id];
-    const to = new Path(badge.to || badgeDefinition.to, about).evaluated;
-    const display = badgeDefinition.display || badge.display;
-    const queryParams = combine(badgeDefinition.query, badge.query);
-    const queryString = Object.keys(queryParams).reduce((acc, key) => {
-      const stringified = `${key}=${queryParams[key]}`;
-      return acc === "?" ? `${acc}${stringified}` : `${acc}&${stringified}`;
-    }, "?");
+    const badgeSpec = new BadgeSpec(providerDefinition.badges[id], variation);
 
-    const details = badgeDefinition.details || badge.details;
+    const to = new Path(badge.to || badgeSpec.to, about).evaluated;
+    const display = badgeSpec.display || badge.display;
+    const queryParams = combine(badgeSpec.query, badge.query);
+    const queryString = stringifyQuery(queryParams);
+
+    const details = badgeSpec.details || badge.details;
     const path = new Path(details, about).evaluated;
     const url = `${basePath}/${id}/${path}`;
 
@@ -63,6 +62,7 @@ export class Badge {
       style,
       to,
       url,
+      variation,
     };
   }
 }

@@ -1,6 +1,7 @@
 export * from "./about";
 export * from "./badge";
 export * from "./badge-section";
+export * from "./badge-spec";
 export * from "./config";
 export * from "./contribution-set";
 export * from "./path";

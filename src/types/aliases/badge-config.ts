@@ -1,4 +1,4 @@
-import { About } from "..";
+import { About, QueryParams } from "..";
 
 export type BadgeConfig = SimpleBadgeConfig | FullBadgeConfig;
 
@@ -11,9 +11,8 @@ type FullBadgeConfig = {
   display?: string;
   id: string;
   provider?: string;
+  query?: QueryParams;
   style?: string;
   to?: string;
-  query?: {
-    [param: string]: string;
-  };
+  variation?: string;
 };

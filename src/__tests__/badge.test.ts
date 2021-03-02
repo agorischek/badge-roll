@@ -56,4 +56,27 @@ describe("Badge", () => {
       "?failed_label=bad&passed_label=good&skipped_label=meh"
     );
   });
+  test("should handle a variation", () => {
+    const config = {
+      badges: [
+        {
+          id: "appveyor/build",
+          variation: "branch",
+          about: {
+            branch: "my-branch",
+          },
+        },
+      ],
+    };
+    const context = new RunContext();
+    const badge = new Badge(
+      config.badges[0],
+      context.settings,
+      context.about,
+      context.providers
+    );
+    expect(badge.url).toBe(
+      "https://img.shields.io/appveyor/build/agorischek/badge-roll/my-branch"
+    );
+  });
 });
