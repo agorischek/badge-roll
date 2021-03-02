@@ -7,12 +7,17 @@ import {
   ProvidersDirectory,
   SettingsData,
 } from "../";
+import { concat } from "../../contributions/printer-markdown/utils";
 export class Badge {
   basePath: string;
   details: string;
   display: string;
   id: string;
   provider: string;
+  queryParams: {
+    [param: string]: string;
+  };
+  queryString: string;
   style: string;
   to: string;
   url: string;
@@ -37,6 +42,11 @@ export class Badge {
     const badgeDefinition = providerDefinition.badges[id];
     const to = new Path(badge.to || badgeDefinition.to, about).evaluated;
     const display = badgeDefinition.display || badge.display;
+    const queryParams = combine(badgeDefinition.query, badge.query);
+    const queryString = Object.keys(queryParams).reduce((acc, key) => {
+      const stringified = `${key}=${queryParams[key]}`;
+      return acc === "?" ? `${acc}${stringified}` : `${acc}&${stringified}`;
+    }, "?");
 
     const details = badgeDefinition.details || badge.details;
     const path = new Path(details, about).evaluated;
@@ -48,6 +58,8 @@ export class Badge {
       display,
       id,
       provider,
+      queryParams,
+      queryString,
       style,
       to,
       url,
