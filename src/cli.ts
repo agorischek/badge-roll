@@ -2,7 +2,7 @@
 
 import { Command } from "commander";
 
-import { affixFile, checkFile, loadConfig } from "./core";
+import { affixCmd, checkCmd, loadConfigCmd } from "./core";
 import { log } from "./utilities";
 
 const program = new Command();
@@ -12,7 +12,7 @@ program
   .description("Affix badges to the target file")
   .action(() => {
     log("Affixing badges...");
-    affixFile();
+    affixCmd();
     log("Done!");
   });
 
@@ -21,7 +21,7 @@ program
   .description("Check whether badges in target file match config")
   .action(() => {
     log("Checking badges...");
-    checkFile();
+    checkCmd();
   });
 
 program
@@ -29,7 +29,7 @@ program
   .description("Check whether badges in target file match config")
   .action(() => {
     log("Loading config...");
-    const config = loadConfig();
+    const config = loadConfigCmd();
     log(config);
   });
 
