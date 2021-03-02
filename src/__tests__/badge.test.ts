@@ -13,6 +13,20 @@ describe("Badge", () => {
     );
     expect(badge.display).toBe("Version");
   });
+  test("should render a style query param", () => {
+    const config = { badges: [{ id: "npm/v" }], settings: { style: "flat" } };
+    const context = new RunContext(config);
+
+    const badge = new Badge(
+      config.badges[0],
+      context.settings,
+      context.about,
+      context.providers
+    );
+    expect(badge.url).toBe(
+      "https://img.shields.io/npm/v/badge-roll?style=flat"
+    );
+  });
 
   test("should override a global style", () => {
     const config = { badges: [{ id: "npm/v", style: "flat" }] };

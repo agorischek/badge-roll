@@ -35,7 +35,7 @@ export class Badge {
     const id = badge.id;
     const provider = badge.provider || settings.provider;
     const style = badge.style || settings.style;
-    const variation = badge.variation || null;
+    const variation = badge.variation;
 
     const providerDefinition = providers[provider];
     const basePath = providerDefinition.baseUrl;
@@ -44,12 +44,12 @@ export class Badge {
 
     const to = new Path(badge.to || badgeSpec.to, about).evaluated;
     const display = badgeSpec.display || badge.display;
-    const queryParams = combine(badgeSpec.query, badge.query);
+    const queryParams = combine(badgeSpec.query, badge.query, { style: style });
     const queryString = stringifyQuery(queryParams);
 
     const details = badgeSpec.details || badge.details;
     const path = new Path(details, about).evaluated;
-    const url = `${basePath}/${id}/${path}`;
+    const url = `${basePath}/${id}/${path}?${queryString}`;
 
     return {
       basePath,
