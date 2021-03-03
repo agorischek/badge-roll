@@ -90,17 +90,9 @@ Style of badges.
 
 ## Commands
 
-### `init`
-
-Extract existing badges from README and generate a config.
-
 ### `affix`
 
 Insert badges based on config.
-
-### `extract`
-
-Generate a config based on existing badges.
 
 ### `check`
 
