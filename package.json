@@ -20,6 +20,7 @@
   "scripts": {
     "build": "rimraf lib && tsc",
     "build:cli": "npm run build && chmod +x lib/cli.js",
+    "check": "npm run build && npm run test && npm run lint",
     "cli:lib:affix": "node lib/cli.js affix",
     "cli:lib:check": "node lib/cli.js check",
     "cli:lib:loadConfig": "node lib/cli.js load-config",
