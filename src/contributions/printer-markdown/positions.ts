@@ -35,7 +35,8 @@ export const positions: Positions = {
   "above-title": {
     relation: "above",
     findAnchor: (tree) => nav.find(tree, anchors.h1),
-    affix: (source, badges, anchorLoc, badgesLoc) => "Placeholder",
+    affix: (source, badges, anchorLoc, badgesLoc) =>
+      "`above-title` position is not yet implemented",
   },
   "below-title": {
     relation: "below",
@@ -66,7 +67,8 @@ export const positions: Positions = {
       const introEnd = nav.findBefore(h2.parent, h2, "paragraph");
       return introEnd;
     },
-    affix: (source, badges, anchorLoc, badgesLoc) => "Placeholder",
+    affix: (source, badges, anchorLoc, badgesLoc) =>
+      "`below-intro` position is not yet implemented",
   },
   section: {
     relation: "inside",
