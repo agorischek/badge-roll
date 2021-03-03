@@ -30,6 +30,7 @@
     "lint": "eslint . --max-warnings=0 && remark . --frail && prettier \".\" --check && npm run cli:lib:check",
     "lint:fix": "eslint . --fix && remark . --output && prettier \".\" --write && node lib/cli.js affix",
     "test": "jest",
+    "test:mutate": "stryker run",
     "update": "ncu -u"
   },
   "husky": {
@@ -115,6 +116,8 @@
     "@babel/core": "^7.12.17",
     "@babel/preset-env": "^7.12.17",
     "@babel/preset-typescript": "^7.12.17",
+    "@stryker-mutator/core": "^4.4.1",
+    "@stryker-mutator/jest-runner": "^4.4.1",
     "@types/chai": "^4.2.15",
     "@types/jest": "^26.0.20",
     "@types/lodash.merge": "^4.6.6",
