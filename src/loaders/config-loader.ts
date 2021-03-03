@@ -8,12 +8,12 @@ const explorer = cosmiconfigSync(packageProperty, {
   searchPlaces: filePaths,
 });
 
-export function findConfig() {
+export function findConfig(): unknown {
   const config = explorer.search();
   return config;
 }
 
-export function validateConfig(config: Config) {
+export function validateConfig(config: Config): unknown {
   const { error, value } = configSchema.validate(config);
   if (error) {
     throw error;

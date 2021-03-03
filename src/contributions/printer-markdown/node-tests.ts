@@ -45,7 +45,7 @@ export function isLink(node: Node): boolean {
   return node ? is("link", node) : null;
 }
 
-function isRoot(node: Node) {
+function isRoot(node: Node): boolean {
   return node
     ? is(node, {
         type: "root",
@@ -53,7 +53,7 @@ function isRoot(node: Node) {
     : null;
 }
 
-function isSpace(node: Node) {
+function isSpace(node: Node): boolean {
   return node
     ? is(node, {
         type: "text",
@@ -62,7 +62,7 @@ function isSpace(node: Node) {
     : null;
 }
 
-export function isNewline(node: Node) {
+export function isNewline(node: Node): boolean {
   return node
     ? is(node, {
         type: "text",
@@ -71,7 +71,7 @@ export function isNewline(node: Node) {
     : null;
 }
 
-export function isSpecificText(node: Node, specificText: string) {
+export function isSpecificText(node: Node, specificText: string): boolean {
   return node
     ? is(node, {
         type: "text",

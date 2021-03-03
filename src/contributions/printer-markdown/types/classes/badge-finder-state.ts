@@ -45,7 +45,7 @@ export class BadgeFinderState {
     this.currentNode = getFirstChild(this.currentParent);
     this.nextNode = findAfter(this.currentParent, this.currentNode);
   }
-  countParagraph() {
+  countParagraph(): void {
     this.paragraphCount++;
   }
   complete(): void {

@@ -26,11 +26,11 @@ export function removeTrailingNewLine(markup: string): string {
   }
 }
 
-export function concat(first: string, ...rest: Array<string>) {
+export function concat(first: string, ...rest: Array<string>): string {
   return first.concat(...rest);
 }
 
-export function before(endingOffset: number) {
+export function before(endingOffset: number): { in: (doc: string) => string } {
   return {
     in: (document: string): string => {
       return document.substring(0, endingOffset);
@@ -38,7 +38,9 @@ export function before(endingOffset: number) {
   };
 }
 
-export function after(beginningOffset: number) {
+export function after(
+  beginningOffset: number
+): { in: (doc: string) => string } {
   return {
     in: (document: string): string => {
       return document.substring(beginningOffset);
