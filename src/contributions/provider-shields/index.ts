@@ -68,6 +68,12 @@ export default {
           to: "https://github.com/agorischek/badge-roll",
           display: "Badges",
         },
+        // /github/workflow/status/:user/:repo/:workflow
+        "github/workflow/status": {
+          details: ":user/:repo/:workflow",
+          to: "",
+          display: "Workflow",
+        },
       },
     },
   },
