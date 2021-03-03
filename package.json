@@ -26,10 +26,8 @@
     "cli:src:affix": "ts-node src/cli.ts affix",
     "cli:src:check": "ts-node src/cli.ts check",
     "cli:src:loadConfig": "ts-node src/cli.ts load-config",
-    "format": "prettier \".\" --write",
-    "format:check": "prettier \".\" --check",
-    "lint": "eslint . --fix && remark . --frail",
-    "pretest": "eslint \"src/**\"",
+    "lint": "eslint . && remark . --frail && prettier \".\" --check",
+    "lint:fix": "eslint . --fix && remark . --output && prettier \".\" --write",
     "test": "jest",
     "update": "ncu -u"
   },
