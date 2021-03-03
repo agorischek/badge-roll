@@ -3,4 +3,4 @@ coverage
 lib
 .DS_Store
 .stryker-tmp
-reports/mutation
+reports
