@@ -67,7 +67,7 @@ describe("Badge", () => {
       context.providers
     );
     expect(badge.queryString).toBe(
-      "?failed_label=bad&passed_label=good&skipped_label=meh"
+      "failed_label=bad&passed_label=good&skipped_label=meh"
     );
   });
   test("should handle a variation", () => {

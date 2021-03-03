@@ -8,7 +8,7 @@ import {
   ProvidersDirectory,
   QueryParams,
   SettingsData,
-} from "../";
+} from "..";
 export class Badge {
   basePath: string;
   details: string;
@@ -33,6 +33,7 @@ export class Badge {
 
     const about = combine(globalAbout, badge.about);
     const id = badge.id;
+    const badgePath = badge.path || id;
     const provider = badge.provider || settings.provider;
     const style = badge.style || settings.style;
     const variation = badge.variation;
@@ -44,12 +45,18 @@ export class Badge {
 
     const to = new Path(badge.to || badgeSpec.to, about).evaluated;
     const display = badgeSpec.display || badge.display;
-    const queryParams = combine(badgeSpec.query, badge.query, { style: style });
+    const queryParams = combine(
+      badgeSpec.query,
+      badge.query,
+      style ? { style: style } : null
+    );
     const queryString = stringifyQuery(queryParams);
 
     const details = badgeSpec.details || badge.details;
-    const path = new Path(details, about).evaluated;
-    const url = `${basePath}/${id}/${path}?${queryString}`;
+    const detailsPath = new Path(details, about).evaluated;
+    const url = queryString
+      ? `${basePath}/${badgePath}/${detailsPath}?${queryString}`
+      : `${basePath}/${badgePath}/${detailsPath}`;
 
     return {
       basePath,
