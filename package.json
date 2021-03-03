@@ -26,7 +26,7 @@
     "cli:src:affix": "ts-node src/cli.ts affix",
     "cli:src:check": "ts-node src/cli.ts check",
     "cli:src:loadConfig": "ts-node src/cli.ts load-config",
-    "lint": "eslint . && remark . --frail && prettier \".\" --check",
+    "lint": "eslint . --max-warnings=0 && remark . --frail && prettier \".\" --check",
     "lint:fix": "eslint . --fix && remark . --output && prettier \".\" --write",
     "test": "jest",
     "update": "ncu -u"
