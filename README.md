@@ -73,12 +73,8 @@ Where the badges will be inserted into the target file. Options are:
 
 - `current` Insert badges at the location of the first badge currently in the file.
 - `top`: Insert badges at the very top of the file.
-- `above-title`: Insert badges immediately above the first `h1` in the file.
-- `end-of-title`: Insert badges at the end of the first `h1` in the file.
 - `below-title`: Insert badges immediately below the first `h1` in the file.
 - `below-intro`: Insert badges below the first paragraph in the file.
-- `section`: Insert badges into the first `span` with class `badges`.
-- `auto`: Default. First attempts `section`. If no matching element is found, attempts `current`. If no badges are found, falls back to `after-title`.
 
 ### `provider`
 
