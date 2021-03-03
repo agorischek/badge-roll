@@ -2,6 +2,7 @@ badges:
   - npm/v
   - github/license
   - jsdelivr/npm
+  - badge-roll
 
 settings:
   separator: space
