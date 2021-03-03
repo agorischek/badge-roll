@@ -54,62 +54,87 @@ Third, add a config. Here's a basic example; see below for lots more options:
 Fourth, run the script:
 
 ```sh
-npm run badge
+> npm run badge
 ```
 
-## Options
+## Configuration
 
-### `badges`
+Badge Roll configurations can be stored in a `badgeConfig` property in `package.json`, as JSON in `badgeconfig.json`, or as YAML in `badgeconfig.yaml` or `badgeconfig.yml`. Configuration files have three sections: `badges`, `settings`, and `about`.
 
-Array of badge configurations. A badge configuration can be either a string representing the badge's `id`, or it can be a full object.
+### Badges
 
-### `about`
+The `badges` section contains an array of badge configurations. In the simplest case, a badge configuration can be simple a string, such as `npm/v`. Badge Roll gathers some basic info about your project and uses some sensible defaults to generate the badge.
 
-A dictionary of information about the project, used as variables in badge generation.
+For additional configuration options, the badge can be declared as an object. Only `id` is required; all other properties are optional.
 
-### `position`
+- `id`: ID of the badge
+- `display`: Alt text for the badge
+- `to`: URL that the badge should navigate to
+- `variation`: Particular variation of a badge to use, such as `branch`
+
+Additionally, the `style` and `provider` settings can be overridden, and the `about` dictionary can be extended or modified, locally for specific badges.
+
+### Settings
+
+The `settings` section contains options such as badge style and provider. All settings are optional.
+
+#### `position`
 
 Where the badges will be inserted into the target file. Options are:
 
-- `current` Insert badges at the location of the first badge currently in the file.
+- `current`: Insert badges at the location of the first badge currently in the file.
 - `top`: Insert badges at the very top of the file.
 - `below-title`: Insert badges immediately below the first `h1` in the file.
 - `below-intro`: Insert badges below the first paragraph in the file.
 
-### `provider`
+#### `provider`
 
 Badges host. Defaults to `shields`.
 
-### `style`
+#### `separator`
 
-Style of badges.
+String to put between badges. Defaults to `space`. Also available are `newline` and `none`.
+
+#### `style`
+
+Style of badges. Defaults to no explicit style.
+
+### About
+
+The `about` section contains a dictionary of information about the project, used as variables in badge generation. The properties in the `about` section are unconstrained, so long as the section is a flat list of strings. Badge Roll and plugins can collect some `about` information programmatically, but it can be declared explicitly as well.
 
 ## Commands
 
+Basic Badge Roll usage happens via command line, such as `badge-roll affix`.
+
 ### `affix`
 
-Insert badges based on config.
+Insert badges into target file based on config.
 
 ### `check`
 
-Verify that badges conform to config.
+Verify that badges in target file conform to config. This is recommended for use in CI pipelines, alongside similar linting and formatting checks.
 
 ### `load-config`
 
-Load the configuration that `badge-roll` sees.
+Load the configuration that `badge-roll` sees, for debugging.
 
-## Plugins
+## API
 
-Badge Roll plugins let you extend your badge automation workflows. Plugins can be loaded as npm packages or as local modules. If npm packages, they must be prefixed with `badge-roll-plugin-`.
+Badge Roll can also be called programmatically, which may be useful in contexts such as scaffolding generators.
 
-Plugins are added as an array under the `plugins` value in your badge config, either as paths to the module or as the portion of the published package name following `badge-roll-plugin-`. They are run in order, and subsequent plugins can modify the results of preceding plugins.
+### `affix`
 
-### `about`
+Insert badges into target file based on config. Config will be read from disk if not passed as parameter.
 
-The `about` contribution allows plugins to automatically gather additional information about the project, for example by reading config files. It is passed two parameters: `about`, which is the current set of about information, and `context`, which includes other potentially useful information for processing.
+```
+(source: string, config?: Config) => string
+```
 
-At present, `context` includes a sole property of `package`, which is the contents of the `package.json` file, if present. About contributions should return an object representing the updated `about` information. Plugins can add, override, or even remove existing properties. The returned object must be a flat list of string values. The values added to about can be referenced in the `details` of badges.
+### `check`
 
-## License
+Verify that badges in target file conform to config. Config will be read from disk if not passed as parameter.
 
-MIT © [Alex Gorischek]()
+```
+(source: string, config?: Config) => boolean
+```
