@@ -1,4 +1,4 @@
-import { evaluatePath, parsePath, Path } from "../types/classes/Path";
+import { evaluatePath, parsePath, Path } from "../types/classes/path";
 
 describe("Path Resolver", () => {
   test("should parse a path", () => {
