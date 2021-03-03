@@ -1,4 +1,5 @@
 import { cosmiconfigSync } from "cosmiconfig";
+import { CosmiconfigResult } from "cosmiconfig/dist/types";
 
 import { filePaths, packageProperty } from "../options";
 import { configSchema } from "../schemas";
@@ -8,7 +9,7 @@ const explorer = cosmiconfigSync(packageProperty, {
   searchPlaces: filePaths,
 });
 
-export function findConfig(): unknown {
+export function findConfig(): CosmiconfigResult {
   const config = explorer.search();
   return config;
 }
