@@ -1,4 +1,4 @@
-import { combine, stringifyQuery } from "../../utilities";
+import { combine, concat, stringifyQuery } from "../../utilities";
 
 import {
   About,
@@ -33,7 +33,6 @@ export class Badge {
 
     const about = combine(globalAbout, badge.about);
     const id = badge.id;
-    const badgePath = badge.path || id;
     const provider = badge.provider || settings.provider;
     const style = badge.style || settings.style;
     const variation = badge.variation;
@@ -43,6 +42,7 @@ export class Badge {
 
     const badgeSpec = new BadgeSpec(providerDefinition.badges[id], variation);
 
+    const badgePath = badgeSpec.path || id;
     const to = new Path(badge.to || badgeSpec.to, about).evaluated;
     const display = badgeSpec.display || badge.display;
     const queryParams = combine(
@@ -52,11 +52,15 @@ export class Badge {
     );
     const queryString = stringifyQuery(queryParams);
 
-    const details = badgeSpec.details || badge.details;
-    const detailsPath = new Path(details, about).evaluated;
-    const url = queryString
-      ? `${basePath}/${badgePath}/${detailsPath}?${queryString}`
-      : `${basePath}/${badgePath}/${detailsPath}`;
+    const details = badgeSpec.details || badge.details || null;
+    const detailsPath = details ? new Path(details, about).evaluated : null;
+
+    const url = concat(
+      `${basePath}`,
+      `/${badgePath}`,
+      details ? `/${detailsPath}` : "",
+      queryString ? `?${queryString}` : ""
+    );
 
     return {
       basePath,

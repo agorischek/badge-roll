@@ -3,15 +3,17 @@ import merge from "lodash.merge";
 
 export class BadgeSpec {
   details: string;
-  to: string;
   display: string;
+  path: string;
+  to: string;
   query?: QueryParams;
   constructor(rootDefinition: BadgeDefinition, variation: string) {
     const coreDefinition = {
       details: rootDefinition.details,
-      to: rootDefinition.to,
       display: rootDefinition.display,
+      path: rootDefinition.path,
       query: rootDefinition.query,
+      to: rootDefinition.to,
     };
     const variationDefinition = variation
       ? rootDefinition.variations[variation]

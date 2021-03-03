@@ -13,6 +13,7 @@ describe("Badge", () => {
     );
     expect(badge.display).toBe("Version");
   });
+
   test("should render a style query param", () => {
     const config = { badges: [{ id: "npm/v" }], settings: { style: "flat" } };
     const context = new RunContext(config);
@@ -70,6 +71,7 @@ describe("Badge", () => {
       "failed_label=bad&passed_label=good&skipped_label=meh"
     );
   });
+
   test("should handle a variation", () => {
     const config = {
       badges: [
@@ -92,5 +94,23 @@ describe("Badge", () => {
     expect(badge.url).toBe(
       "https://img.shields.io/appveyor/build/agorischek/badge-roll/my-branch"
     );
+  });
+
+  test("should handle a path overriding an ID", () => {
+    const config = {
+      badges: [
+        {
+          id: "badge-roll",
+        },
+      ],
+    };
+    const context = new RunContext();
+    const badge = new Badge(
+      config.badges[0],
+      context.settings,
+      context.about,
+      context.providers
+    );
+    expect(badge.url).toBe("https://img.shields.io/badge/badges-rolled-white");
   });
 });

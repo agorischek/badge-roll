@@ -10,6 +10,7 @@ type FullBadgeConfig = {
   details?: string;
   display?: string;
   id: string;
+  path?: string;
   provider?: string;
   query?: QueryParams;
   style?: string;
