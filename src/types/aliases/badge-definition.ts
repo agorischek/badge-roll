@@ -1,12 +1,12 @@
 import { QueryParams } from "..";
 
 export type BadgeDefinition = {
-  details: string;
+  details?: string;
   display: string;
-  path: string;
+  path?: string;
   to: string;
   query?: QueryParams;
   variations?: {
-    [id: string]: BadgeDefinition;
+    [id: string]: Partial<BadgeDefinition>;
   };
 };
