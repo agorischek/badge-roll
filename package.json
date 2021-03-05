@@ -40,17 +40,11 @@
     }
   },
   "lint-staged": {
-    "*.ts": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.json": [
-      "prettier --write",
-      "git add"
-    ],
+    "*.ts": "eslint --cache --fix",
+    "*.json": "prettier --write",
     "*.md": [
       "remark . --frail",
-      "git add"
+      "prettier --write"
     ],
     "*.js": "eslint --cache --fix"
   },
