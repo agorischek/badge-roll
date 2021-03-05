@@ -52,10 +52,7 @@
       "remark . --frail",
       "git add"
     ],
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ]
+    "*.js": "eslint --cache --fix"
   },
   "eslintConfig": {
     "env": {
