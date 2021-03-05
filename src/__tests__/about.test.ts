@@ -9,7 +9,7 @@ describe("About", () => {
   });
   test("should correctly retrieve the user name", () => {
     const about = new About({}, contributions);
-    expect(about.user).toBe("agorischek");
+    expect(about.user).toBe("");
   });
   test("should correctly overwrite a value", () => {
     const config = { about: { name: "wrong-name" } };
