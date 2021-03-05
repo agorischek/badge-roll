@@ -74,6 +74,8 @@ For additional configuration options, the badge can be declared as an object. On
 
 Additionally, the `style` and `provider` settings can be overridden, and the `about` dictionary can be extended or modified, locally for specific badges.
 
+For the full list of badges built in to Badge Roll, see [Badges](badges.md).
+
 ### Settings
 
 The `settings` section contains options such as badge style and provider. All settings are optional.
