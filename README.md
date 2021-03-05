@@ -2,7 +2,7 @@
 
 # Badge Roll
 
-Pluggable README Badge Automator
+Configurable & Extensible README Badge Automator
 
 [![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version") [![License](https://img.shields.io/github/license/agorischek/badge-roll)](https://github.com/agorischek/badge-roll "License") [![Downloads](https://img.shields.io/jsdelivr/npm/hw/badge-roll)](https://github.com/agorischek/badge-roll "Downloads") [![Badges](https://img.shields.io/badge/badges-rolled-white)](https://github.com/agorischek/badge-roll "Badges")
 
@@ -38,7 +38,7 @@ Second, add a script:
 ```json
 //package.json
 "scripts":{
-  "badge": "badge-roll"
+  "badge": "badge-roll affix"
 }
 ```
 

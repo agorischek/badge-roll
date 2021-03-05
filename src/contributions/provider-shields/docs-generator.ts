@@ -26,7 +26,7 @@ class Cell {
   constructor(value: string) {
     return {
       type: "tableCell",
-      children: [{ type: "text", value: value }],
+      children: [{ type: value ? "inlineCode" : "text", value: value }],
     };
   }
 }
@@ -61,7 +61,7 @@ const badges = flatMap(provider.badges, (badge, id) =>
 );
 const sortedBadges = sortBy(badges, (badge) => badge.id);
 
-const header = new Row(["ID", "Variation", "Details", "To"]);
+const header = new Row(["id", "variation", "details", "to"]);
 
 const badgeDefinitions = map(
   sortedBadges,
