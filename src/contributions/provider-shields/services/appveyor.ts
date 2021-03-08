@@ -34,14 +34,4 @@ export const appveyor = {
       },
     },
   },
-  "azure-devops/build": {
-    details: ":organization/:projectId/:definitionId",
-    to: "https://dev.azure.com",
-    display: "Build",
-    variations: {
-      branch: {
-        details: ":organization/:projectId/:definitionId/:branch",
-      },
-    },
-  },
 };

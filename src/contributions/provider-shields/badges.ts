@@ -1,5 +1,22 @@
 import merge from "lodash.merge";
 
-import { appveyor, badgeRoll, github, jsdelivr, npm } from "./services";
+import {
+  appveyor,
+  azureDevops,
+  badgeRoll,
+  bitbucket,
+  github,
+  jsdelivr,
+  npm,
+} from "./services";
 
-export const badges = merge({}, appveyor, badgeRoll, github, jsdelivr, npm);
+export const badges = merge(
+  {},
+  appveyor,
+  azureDevops,
+  badgeRoll,
+  bitbucket,
+  github,
+  jsdelivr,
+  npm
+);
