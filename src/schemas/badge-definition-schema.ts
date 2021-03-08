@@ -12,7 +12,7 @@ export const badgeDefinitionSchema = object.keys({
     any,
     object.keys({
       details: string,
-      query: object.pattern(any, alternatives.try(string, boolean)),
+      options: object.pattern(any, alternatives.try(string, boolean)),
       path: string,
       to: string,
       display: string,

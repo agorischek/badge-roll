@@ -12,7 +12,7 @@ type FullBadgeConfig = {
   id: string;
   path?: string;
   provider?: string;
-  query?: QueryParams;
+  options?: QueryParams;
   style?: string;
   to?: string;
   variation?: string;

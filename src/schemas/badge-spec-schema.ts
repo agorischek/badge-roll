@@ -8,5 +8,5 @@ export const badgeSpecSchema = object.keys({
   display: string,
   path: string,
   to: string,
-  query: object.pattern(any, alternatives.try(string, boolean)),
+  options: object.pattern(any, alternatives.try(string, boolean)),
 });

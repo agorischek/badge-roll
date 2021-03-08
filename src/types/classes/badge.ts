@@ -50,8 +50,8 @@ export class Badge {
     const to = new Path(badge.to || badgeSpec.to, about).evaluated;
     const display = badgeSpec.display || badge.display;
     const queryParams = combine(
-      badgeSpec.query,
-      badge.query,
+      badgeSpec.options,
+      badge.options,
       style ? { style: style } : null
     );
     const queryString = stringifyQuery(queryParams);

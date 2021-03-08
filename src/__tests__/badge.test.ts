@@ -52,7 +52,7 @@ describe("Badge", () => {
       badges: [
         {
           id: "npm/v",
-          query: {
+          options: {
             failed_label: "bad",
             passed_label: "good",
             skipped_label: "meh",

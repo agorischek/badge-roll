@@ -8,13 +8,13 @@ export class BadgeSpec {
   display: string;
   path: string;
   to: string;
-  query?: QueryParams;
+  options?: QueryParams;
   constructor(rootDefinition: BadgeDefinition, variation: string, id: string) {
     const coreSpec = {
       details: rootDefinition.details,
       display: rootDefinition.display,
       path: rootDefinition.path,
-      query: rootDefinition.query,
+      options: rootDefinition.options,
       to: rootDefinition.to,
     };
     const variationSpec = variation

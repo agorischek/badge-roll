@@ -5,7 +5,7 @@ export type BadgeDefinition = {
   display: string;
   path?: string;
   to: string;
-  query?: QueryParams;
+  options?: QueryParams;
   variations?: {
     [id: string]: Partial<BadgeDefinition>;
   };
