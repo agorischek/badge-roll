@@ -1,9 +1,5 @@
-import { badgeDefinitionSchema } from "../schemas/badge-definition-schema";
-import shields from "../contributions/provider-shields";
-
+import { badgeDefinitionSchema } from "../schemas";
 import { loadModule } from "../loaders";
-
-const definition = shields.providers.shields.badges["appveyor/tests"];
 
 describe("Badge definition schema", () => {
   test("should detect totally invalid schema", () => {
