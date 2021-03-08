@@ -1,14 +1,17 @@
 import Joi from "joi";
+const { alternatives, array, object, string } = Joi.types();
 
-export const badgesSchema = Joi.array().items(
-  Joi.alternatives().try(
-    Joi.string(),
-    Joi.object({
-      id: Joi.string().required(),
-      details: Joi.string(),
-      display: Joi.string(),
-      to: Joi.string(),
-      about: Joi.object().unknown(),
-    }).required()
+export const badgesSchema = array.items(
+  alternatives.try(
+    string,
+    object
+      .keys({
+        id: string.required(),
+        details: string,
+        display: string,
+        to: string,
+        about: object.unknown(),
+      })
+      .required()
   )
 );

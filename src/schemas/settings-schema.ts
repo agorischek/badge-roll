@@ -1,8 +1,9 @@
 import Joi from "joi";
+const { object, string } = Joi.types();
 
-export const settingsSchema = Joi.object({
-  style: Joi.string(),
-  provider: Joi.string(),
-  position: Joi.string(),
-  separator: Joi.string(),
+export const settingsSchema = object.keys({
+  style: string,
+  provider: string,
+  position: string,
+  separator: string,
 });

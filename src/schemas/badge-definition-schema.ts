@@ -1,18 +1,19 @@
 import Joi from "joi";
+const { object, string } = Joi.types();
 
-export const badgeDefinitionSchema = Joi.object({
-  details: Joi.string(),
-  to: Joi.string(),
-  display: Joi.string(),
-  path: Joi.string(),
-  variations: Joi.object().pattern(
+export const badgeDefinitionSchema = object.keys({
+  details: string,
+  to: string,
+  display: string,
+  path: string,
+  variations: object.pattern(
     /.+/,
-    Joi.object({
-      details: Joi.string(),
-      query: Joi.object().unknown(),
-      path: Joi.string(),
-      to: Joi.string(),
-      display: Joi.string(),
+    object.keys({
+      details: string,
+      query: object.unknown(),
+      path: string,
+      to: string,
+      display: string,
     })
   ),
 });

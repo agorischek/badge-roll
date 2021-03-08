@@ -1,3 +1,4 @@
 import Joi from "joi";
+const { array, string } = Joi.types();
 
-export const pluginsSchema = Joi.array().items(Joi.string());
+export const pluginsSchema = array.items(string);
