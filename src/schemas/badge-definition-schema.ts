@@ -1,5 +1,7 @@
 import Joi from "joi";
-const { object, string } = Joi.types();
+const { alternatives, boolean, object, string } = Joi.types();
+
+import { any } from "./any";
 
 export const badgeDefinitionSchema = object.keys({
   details: string,
@@ -7,10 +9,10 @@ export const badgeDefinitionSchema = object.keys({
   display: string,
   path: string,
   variations: object.pattern(
-    /.+/,
+    any,
     object.keys({
       details: string,
-      query: object.unknown(),
+      query: object.pattern(any, alternatives.try(string, boolean)),
       path: string,
       to: string,
       display: string,

@@ -40,7 +40,11 @@ export class Badge {
     const providerDefinition = providers[provider];
     const basePath = providerDefinition.baseUrl;
 
-    const badgeSpec = new BadgeSpec(providerDefinition.badges[id], variation);
+    const badgeSpec = new BadgeSpec(
+      providerDefinition.badges[id],
+      variation,
+      id
+    );
 
     const badgePath = badgeSpec.path || id;
     const to = new Path(badge.to || badgeSpec.to, about).evaluated;
