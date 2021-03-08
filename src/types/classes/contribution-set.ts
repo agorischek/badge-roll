@@ -5,7 +5,7 @@ import {
   SettingsContribution,
 } from "..";
 import { contributions } from "../../options";
-import { loadModule } from "../../utilities";
+import { loadModule } from "../../loaders";
 
 export class ContributionSet {
   about: Array<AboutContribution>;
