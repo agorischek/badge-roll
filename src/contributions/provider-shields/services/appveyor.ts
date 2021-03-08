@@ -28,7 +28,7 @@ export const appveyor = {
         details: ":user/:repo/:branch",
       },
       compact: {
-        query: {
+        options: {
           compact_message: true,
         },
       },

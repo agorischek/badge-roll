@@ -1,16 +1,25 @@
-| `id`                     | `variation` | `details`                                        | `to`                                       |
-| :----------------------- | ----------- | ------------------------------------------------ | ------------------------------------------ |
-| `appveyor/build`         | `—`         | `:user/:repo`                                    |                                            |
-| `appveyor/build`         | `branch`    | `:user/:repo/:branch`                            |                                            |
-| `appveyor/job/build`     | `—`         | `:user/:repo/:job`                               |                                            |
-| `appveyor/job/build`     | `branch`    | `:user/:repo/:job/:branch`                       |                                            |
-| `appveyor/tests`         | `—`         | `:user/:repo`                                    |                                            |
-| `appveyor/tests`         | `branch`    | `:user/:repo/:branch`                            |                                            |
-| `appveyor/tests`         | `compact`   | `:user/:repo`                                    |                                            |
-| `azure-devops/build`     | `—`         | `:organization/:projectId/:definitionId`         |                                            |
-| `azure-devops/build`     | `branch`    | `:organization/:projectId/:definitionId/:branch` |                                            |
-| `badge-roll`             | `—`         |                                                  | `https://github.com/agorischek/badge-roll` |
-| `github/license`         | `—`         | `:user/:repo`                                    | `:packageHomepage`                         |
-| `github/workflow/status` | `—`         | `:user/:repo/:workflow`                          |                                            |
-| `jsdelivr/npm`           | `—`         | `:period/:packageName`                           | `:packageHomepage`                         |
-| `npm/v`                  | `—`         | `:packageName`                                   | `:packageRegistry`                         |
+| `id`                     | `variation` | `details`                                               | `to`                                       |
+| :----------------------- | ----------- | ------------------------------------------------------- | ------------------------------------------ |
+| `appveyor/build`         | `—`         | `:user/:repo`                                           | `https://www.appveyor.com`                 |
+| `appveyor/build`         | `branch`    | `:user/:repo/:branch`                                   | `https://www.appveyor.com`                 |
+| `appveyor/job/build`     | `—`         | `:user/:repo/:job`                                      | `https://www.appveyor.com`                 |
+| `appveyor/job/build`     | `branch`    | `:user/:repo/:job/:branch`                              | `https://www.appveyor.com`                 |
+| `appveyor/tests`         | `—`         | `:user/:repo`                                           | `https://www.appveyor.com`                 |
+| `appveyor/tests`         | `branch`    | `:user/:repo/:branch`                                   | `https://www.appveyor.com`                 |
+| `appveyor/tests`         | `compact`   | `:user/:repo`                                           | `https://www.appveyor.com`                 |
+| `azure-devops/build`     | `—`         | `:organization/:projectId/:definitionId`                | `https://dev.azure.com`                    |
+| `azure-devops/build`     | `branch`    | `:organization/:projectId/:definitionId/:branch`        | `https://dev.azure.com`                    |
+| `azure-devops/release`   | `—`         | `:organization/:projectId/:definitionId/:environmentId` | `https://dev.azure.com`                    |
+| `azure-devops/tests`     | `—`         | `:organization/:project/:definitionId`                  | `https://dev.azure.com`                    |
+| `azure-devops/tests`     | `branch`    | `:organization/:project/:definitionId/:branch`          | `https://dev.azure.com`                    |
+| `badge-roll`             | `—`         |                                                         | `https://github.com/agorischek/badge-roll` |
+| `bitbucket/pipelines`    | `—`         | `:user/:repo/:branch`                                   | `https://bitbucket.com`                    |
+| `buildkite`              | `—`         | `:identifier`                                           | `https://buildkit.com`                     |
+| `buildkite`              | `branch`    | `:identifier/:branch`                                   | `https://buildkit.com`                     |
+| `circleci/build`         | `—`         | `:vcsType/:user/:repo/:branch`                          | `https://circleci.com`                     |
+| `cirrus/github`          | `—`         | `:user/:repo`                                           | `https://cirrus-ci.org`                    |
+| `cirrus/github`          | `branch`    | `:user/:repo/:branch`                                   | `https://cirrus-ci.org`                    |
+| `github/license`         | `—`         | `:user/:repo`                                           | `:packageHomepage`                         |
+| `github/workflow/status` | `—`         | `:user/:repo/:workflow`                                 | `https://github.com`                       |
+| `jsdelivr/npm`           | `—`         | `:period/:packageName`                                  | `:packageHomepage`                         |
+| `npm/v`                  | `—`         | `:packageName`                                          | `:packageRegistry`                         |
