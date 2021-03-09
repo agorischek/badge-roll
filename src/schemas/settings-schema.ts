@@ -2,8 +2,10 @@ import Joi from "joi";
 const { object, string } = Joi.types();
 
 export const settingsSchema = object.keys({
-  style: string,
-  provider: string,
+  file: string,
   position: string,
+  printer: string,
+  provider: string,
   separator: string,
+  style: string,
 });
