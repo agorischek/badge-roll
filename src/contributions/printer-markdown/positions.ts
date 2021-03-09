@@ -32,12 +32,6 @@ export const positions: Positions = {
       } else return concat(badges, br, source);
     },
   },
-  "above-title": {
-    relation: "above",
-    findAnchor: (tree) => nav.find(tree, anchors.h1),
-    affix: (source, badges, anchorLoc, badgesLoc) =>
-      "`above-title` position is not yet implemented",
-  },
   "below-title": {
     relation: "below",
     findAnchor: (tree) => nav.find(tree, anchors.h1),
@@ -59,16 +53,6 @@ export const positions: Positions = {
       const tail = after(badgesLoc.end || anchorLoc.end).in(source);
       return concat(head, br, badges, tail);
     },
-  },
-  "below-intro": {
-    relation: "above",
-    findAnchor: (tree) => {
-      const h2 = nav.find(tree, anchors.h2);
-      const introEnd = nav.findBefore(h2.parent, h2, "paragraph");
-      return introEnd;
-    },
-    affix: (source, badges, anchorLoc, badgesLoc) =>
-      "`below-intro` position is not yet implemented",
   },
   section: {
     relation: "inside",
