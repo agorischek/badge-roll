@@ -1,1 +1,1 @@
-export { affix, check } from "./core";
+export { affix, check } from "./api";

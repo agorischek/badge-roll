@@ -2,7 +2,7 @@
 
 import { Command } from "commander";
 
-import { affixCmd, checkCmd, loadConfigCmd } from "./core";
+import { affixCmd, checkCmd, loadConfigCmd } from "./commands";
 import { log } from "./utilities";
 
 const program = new Command();
