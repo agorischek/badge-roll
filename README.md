@@ -51,11 +51,13 @@ Third, add a config. Here's a basic example; see below for lots more options:
 }
 ```
 
-Fourth, run the script:
+Fourth, run the script. Badge Roll will search for badges already in the file and replace them, so make sure you you've committed anything you don't want to lose!
 
 ```sh
 > npm run badge
 ```
+
+Voila! Your README has been badged. Read on for lots more configuration options.
 
 ## Configuration
 
@@ -63,7 +65,9 @@ Badge Roll configurations can be stored in a `badgeConfig` property in `package.
 
 ### Badges
 
-The `badges` section contains an array of badge configurations. In the simplest case, a badge configuration can be simple a string, such as `npm/v`. Badge Roll gathers some basic info about your project and uses some sensible defaults to generate the badge.
+The `badges` section contains an array of badge configurations. For the full list of badges built in to Badge Roll, see [Badges](badges.md).
+
+In the simplest case, a badge configuration can be simple a string indicating the badge's `id`, such as `npm/v`. Badge Roll gathers some basic info about your project and uses some sensible defaults to generate the badge.
 
 For additional configuration options, the badge can be declared as an object. Only `id` is required; all other properties are optional.
 
@@ -71,10 +75,24 @@ For additional configuration options, the badge can be declared as an object. On
 - `display`: Alt text for the badge
 - `to`: URL that the badge should navigate to
 - `variation`: Particular variation of a badge to use, such as `branch`
+- `options`: A dictionary of strings, numbers, or booleans to be submitted as URL query parameters
 
-Additionally, the `style` and `provider` settings can be overridden, and the `about` dictionary can be extended or modified, locally for specific badges.
+Additionally, the `style` and `provider` settings can be overridden, and the `about` dictionary can be extended or modified, for specific badges. Simple (only the `id` string) and advanced (full object) badge declarations can be mixed freely.
 
-For the full list of badges built in to Badge Roll, see [Badges](badges.md).
+Here's an example `badges` section:
+
+```yml
+badges:
+  - npm/v
+  - id: github/commits-since
+    options:
+      - include_prereleases: true
+      - sort: semver
+  - id: appveyor/build
+    variation: branch
+    about:
+      branch: release
+```
 
 ### Settings
 
@@ -93,6 +111,10 @@ Where the badges will be inserted into the target file. Options are:
 
 Badges host. Defaults to `shields`.
 
+#### `file`
+
+Path to the file to affix badges to. Defaults to `README.md`.
+
 #### `separator`
 
 String to put between badges. Defaults to `space`. Also available are `newline` and `none`.
@@ -103,7 +125,7 @@ Style of badges. Defaults to no explicit style.
 
 ### About
 
-The `about` section contains a dictionary of information about the project, used as variables in badge generation. The properties in the `about` section are unconstrained, so long as the section is a flat list of strings. Badge Roll and plugins can collect some `about` information programmatically, but it can be declared explicitly as well.
+The `about` section contains a dictionary of information about the project, used as variables in badge generation. The properties in the `about` section are unconstrained, so long as the section is a flat dictionary of strings. Badge Roll and plugins can collect some `about` information programmatically, but it can be declared explicitly as well.
 
 ## Commands
 
