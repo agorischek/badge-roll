@@ -79,6 +79,12 @@
     }
   },
   "jest": {
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/commands/",
+      "/src/utilities/log.ts",
+      "/src/utilities/write-file.ts"
+    ],
     "testEnvironment": "node",
     "testPathIgnorePatterns": [
       "/lib/"
