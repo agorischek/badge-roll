@@ -75,4 +75,12 @@ describe("Affix function", () => {
       affix("# Title\n\nTest content", config);
     }).toThrow();
   });
+
+  test("should affix using the alternate `md` printer", () => {
+    const config = { badges: [{ id: "npm/v" }], settings: { printer: "md" } };
+    const source = `# Title\n\n${placeholderBadge}`;
+    const modified = affix(source, config);
+    const expected = `# Title\n\n${expectedBadge}`;
+    expect(modified).toBe(expected);
+  });
 });
