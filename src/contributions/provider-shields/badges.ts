@@ -8,6 +8,7 @@ import {
   buildkite,
   circleci,
   cirrus,
+  codeship,
   github,
   jsdelivr,
   npm,
@@ -22,6 +23,7 @@ export const badges = merge(
   buildkite,
   circleci,
   cirrus,
+  codeship,
   github,
   jsdelivr,
   npm

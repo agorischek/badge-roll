@@ -5,6 +5,7 @@ export * from "./bitbucket";
 export * from "./buildkite";
 export * from "./circleci";
 export * from "./cirrus";
+export * from "./codeship";
 export * from "./github";
 export * from "./jsdelivr";
 export * from "./npm";
