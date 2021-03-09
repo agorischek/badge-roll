@@ -1,3 +1,5 @@
+> **_NOTE:_** _Badge Roll has not yet reached a stable v1.0, breaking changes are likely, and most badges aren't implemented yet. Pull requests welcome, especially to increase badge coverage!_
+
 <img width="125" src="img/logo.svg" alt="Badge Roll logo" />
 
 # Badge Roll
