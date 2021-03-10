@@ -1,13 +1,10 @@
 badges:
   - npm/v
   - github/license
-  - jsdelivr/npm
+  - codecov/c
   - badge-roll
 
 settings:
   separator: space
   provider: shields
   position: below-lead
-
-about:
-  period: hw
