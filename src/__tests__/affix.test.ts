@@ -98,6 +98,14 @@ describe("Affix function", () => {
     expect(modified).toBe(expected);
   });
 
+  test("should throw when requesting a provider that doesn't exist", () => {
+    const config = {
+      badges: [{ id: "npm/v", provider: "not-a/real-provider" }],
+    };
+    const source = "";
+    expect(() => affix(source, config)).toThrow();
+  });
+
   test("should throw when requesting a badge that doesn't exist", () => {
     const config = { badges: [{ id: "not-a/real-badge" }] };
     const source = "";

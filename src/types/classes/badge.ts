@@ -38,9 +38,11 @@ export class Badge {
     const variation = badge.variation || null;
 
     const providerDefinition = providers[provider];
+    if (!providerDefinition)
+      throw new Error(`Provider "${provider}" is not registered.`);
     const basePath = providerDefinition.baseUrl;
-    const badgeDefinition = providerDefinition.badges[id];
 
+    const badgeDefinition = providerDefinition.badges[id];
     if (!badgeDefinition)
       throw new Error(`Badge "${id}" is not defined for provider ${provider}.`);
 
