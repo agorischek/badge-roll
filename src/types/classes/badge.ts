@@ -35,7 +35,7 @@ export class Badge {
     const id = badge.id;
     const provider = badge.provider || settings.provider;
     const style = badge.style || settings.style;
-    const variation = badge.variation;
+    const variation = badge.variation || null;
 
     const providerDefinition = providers[provider];
     const basePath = providerDefinition.baseUrl;
