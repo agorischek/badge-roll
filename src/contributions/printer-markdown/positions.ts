@@ -67,7 +67,7 @@ export const positions: Positions = {
     relation: "inside",
     findAnchor: (tree) => nav.find(tree, test.isBadge),
     affix: (source, badges, anchorLoc, badgesLoc) => {
-      if (!badgesLoc.start || !badgesLoc.end)
+      if (badgesLoc.start === null || badgesLoc.end === null)
         throw new Error(
           "Badge section position was set to `current`, but no badges were found in current target file."
         );

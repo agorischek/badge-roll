@@ -66,6 +66,20 @@ describe("Affix function", () => {
     expect(modified).toBe(expected);
   });
 
+  test("should detect various badge providers", () => {
+    const source = `[![Example](https://badges.gitter.im/user/Lobby.svg)](https://example.org "Example")
+    [![Example](https://github.com/project/repo/workflows/main/badge.svg)](https://example.org "Example")
+    [![Example](https://img.shields.io/example)](https://example.org "Example")
+    [![Example](https://dev.azure.com/user/packages/_apis/build/status/project/pipeline?branchName=master)](https://example.org "Example")`;
+    const config = {
+      badges: [{ id: "npm/v" }],
+      settings: { position: "current" },
+    };
+    const modified = affix(source, config);
+    const expected = expectedBadge;
+    expect(modified).toBe(expected);
+  });
+
   test("should throw if position is current but there are no badges", () => {
     const config = {
       badges: [{ id: "npm/v" }],

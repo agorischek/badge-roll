@@ -24,7 +24,7 @@ export function isBadge(node: Node): boolean {
   // isLink(node);
   // hasNoGrandchildren(node);
 
-  return hasExactlyOneChild(node) && isShieldsImg(firstChild);
+  return hasExactlyOneChild(node) && isBadgeImg(firstChild);
 }
 
 export function hasExactlyOneChild(node: Node): boolean {
@@ -35,9 +35,39 @@ export function hasNoGrandchildren(node: Node): boolean {
   return node ? getFirstGrandchildren(node).length === 0 : null;
 }
 
+function badgeSelector(providerUrl: string) {
+  return `image[url^=${providerUrl}]:empty`;
+}
+
+export function isBadgeImg(node: Node) {
+  return (
+    isShieldsImg(node) ||
+    isAzureDevopsImg(node) ||
+    isGithubImg(node) ||
+    isGitterImg(node)
+  );
+}
+
 export function isShieldsImg(node: Node): boolean {
   return node
-    ? select.matches("image[url^=https://img.shields.io]:empty", node)
+    ? select.matches(badgeSelector("https://img.shields.io"), node)
+    : null;
+}
+export function isAzureDevopsImg(node: Node): boolean {
+  return node
+    ? select.matches(badgeSelector("https://dev.azure.com/"), node)
+    : null;
+}
+
+export function isGithubImg(node: Node): boolean {
+  return node
+    ? select.matches(badgeSelector("https://github.com"), node)
+    : null;
+}
+
+export function isGitterImg(node: Node): boolean {
+  return node
+    ? select.matches(badgeSelector("https://badges.gitter.im"), node)
     : null;
 }
 
