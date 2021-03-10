@@ -39,12 +39,12 @@ export class Badge {
 
     const providerDefinition = providers[provider];
     const basePath = providerDefinition.baseUrl;
+    const badgeDefinition = providerDefinition.badges[id];
 
-    const badgeSpec = new BadgeSpec(
-      providerDefinition.badges[id],
-      variation,
-      id
-    );
+    if (!badgeDefinition)
+      throw new Error(`Badge "${id}" is not defined for provider ${provider}.`);
+
+    const badgeSpec = new BadgeSpec(badgeDefinition, variation, id);
 
     const badgePath = badgeSpec.path || id;
     const to = new Path(badge.to || badgeSpec.to, about).evaluated;
