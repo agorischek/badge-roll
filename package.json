@@ -85,6 +85,9 @@
       "/src/utilities/log.ts",
       "/src/utilities/write-file.ts"
     ],
+    "setupFilesAfterEnv": [
+      "./jest.setup.js"
+    ],
     "testEnvironment": "node",
     "testPathIgnorePatterns": [
       "/lib/"
@@ -93,6 +96,7 @@
   "dependencies": {
     "commander": "^7.1.0",
     "cosmiconfig": "^7.0.0",
+    "jest-joi-schema": "^1.0.0",
     "joi": "^17.4.0",
     "lodash": "^4.17.21",
     "lodash.merge": "^4.6.2",
