@@ -1,6 +1,6 @@
 import { Config, ContributionSet, SettingsData } from "..";
 
-import merge from "lodash.merge";
+import { merge } from "lodash";
 
 export class Settings {
   style?: string;

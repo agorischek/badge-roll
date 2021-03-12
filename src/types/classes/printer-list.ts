@@ -1,6 +1,6 @@
 import { Badge, ContributionSet, SettingsData } from "..";
 
-import merge from "lodash.merge";
+import { merge } from "lodash";
 
 export class PrinterList {
   [printer: string]: (

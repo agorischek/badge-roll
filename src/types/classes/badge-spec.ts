@@ -1,5 +1,5 @@
 import { BadgeDefinition, QueryParams } from "..";
-import merge from "lodash.merge";
+import { merge } from "lodash";
 
 import { badgeSpecSchema } from "../../schemas";
 

@@ -1,0 +1,8 @@
+ignores:
+  - "@stryker-mutator/jest-runner"
+  - "@types/jest"
+  - "babel-jest"
+  - remark-lint
+  - remark-preset-*
+  - prettier-plugin-*
+  - unist
