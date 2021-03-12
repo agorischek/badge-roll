@@ -5,6 +5,9 @@ badges:
   - badge-roll
 
 settings:
-  separator: space
+  separator: newline
   provider: shields
   position: below-lead
+
+about:
+  branch: main

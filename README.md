@@ -6,7 +6,10 @@
 
 Configurable & Extensible README Badge Automator
 
-[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version") [![License](https://img.shields.io/github/license/agorischek/badge-roll)](https://github.com/agorischek/badge-roll "License") [![Coverage](https://img.shields.io/codecov/c/github/agorischek/badge-roll)](https://codecov.io/gh/agorischek/badge-roll "Coverage") [![Badges](https://img.shields.io/badge/badges-rolled-white)](https://github.com/agorischek/badge-roll "Badges")
+[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")
+[![License](https://img.shields.io/github/license/agorischek/badge-roll)](https://github.com/agorischek/badge-roll/blob/main/LICENSE "License")
+[![Coverage](https://img.shields.io/codecov/c/github/agorischek/badge-roll)](https://codecov.io/gh/agorischek/badge-roll "Coverage")
+[![Badges](https://img.shields.io/badge/badges-rolled-white)](https://github.com/agorischek/badge-roll "Badges")
 
 ```yml
 # badgeconfig.yml
@@ -19,9 +22,12 @@ badges:
   - badge-roll
 
 settings:
-  separator: space
+  separator: newline
   provider: shields
   position: below-lead
+
+about:
+  branch: main
 ```
 
 ## Setup
