@@ -26,3 +26,6 @@ jobs:
 
       - name: Lint
         run: npm run lint
+
+      - name: Review Dependencies
+        run: npm run dep:review
