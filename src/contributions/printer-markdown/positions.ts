@@ -54,15 +54,6 @@ export const positions: Positions = {
       return concat(head, br, badges, tail);
     },
   },
-  section: {
-    relation: "inside",
-    findAnchor: (tree) => nav.select("[class=badges]", tree),
-    affix: (source, badges, anchorLoc, badgesLoc) => {
-      const head = before(anchorLoc.start).in(source);
-      const tail = after(anchorLoc.end).in(source);
-      return concat(head, br, badges, tail);
-    },
-  },
   current: {
     relation: "inside",
     findAnchor: (tree) => nav.find(tree, test.isBadge),
