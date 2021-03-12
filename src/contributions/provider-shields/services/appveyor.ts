@@ -1,11 +1,12 @@
 export const appveyor = {
   "appveyor/build": {
     details: ":user/:repo",
-    to: "https://www.appveyor.com",
+    to: "https://ci.appveyor.com/project/:user/:repo",
     display: "Build",
     variations: {
       branch: {
         details: ":user/:repo/:branch",
+        to: "https://ci.appveyor.com/project/:user/:repo/:branch",
       },
     },
   },
