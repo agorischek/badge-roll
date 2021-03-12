@@ -6,13 +6,13 @@ export class Run {
   filePath?: string;
   matches: boolean;
   constructor(source?: string, config?: Config) {
-    const run = new RunContext(config);
-    const target = new Target(run.settings, source);
-    const printer = new Printer(run.printers, target.printer);
-    const section = new BadgeSection(run);
+    const context = new RunContext(config);
+    const target = new Target(context.settings, source);
+    const printer = new Printer(context.printers, target.printer);
+    const section = new BadgeSection(context);
     const markup = printer.print(
       section.badges,
-      run.settings,
+      context.settings,
       target.originalContent
     );
     const matches = target.originalContent === markup;

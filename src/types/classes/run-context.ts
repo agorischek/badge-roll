@@ -22,6 +22,7 @@ export class RunContext {
     const providers = new ProvidersDirectory(contributions);
     const printers = new PrinterList(contributions);
     const badges = config.badges;
+    if (!badges || badges.length < 1) throw new Error("No badges specified.");
     return {
       about,
       settings,
