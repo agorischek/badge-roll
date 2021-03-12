@@ -1,11 +1,9 @@
-import { Node } from "unist";
-
-import { NodeAnalysis } from "../types";
-
 import unified from "unified";
 import markdown from "remark-parse";
 
 import { getFirstChild } from "../utils";
+
+import { NodeAnalysis } from "../types";
 
 const parse = unified().use(markdown).parse;
 

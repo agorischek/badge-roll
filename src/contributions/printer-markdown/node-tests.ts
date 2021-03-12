@@ -39,7 +39,7 @@ function badgeSelector(providerUrl: string) {
   return `image[url^=${providerUrl}]:empty`;
 }
 
-export function isBadgeImg(node: Node) {
+export function isBadgeImg(node: Node): boolean {
   return (
     isShieldsImg(node) ||
     isAzureDevopsImg(node) ||
