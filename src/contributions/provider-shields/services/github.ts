@@ -1,7 +1,7 @@
 export const github = {
   "github/license": {
     details: ":user/:repo",
-    to: ":packageHomepage",
+    to: ":packageHomepage/blob/:branch/LICENSE",
     display: "License",
   },
   "github/workflow/status": {
