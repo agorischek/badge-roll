@@ -4,7 +4,7 @@
 
 # Badge Roll
 
-Configurable & Extensible README Badge Automator
+Configurable README Badge Automator
 
 [![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")
 [![License](https://img.shields.io/github/license/agorischek/badge-roll)](https://github.com/agorischek/badge-roll/blob/main/LICENSE "License")
