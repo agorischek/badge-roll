@@ -67,4 +67,12 @@ describe("Node Analysis", () => {
     const analysis = new NodeAnalysis(grandChild);
     expect(analysis.isBadge).toBeFalsy();
   });
+
+  test("should detect an AppVeyor badge", () => {
+    const source = `[![Example](https://ci.appveyor.com/api/projects/status/)](https://example.org "Example")`;
+    const parsed = parse(source);
+    const grandChild = getFirstChild(getFirstChild(parsed));
+    const analysis = new NodeAnalysis(grandChild);
+    expect(analysis.isBadge).toBeTruthy();
+  });
 });

@@ -44,7 +44,8 @@ export function isBadgeImg(node: Node) {
     isShieldsImg(node) ||
     isAzureDevopsImg(node) ||
     isGithubImg(node) ||
-    isGitterImg(node)
+    isGitterImg(node) ||
+    isAppveyorImg(node)
   );
 }
 
@@ -68,6 +69,12 @@ export function isGithubImg(node: Node): boolean {
 export function isGitterImg(node: Node): boolean {
   return node
     ? select.matches(badgeSelector("https://badges.gitter.im"), node)
+    : null;
+}
+
+export function isAppveyorImg(node: Node): boolean {
+  return node
+    ? select.matches(badgeSelector("https://ci.appveyor.com/api"), node)
     : null;
 }
 
