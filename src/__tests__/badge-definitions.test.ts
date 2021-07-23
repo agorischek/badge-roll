@@ -3,22 +3,19 @@ import { loadModule } from "../loaders";
 
 describe("Badge definition schema", () => {
   test("should detect totally invalid schema", () => {
-    expect(() => {
-      expect({ valid: false }).toMatchSchema(badgeDefinitionSchema);
-    }).toThrow();
+    const badgeDefinition = { valid: false };
+    expect(badgeDefinition).not.toMatchSchema(badgeDefinitionSchema);
   });
   test("should detect schema with invalid type", () => {
-    expect(() => {
-      expect({ details: 2 }).toMatchSchema(badgeDefinitionSchema);
-    }).toThrow();
+    const badgeDefinition = { details: 2 };
+    expect(badgeDefinition).not.toMatchSchema(badgeDefinitionSchema);
   });
   test("should detect partially valid schema", () => {
-    expect(() => {
-      expect({
-        details: "example/path",
-        notAProperty: true,
-      }).toMatchSchema(badgeDefinitionSchema);
-    }).toThrow();
+    const badgeDefinition = {
+      details: "example/path",
+      notAProperty: true,
+    };
+    expect(badgeDefinition).not.toMatchSchema(badgeDefinitionSchema);
   });
 });
 
