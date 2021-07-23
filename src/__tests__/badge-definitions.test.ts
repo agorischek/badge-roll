@@ -3,18 +3,22 @@ import { loadModule } from "../loaders";
 
 describe("Badge definition schema", () => {
   test("should detect totally invalid schema", () => {
-    expect(badgeDefinitionSchema.validate({ valid: false }).error).toBeTruthy();
+    expect(() => {
+      expect({ valid: false }).toMatchSchema(badgeDefinitionSchema);
+    }).toThrow();
   });
   test("should detect schema with invalid type", () => {
-    expect(badgeDefinitionSchema.validate({ details: 2 }).error).toBeTruthy();
+    expect(() => {
+      expect({ details: 2 }).toMatchSchema(badgeDefinitionSchema);
+    }).toThrow();
   });
   test("should detect partially valid schema", () => {
-    expect(
-      badgeDefinitionSchema.validate({
+    expect(() => {
+      expect({
         details: "example/path",
         notAProperty: true,
-      }).error
-    ).toBeTruthy();
+      }).toMatchSchema(badgeDefinitionSchema);
+    }).toThrow();
   });
 });
 
@@ -25,8 +29,7 @@ describe("Badge definitions", () => {
       for (const badge in providerShields.providers[provider].badges) {
         const badgeDefinition =
           providerShields.providers[provider].badges[badge];
-        const result = badgeDefinitionSchema.validate(badgeDefinition);
-        expect(result.error).toBeFalsy();
+        expect(badgeDefinition).toMatchSchema(badgeDefinitionSchema);
       }
     }
   });
