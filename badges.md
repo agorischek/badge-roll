@@ -27,3 +27,4 @@
 | `github/workflow/status` | `—`         | `:user/:repo/:workflow`                                 | `https://github.com`                                  |
 | `jsdelivr/npm`           | `—`         | `:period/:packageName`                                  | `:packageHomepage`                                    |
 | `npm/v`                  | `—`         | `:packageName`                                          | `:packageRegistry`                                    |
+| `runkit`                 | `—`         |                                                         | `https://npm.runkit.com/:packageName`                 |

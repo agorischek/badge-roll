@@ -13,6 +13,7 @@ import {
   github,
   jsdelivr,
   npm,
+  runkit,
 } from "./services";
 
 export const badges = merge(
@@ -28,5 +29,6 @@ export const badges = merge(
   codeship,
   github,
   jsdelivr,
-  npm
+  npm,
+  runkit
 );

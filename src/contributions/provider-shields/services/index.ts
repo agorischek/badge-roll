@@ -10,3 +10,4 @@ export * from "./codeship";
 export * from "./github";
 export * from "./jsdelivr";
 export * from "./npm";
+export * from "./runkit";
