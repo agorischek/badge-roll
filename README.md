@@ -156,14 +156,10 @@ Badge Roll can also be called programmatically, which may be useful in contexts 
 
 Insert badges into target file based on config. Config will be read from disk if not passed as parameter.
 
-```
-(source: string, config?: Config) => string
-```
+    (source: string, config?: Config) => string
 
 ### `check`
 
 Verify that badges in target file conform to config. Config will be read from disk if not passed as parameter.
 
-```
-(source: string, config?: Config) => boolean
-```
+    (source: string, config?: Config) => boolean
