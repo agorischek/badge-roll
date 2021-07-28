@@ -1,9 +1,6 @@
 badges:
   - npm/v
-  - id: github/workflow/status
-    about:
-      workflowFile: ci.yml
-      workflowName: CI
+  - github/workflow/status
   - github/license
   - codecov/c
   - badge-roll
@@ -15,3 +12,4 @@ settings:
 
 about:
   branch: main
+  workflow: ci
