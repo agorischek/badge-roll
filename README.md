@@ -18,6 +18,7 @@ Configurable README Badge Automator
 
 badges:
   - npm/v
+  - github/workflow/status
   - github/license
   - codecov/c
   - badge-roll
@@ -29,6 +30,7 @@ settings:
 
 about:
   branch: main
+  workflow: ci
 ```
 
 ## Setup
