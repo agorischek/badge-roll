@@ -2,9 +2,9 @@ import { badgeDefinitionSchema } from "../schemas";
 import { loadModule } from "../loaders";
 
 describe("Badge definition schema", () => {
-  test("should be a schema",()=>{
+  test("should be a schema", () => {
     expect(badgeDefinitionSchema).toBeSchema();
-  })
+  });
   test("should detect totally invalid schema", () => {
     const badgeDefinition = { valid: false };
     expect(badgeDefinition).not.toMatchSchema(badgeDefinitionSchema);
