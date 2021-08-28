@@ -7,6 +7,7 @@ export * from "./circleci";
 export * from "./cirrus";
 export * from "./codecov";
 export * from "./codeship";
+export * from "./depfu";
 export * from "./github";
 export * from "./jsdelivr";
 export * from "./npm";
