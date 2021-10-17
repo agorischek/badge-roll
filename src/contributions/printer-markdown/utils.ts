@@ -40,7 +40,9 @@ export function before(endingOffset: number): { in: (doc: string) => string } {
 
 export function after(
   beginningOffset: number
-): { in: (doc: string) => string } {
+): {
+  in: (doc: string) => string;
+} {
   return {
     in: (document: string): string => {
       return document.substring(beginningOffset);
