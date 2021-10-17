@@ -21,7 +21,6 @@
     "build": "rimraf lib && tsc --project tsconfig.build.json",
     "build:cli": "npm run build && chmod +x lib/cli.js",
     "build:docs": "ts-node src/contributions/provider-shields/docs-generator.ts",
-    "check": "npm run build && npm run test && npm run lint && npm run dep:review",
     "cli:lib:affix": "node lib/cli.js affix",
     "cli:lib:check": "node lib/cli.js check",
     "cli:lib:loadConfig": "node lib/cli.js load-config",
@@ -32,9 +31,10 @@
     "dep:update": "ncu --upgrade --doctor",
     "lint": "eslint . --max-warnings=0 && remark . --frail && prettier \".\" --check && npm run cli:lib:check",
     "lint:fix": "eslint . --fix && remark . --output && prettier \".\" --write && node lib/cli.js affix",
-    "test": "jest",
-    "test:coverage": "jest --collect-coverage",
-    "test:mutate": "stryker run"
+    "test": "npm run build && npm run test && npm run lint && npm run dep:review",
+    "test:unit": "jest",
+    "test:unit:coverage": "jest --collect-coverage",
+    "test:unit:mutate": "stryker run"
   },
   "husky": {
     "hooks": {
@@ -80,7 +80,6 @@
     }
   },
   "dependencies": {
-    "@types/jest": "^26.0.24",
     "commander": "^7.1.0",
     "cosmiconfig": "^7.0.0",
     "glob": "^7.1.7",
@@ -90,7 +89,6 @@
     "read-pkg": "^5.2.0",
     "remark-parse": "^9.0.0",
     "remark-stringify": "^9.0.1",
-    "ts-jest": "^27.0.4",
     "unified": "^9.2.1",
     "unist-util-find": "^1.0.2",
     "unist-util-find-after": "^3.0.0",
@@ -108,6 +106,7 @@
     "@babel/preset-typescript": "^7.13.0",
     "@stryker-mutator/core": "^4.5.1",
     "@stryker-mutator/jest-runner": "^4.5.1",
+    "@types/jest": "^26.0.24",
     "@types/lodash": "^4.14.168",
     "@types/parse-github-url": "^1.0.0",
     "@types/url-parse": "^1.4.3",
@@ -130,6 +129,7 @@
     "remark-gfm": "^1.0.0",
     "remark-lint": "^8.0.0",
     "remark-preset-lint-recommended": "^5.0.0",
+    "ts-jest": "^27.0.4",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.3"
   },
