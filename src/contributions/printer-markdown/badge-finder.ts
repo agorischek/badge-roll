@@ -4,10 +4,11 @@ import { Location, BadgeFinderState } from "./types";
 import { NodeAnalysis } from "./types/classes/node-analysis";
 
 import { Node } from "unist";
+import { Root } from "mdast";
 
 export function findBadgeSection(
-  tree: Node,
-  startingNode: Node,
+  tree: Root,
+  startingNode: Root,
   separator: string,
   position: string
 ): Location {

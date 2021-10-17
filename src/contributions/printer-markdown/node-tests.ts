@@ -1,5 +1,5 @@
-import select from "unist-util-select";
-import is from "unist-util-is";
+import { select } from "unist-util-select";
+import { is } from "unist-util-is";
 
 import { Node } from "unist";
 

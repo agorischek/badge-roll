@@ -1,5 +1,5 @@
-import { Run } from "../types";
-import { writeFile } from "../utilities";
+import { Run } from "../types/index";
+import { writeFile } from "../utilities/index";
 
 export function affixCmd(): void {
   const run = new Run();

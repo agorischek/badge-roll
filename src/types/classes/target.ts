@@ -1,6 +1,6 @@
 import { Settings } from "./index";
-import { loadTarget } from "../../loaders";
-import { writeFile } from "../../utilities";
+import { loadTarget } from "../../loaders/index";
+import { writeFile } from "../../utilities/index";
 
 export class Target {
   originalContent: string;

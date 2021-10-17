@@ -1,4 +1,4 @@
-import { Run } from "../types";
+import { Run } from "../types/index";
 
 export function checkCmd(): void {
   const run = new Run();

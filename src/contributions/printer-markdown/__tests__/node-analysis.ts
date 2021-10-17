@@ -1,4 +1,4 @@
-import unified from "unified";
+import { unified } from "unified";
 import markdown from "remark-parse";
 
 import { getFirstChild } from "../utils";

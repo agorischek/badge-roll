@@ -1,4 +1,4 @@
-import { QueryParams } from "../types";
+import { QueryParams } from "../types/index";
 
 export function stringifyQuery(queryParams: QueryParams): string {
   return Object.keys(queryParams).reduce((acc, key) => {

@@ -1,10 +1,11 @@
 import fs from "fs";
-import unified from "unified";
+import { unified } from "unified";
 import stringify from "remark-stringify";
 import gfm from "remark-gfm";
 import { flatMap, merge, map, sortBy } from "lodash";
 
 import { Node } from "unist";
+import { Root, TableCell, TableRow } from "mdast";
 
 import providerContribution from "./index";
 
@@ -20,9 +21,9 @@ type BadgeRowDefinition = {
   to?: string;
 };
 
-class Cell {
-  type: string;
-  children: Array<{ type: string; value: string }>;
+class Cell implements TableCell {
+  type: "tableCell";
+  children: Array<{ type: "inlineCode" | "text"; value: string }>;
   constructor(value: string) {
     return {
       type: "tableCell",
@@ -31,8 +32,8 @@ class Cell {
   }
 }
 
-class Row {
-  type: string;
+class Row implements TableRow {
+  type: "tableRow";
   children: Array<Cell>;
   constructor(cells: string[]) {
     return {
@@ -68,17 +69,22 @@ const badgeDefinitions = map(
   (badge) => new Row([badge.id, badge.variation, badge.details, badge.to])
 );
 
-const table = {
-  type: "table",
-  align: ["left"],
-  children: [header].concat(badgeDefinitions),
+const table: Root = {
+  type: "root",
+  children: [
+    {
+      type: "table",
+      align: ["left"],
+      children: [header].concat(badgeDefinitions),
+    },
+  ],
 };
 
 const markup = generateMarkdown(table);
 
 fs.writeFileSync("./badges.md", markup, "utf8");
 
-function generateMarkdown(node: Node) {
+function generateMarkdown(node: Root) {
   const generator = unified().use(gfm).use(stringify);
   const generated = generator.stringify(node);
   return generated;

@@ -1,8 +1,8 @@
-import readPackageDetails from "read-pkg";
+import { readPackageSync } from "read-pkg";
 
-import { Package } from "../types";
+import { Package } from "../types/index";
 
 export function loadPackage(): Package {
-  const packageDetails: Package = readPackageDetails.sync();
+  const packageDetails: Package = readPackageSync();
   return packageDetails;
 }
