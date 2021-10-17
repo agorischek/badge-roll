@@ -4,9 +4,7 @@
     "ecmaVersion": 2020,
     "sourceType": "module"
   },
-  "extends": [
-    "plugin:@typescript-eslint/recommended"
-  ],
+  "extends": ["plugin:@typescript-eslint/recommended"],
   "rules": {
     "@typescript-eslint/no-var-requires": "off"
   }
