@@ -5,4 +5,5 @@ ignores:
   - remark-lint
   - remark-preset-*
   - prettier-plugin-*
+  - ts-jest
   - unist
