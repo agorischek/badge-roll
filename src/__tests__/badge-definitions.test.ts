@@ -22,15 +22,14 @@ describe("Badge definition schema", () => {
   });
 });
 
-describe("Badge definitions", () => {
-  test("should be valid", () => {
-    const providerShields = loadModule("provider-shields", true);
-    for (const provider in providerShields.providers) {
-      for (const badge in providerShields.providers[provider].badges) {
-        const badgeDefinition =
-          providerShields.providers[provider].badges[badge];
-        expect(badgeDefinition).toMatchSchema(badgeDefinitionSchema);
-      }
-    }
-  });
+describe("Shields badge definitions", () => {
+  testBadgeDefinitions("shields");
 });
+
+function testBadgeDefinitions(providerName: string) {
+  const data = loadModule("provider-" + providerName, true);
+  const badges = Object.entries(data.providers[providerName].badges);
+  test.each(badges)("%s should be valid", (badgeName, badgeDefinition) => {
+    expect(badgeDefinition).toMatchSchema(badgeDefinitionSchema);
+  });
+}
