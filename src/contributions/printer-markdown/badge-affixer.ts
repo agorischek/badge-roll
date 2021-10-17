@@ -4,6 +4,7 @@ import markdown from "remark-parse";
 import nav from "./tree-navigator";
 
 import { Node } from "unist";
+import { Parent, Root } from "mdast";
 
 import { findBadgeSection } from "./badge-finder";
 import { positions } from "./positions";
@@ -17,7 +18,7 @@ export function affixBadgeSection(
   if (!positions[position]) throw new Error(`Unknown position ${position}`);
 
   const processor = unified().use(markdown);
-  const tree = nav.parents(processor.parse(doc));
+  const tree: Root = nav.parents(processor.parse(doc));
   const anchor: Node = positions[position].findAnchor(tree);
 
   if (!anchor) throw new Error("Couldn't find anchor in target file");

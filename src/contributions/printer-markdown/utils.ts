@@ -1,17 +1,25 @@
-import nav from "./tree-navigator";
-
 import { Node } from "unist";
+import { Parent } from "mdast";
 
-export function getFirstChild(node: Node): Node {
-  const firstChild: Node = nav.select(":first-child", node);
-  return firstChild ? firstChild : null;
+import nav from "./tree-navigator";
+import { isParent } from "./node-tests";
+
+export function getFirstChild(node: Parent): Node {
+  if (isParent(node)) {
+    const firstChild: Node = nav.select(":first-child", node);
+    return firstChild ? firstChild : null;
+  } else null;
 }
-export function getFirstGrandchildren(node: Node): Array<Node> {
-  const firstChild: Node = getFirstChild(node);
-  const grandchildren: Array<Node> = firstChild
-    ? [].concat(firstChild.children)
-    : [];
-  return grandchildren;
+export function getFirstGrandchildren(node: Parent): Array<Node> {
+  if (isParent(node)) {
+    const firstChild: Node = getFirstChild(node);
+    if (isParent(firstChild)) {
+      const grandchildren: Array<Node> = firstChild
+        ? [].concat(firstChild.children)
+        : [];
+      return grandchildren;
+    } else null;
+  } else null;
 }
 
 export function removeTrailingNewLine(markup: string): string {
