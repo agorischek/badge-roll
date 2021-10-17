@@ -2,7 +2,7 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
-    "module": "commonjs",
+    "module": "ES2020",
     "noImplicitAny": true,
     "outDir": "lib",
     "removeComments": true,

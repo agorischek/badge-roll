@@ -6,7 +6,7 @@ import { flatMap, merge, map, sortBy } from "lodash";
 
 import { Node } from "unist";
 
-import providerContribution from ".";
+import providerContribution from "./index";
 
 import { BadgeDefinition, ProviderDefinition } from "../../types";
 

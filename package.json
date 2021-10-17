@@ -1,6 +1,7 @@
 {
   "name": "badge-roll",
-  "version": "0.0.4",
+  "version": "0.0.5",
+  "type": "module",
   "description": "Configurable README Badge Automator",
   "keywords": [
     "badges"
@@ -12,8 +13,8 @@
     "name": "Alex Gorischek",
     "email": "alex.gorischek@gmail.com"
   },
-  "main": "lib/index.js",
-  "bin": "lib/cli.js",
+  "exports": "./lib/index.js",
+  "bin": "./lib/cli.js",
   "files": [
     "lib"
   ],
@@ -35,11 +36,6 @@
     "test:unit": "jest",
     "test:unit:coverage": "jest --collect-coverage",
     "test:unit:mutate": "stryker run"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.ts": "eslint --cache --fix",
@@ -86,17 +82,17 @@
     "joi": "^17.4.2",
     "lodash": "^4.17.21",
     "parse-github-url": "^1.0.2",
-    "read-pkg": "^5.2.0",
-    "remark-parse": "^9.0.0",
-    "remark-stringify": "^9.0.1",
-    "unified": "^9.2.1",
+    "read-pkg": "^7.0.0",
+    "remark-parse": "^10.0.0",
+    "remark-stringify": "^10.0.1",
+    "unified": "^10.1.0",
     "unist-util-find": "^1.0.2",
-    "unist-util-find-after": "^3.0.0",
-    "unist-util-find-before": "^2.0.5",
-    "unist-util-is": "^4.1.0",
-    "unist-util-parents": "^1.0.3",
-    "unist-util-position": "^3.1.0",
-    "unist-util-select": "^3.0.4",
+    "unist-util-find-after": "^4.0.0",
+    "unist-util-find-before": "^3.0.0",
+    "unist-util-is": "^5.1.1",
+    "unist-util-parents": "^2.0.0",
+    "unist-util-position": "^4.0.1",
+    "unist-util-select": "^4.0.0",
     "url-parse": "^1.5.3",
     "yaml": "^1.10.2"
   },
@@ -118,22 +114,22 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-xo": "^0.39.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "husky": "^4.2.3",
     "jest": "^27.2.5",
     "jest-joi": "^1.1.11",
     "lint-staged": "^11.2.3",
     "npm-check-updates": "^11.8.5",
     "prettier": "^2.4.1",
     "prettier-plugin-packagejson": "^2.2.13",
-    "remark-cli": "^9.0.0",
-    "remark-gfm": "^1.0.0",
-    "remark-lint": "^8.0.0",
-    "remark-preset-lint-recommended": "^5.0.0",
+    "remark-cli": "^10.0.0",
+    "remark-gfm": "^3.0.0",
+    "remark-lint": "^9.1.0",
+    "remark-preset-lint-recommended": "^6.1.1",
     "ts-jest": "^27.0.7",
     "ts-node": "^10.3.0",
     "typescript": "^4.4.4"
   },
   "engines": {
-    "npm": ">= 4.0.0"
+    "npm": ">= 4.0.0",
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   }
 }
