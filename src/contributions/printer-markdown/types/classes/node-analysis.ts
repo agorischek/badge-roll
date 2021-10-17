@@ -1,4 +1,4 @@
-const is = require("unist-util-is");
+import is from "unist-util-is";
 import { Node } from "unist";
 import test from "../../node-tests";
 

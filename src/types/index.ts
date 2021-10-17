@@ -1,3 +1,3 @@
-export * from "./aliases";
-export * from "./classes";
-export * from "./imports";
+export * from "./aliases/index";
+export * from "./classes/index";
+export * from "./imports/index";

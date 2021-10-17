@@ -1,4 +1,4 @@
-const findAfter = require("unist-util-find-after");
+import findAfter from "unist-util-find-after";
 
 import { Node } from "unist";
 
