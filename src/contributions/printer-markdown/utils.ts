@@ -38,9 +38,7 @@ export function before(endingOffset: number): { in: (doc: string) => string } {
   };
 }
 
-export function after(
-  beginningOffset: number
-): {
+export function after(beginningOffset: number): {
   in: (doc: string) => string;
 } {
   return {

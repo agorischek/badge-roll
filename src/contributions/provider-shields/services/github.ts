@@ -6,8 +6,7 @@ export const github = {
   },
   "github/workflow/status": {
     details: ":user/:repo/:workflowName+workflow",
-    to:
-      "https://github.com/:user/:repo/actions/workflows/:workflowFile+workflow",
+    to: "https://github.com/:user/:repo/actions/workflows/:workflowFile+workflow",
     display: "Workflow",
   },
 };
