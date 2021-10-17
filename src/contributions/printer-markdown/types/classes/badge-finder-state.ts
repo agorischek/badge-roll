@@ -1,22 +1,26 @@
 import { findAfter } from "unist-util-find-after";
 
 import { Node } from "unist";
-import { Root, Parent } from "mdast";
+import { Parent, Content } from "mdast";
 
 import test from "../../node-tests";
 import { getFirstChild } from "../../utils";
 
+interface PossibleParent extends Node {
+  children?: Content[];
+}
+
 export class BadgeFinderState {
   currentParent: Parent;
-  previousNode: Parent;
-  currentNode: Parent;
-  nextNode: Parent;
+  previousNode: PossibleParent;
+  currentNode: PossibleParent;
+  nextNode: PossibleParent;
   mostRecentBadge: Node;
   firstBadge: Node;
   lastBadge: Node;
   paragraphCount: number;
   searchComplete: boolean;
-  constructor(starter: Parent, starterParent: Parent) {
+  constructor(starter: PossibleParent, starterParent: Parent) {
     this.previousNode = null;
     this.currentNode = starter;
     this.firstBadge = test.isBadge(starter) ? starter : null;
@@ -42,7 +46,9 @@ export class BadgeFinderState {
   }
   stepDown(): void {
     this.previousNode = this.currentNode;
-    this.currentParent = this.previousNode;
+    this.currentParent = this.previousNode.children
+      ? (this.previousNode as Parent)
+      : null;
     this.currentNode = getFirstChild(this.currentParent);
     this.nextNode = findAfter(this.currentParent, this.currentNode);
   }
