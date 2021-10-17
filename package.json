@@ -31,7 +31,7 @@
     "dep:update": "ncu --upgrade --doctor",
     "lint": "eslint . --max-warnings=0 && remark . --frail && prettier \".\" --check && npm run cli:lib:check",
     "lint:fix": "eslint . --fix && remark . --output && prettier \".\" --write && node lib/cli.js affix",
-    "test": "npm run build && npm run test:unit && npm run lint && npm run dep:review",
+    "test": "npm run build && npm run test && npm run lint && npm run dep:review",
     "test:unit": "jest",
     "test:unit:coverage": "jest --collect-coverage",
     "test:unit:mutate": "stryker run"
