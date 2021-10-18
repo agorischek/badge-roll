@@ -1,6 +1,7 @@
-import { ContributionSet, ProviderDefinition } from "..";
+import { ContributionSet, ProviderDefinition } from "../index.js";
 
-import { merge } from "lodash";
+import lodash from "lodash";
+const { merge } = lodash;
 
 export class ProvidersDirectory {
   [provider: string]: ProviderDefinition;

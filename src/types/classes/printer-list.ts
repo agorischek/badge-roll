@@ -1,6 +1,7 @@
-import { Badge, ContributionSet, SettingsData } from "..";
+import { Badge, ContributionSet, SettingsData } from "../index.js";
 
-import { merge } from "lodash";
+import lodash from "lodash";
+const { merge } = lodash;
 
 export class PrinterList {
   [printer: string]: (

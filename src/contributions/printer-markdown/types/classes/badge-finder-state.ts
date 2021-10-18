@@ -3,8 +3,8 @@ import { findAfter } from "unist-util-find-after";
 import { Node } from "unist";
 import { Parent, Content } from "mdast";
 
-import test from "../../node-tests";
-import { getFirstChild } from "../../utils";
+import test from "../../node-tests.js";
+import { getFirstChild } from "../../utils.js";
 
 interface PossibleParent extends Node {
   children?: Content[];

@@ -1,1 +1,1 @@
-export * from "./possible-parent";
+export * from "./possible-parent.js";

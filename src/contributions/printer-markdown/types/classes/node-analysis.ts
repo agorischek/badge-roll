@@ -1,6 +1,7 @@
 import { is } from "unist-util-is";
 import { Node } from "unist";
-import test from "../../node-tests";
+
+import test from "../../node-tests.js";
 
 export class NodeAnalysis {
   exists: boolean;

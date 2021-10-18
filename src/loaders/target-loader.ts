@@ -1,5 +1,5 @@
-import { readFile } from "../utilities";
-import { extractFileExtension } from "../utilities";
+import { readFile } from "../utilities/index.js";
+import { extractFileExtension } from "../utilities/index.js";
 
 export function loadTarget(path: string): {
   content: string;

@@ -2,12 +2,13 @@ import fs from "fs";
 import { unified } from "unified";
 import stringify from "remark-stringify";
 import gfm from "remark-gfm";
-import { flatMap, merge, map, sortBy } from "lodash";
 
-import { Node } from "unist";
+import lodash from "lodash";
+const { flatMap, merge, map, sortBy } = lodash;
+
 import { Root, TableCell, TableRow } from "mdast";
 
-import providerContribution from "./index";
+import providerContribution from "./index.js";
 
 import { BadgeDefinition, ProviderDefinition } from "../../types";
 

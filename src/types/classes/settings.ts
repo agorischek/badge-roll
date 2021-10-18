@@ -1,6 +1,7 @@
-import { Config, ContributionSet, SettingsData } from "..";
+import lodash from "lodash";
+const { merge } = lodash;
 
-import { merge } from "lodash";
+import { Config, ContributionSet, SettingsData } from "../index.js";
 
 export class Settings {
   style?: string;

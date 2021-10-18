@@ -1,4 +1,4 @@
-import { Config } from "../types/index";
+import { Config } from "../types/index.js";
 
 export function loadConfigCmd(): Config {
   const config = new Config();

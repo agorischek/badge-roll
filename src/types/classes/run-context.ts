@@ -6,7 +6,7 @@ import {
   About,
   ProvidersDirectory,
   PrinterList,
-} from "..";
+} from "../index.js";
 
 export class RunContext {
   settings: Settings;
@@ -17,6 +17,7 @@ export class RunContext {
   constructor(configData?: Config) {
     const config = new Config(configData);
     const contributions = new ContributionSet();
+    contributions.load();
     const settings = new Settings(config, contributions);
     const about = new About(config, contributions);
     const providers = new ProvidersDirectory(contributions);

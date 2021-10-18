@@ -1,14 +1,13 @@
 import nav from "./tree-navigator";
 
-import { Location, BadgeFinderState } from "./types";
-import { NodeAnalysis } from "./types/classes/node-analysis";
+import { Location, BadgeFinderState } from "./types/index.js";
+import { NodeAnalysis } from "./types/classes/node-analysis.js";
 
-import { Node } from "unist";
-import { Root } from "mdast";
+import { Parent, Root } from "mdast";
 
 export function findBadgeSection(
   tree: Root,
-  startingNode: Root,
+  startingNode: Parent,
   separator: string,
   position: string
 ): Location {

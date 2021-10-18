@@ -1,4 +1,4 @@
-import { combine, concat, stringifyQuery } from "../../utilities";
+import { combine, concat, stringifyQuery } from "../../utilities/index.js";
 
 import {
   About,
@@ -8,7 +8,8 @@ import {
   ProvidersDirectory,
   QueryParams,
   SettingsData,
-} from "..";
+} from "../index.js";
+
 export class Badge {
   basePath: string;
   details: string;

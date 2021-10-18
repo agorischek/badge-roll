@@ -2,10 +2,23 @@
 
 import { Command } from "commander";
 
-import { affixCmd, checkCmd, loadConfigCmd } from "./commands";
-import { log } from "./utilities";
+import { affixCmd, checkCmd, loadConfigCmd } from "./commands/index.js";
+import { log } from "./utilities/index.js";
 
 const program = new Command();
+
+program
+  .command("wait")
+  .description("Does async work?")
+  .action(() => {
+    log("Going to start...");
+    async function wait() {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      log("Waited!");
+    }
+    wait();
+    log("Done!");
+  });
 
 program
   .command("affix")

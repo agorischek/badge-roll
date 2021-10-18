@@ -1,4 +1,4 @@
-import { Config, Run } from "../types/index";
+import { Config, Run } from "../types/index.js";
 
 export function check(source: string, config?: Config): boolean {
   const run = new Run(source, config);

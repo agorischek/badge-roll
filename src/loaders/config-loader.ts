@@ -1,9 +1,9 @@
 import { cosmiconfigSync } from "cosmiconfig";
 import { CosmiconfigResult } from "cosmiconfig/dist/types";
 
-import { filePaths, packageProperty } from "../options";
-import { configSchema } from "../schemas";
-import { Config } from "../types/classes";
+import { filePaths, packageProperty } from "../options/index.js";
+import { configSchema } from "../schemas/index.js";
+import { Config } from "../types/classes/index.js";
 
 const explorer = cosmiconfigSync(packageProperty, {
   searchPlaces: filePaths,

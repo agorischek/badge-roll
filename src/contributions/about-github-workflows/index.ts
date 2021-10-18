@@ -2,7 +2,7 @@ import glob from "glob";
 import yaml from "yaml";
 import fs from "fs";
 
-import { About } from "../../types/";
+import { About } from "../../types/index.js";
 
 export default {
   about: function (about: About): About {

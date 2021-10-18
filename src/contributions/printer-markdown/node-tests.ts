@@ -3,9 +3,10 @@ import { is } from "unist-util-is";
 
 import { Node } from "unist";
 import { Parent } from "mdast";
-import { PossibleParent } from "./types/interfaces/index";
 
-import { getFirstChild, getFirstGrandchildren } from "./utils";
+import { PossibleParent } from "./types/interfaces/index.js";
+
+import { getFirstChild, getFirstGrandchildren } from "./utils.js";
 
 export default {
   isSpace,

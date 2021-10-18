@@ -1,4 +1,4 @@
-import { Config, RunContext, Target, Printer, BadgeSection } from "..";
+import { Config, RunContext, Target, Printer, BadgeSection } from "../index.js";
 
 export class Run {
   original: string;
