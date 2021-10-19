@@ -26,8 +26,8 @@ describe("Shields badge definitions", () => {
   testBadgeDefinitions("shields");
 });
 
-function testBadgeDefinitions(providerName: string) {
-  const data = loadModule("provider-" + providerName, true);
+async function testBadgeDefinitions(providerName: string) {
+  const data = await loadModule("provider-" + providerName, true);
   const badges = Object.entries(data.providers[providerName].badges);
   test.each(badges)("%s should be valid", (badgeName, badgeDefinition) => {
     expect(badgeDefinition).toMatchSchema(badgeDefinitionSchema);
