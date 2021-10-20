@@ -6,7 +6,7 @@ export async function loadModule(
   isInternal: boolean
 ): Promise<Plugin> {
   if (isInternal) {
-    const module = await import(`${contributionsPath}/${name}`);
+    const module = await import(`${contributionsPath}/${name}`).catch();
     return module.default;
   } else {
     throw new Error("External plugins not yet supported.");

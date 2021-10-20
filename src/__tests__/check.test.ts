@@ -11,14 +11,14 @@ const config = {
 };
 
 describe("Check function", () => {
-  test("should return true for a correct source string", () => {
+  test("should return true for a correct source string", async () => {
     const source = `# Title\n\n${expectedBadge}`;
-    const matched = check(source, config);
+    const matched = await check(source, config);
     expect(matched).toBe(true);
   });
-  test("should return false for a correct target file", () => {
+  test("should return false for a correct target file", async () => {
     const source = `# Title\n\n${placeholderBadge}`;
-    const matched = check(source, config);
+    const matched = await check(source, config);
     expect(matched).toBe(false);
   });
 });

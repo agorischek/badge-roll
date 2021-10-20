@@ -7,7 +7,7 @@ const expectedBadge =
   '[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")';
 
 describe("Affix function", () => {
-  test("should affix one badge with simple badge definition", async () => {
+  test.only("should affix one badge with simple badge definition", async () => {
     const config = { badges: [{ id: "npm/v" }] };
     const source = `# Title\n\n${placeholderBadge}`;
     const modified = await affix(source, config);

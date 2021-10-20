@@ -11,21 +11,20 @@ export class Run {
   public async exec() {
     const context = new RunContext(this.config);
     await context.compute();
+
     const target = new Target(context.settings, this.original);
+    this.original = target.originalContent;
+    this.filePath = target.path;
+
     const printer = new Printer(context.printers, target.printer);
     const section = new BadgeSection(context);
-    const markup = printer.print(
+
+    this.modified = printer.print(
       section.badges,
       context.settings,
-      target.originalContent
+      this.original
     );
-    const matches = target.originalContent === markup;
-    return {
-      original: target.originalContent,
-      modified: markup,
-      filePath: target.path,
-      matches: matches,
-    };
+    this.matches = this.original === this.modified;
   }
 
   constructor(source?: string, config?: Config) {

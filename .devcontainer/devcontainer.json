@@ -18,8 +18,10 @@
   "settings": {},
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [
-    "dbaeumer.vscode-eslint"
-  ],
+	"dbaeumer.vscode-eslint",
+	"esbenp.prettier-vscode",
+	"wallabyjs.wallaby-vscode"
+],
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
   // Use 'postCreateCommand' to run commands after the container is created.
