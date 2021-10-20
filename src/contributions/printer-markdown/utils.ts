@@ -1,8 +1,8 @@
 import { Node } from "unist";
 import { Parent } from "mdast";
 
-import nav from "./tree-navigator";
-import { isParent } from "./node-tests";
+import nav from "./tree-navigator.js";
+import { isParent } from "./node-tests.js";
 
 export function getFirstChild(node: Parent): Node {
   if (isParent(node)) {

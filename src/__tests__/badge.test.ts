@@ -1,9 +1,10 @@
 import { Badge, RunContext, Settings } from "../types/index.js";
 
 describe("Badge", () => {
-  test("should resolve display string", () => {
+  test("should resolve display string", async () => {
     const config = { badges: [{ id: "npm/v" }] };
     const context = new RunContext();
+    await context.compute();
 
     const badge = new Badge(
       config.badges[0],
@@ -14,9 +15,10 @@ describe("Badge", () => {
     expect(badge.display).toBe("Version");
   });
 
-  test("should render a style query param", () => {
+  test("should render a style query param", async () => {
     const config = { badges: [{ id: "npm/v" }], settings: { style: "flat" } };
     const context = new RunContext(config);
+    await context.compute();
 
     const badge = new Badge(
       config.badges[0],
@@ -29,7 +31,7 @@ describe("Badge", () => {
     );
   });
 
-  test("should override a global style", () => {
+  test("should override a global style", async () => {
     const config = { badges: [{ id: "npm/v", style: "flat" }] };
     const settings: Settings = {
       style: "plastic",
@@ -37,6 +39,7 @@ describe("Badge", () => {
     };
 
     const context = new RunContext();
+    await context.compute();
 
     const badge = new Badge(
       config.badges[0],
@@ -47,7 +50,7 @@ describe("Badge", () => {
     expect(badge.style).toBe("flat");
   });
 
-  test("should handle query params", () => {
+  test("should handle query params", async () => {
     const config = {
       badges: [
         {
@@ -61,6 +64,8 @@ describe("Badge", () => {
       ],
     };
     const context = new RunContext();
+    await context.compute();
+
     const badge = new Badge(
       config.badges[0],
       context.settings,
@@ -72,7 +77,7 @@ describe("Badge", () => {
     );
   });
 
-  test("should handle a variation", () => {
+  test("should handle a variation", async () => {
     const config = {
       badges: [
         {
@@ -85,6 +90,8 @@ describe("Badge", () => {
       ],
     };
     const context = new RunContext();
+    await context.compute();
+
     const badge = new Badge(
       config.badges[0],
       context.settings,
@@ -96,7 +103,7 @@ describe("Badge", () => {
     );
   });
 
-  test("should handle a path overriding an ID", () => {
+  test("should handle a path overriding an ID", async () => {
     const config = {
       badges: [
         {
@@ -105,6 +112,8 @@ describe("Badge", () => {
       ],
     };
     const context = new RunContext();
+    await context.compute();
+
     const badge = new Badge(
       config.badges[0],
       context.settings,
@@ -114,7 +123,7 @@ describe("Badge", () => {
     expect(badge.url).toBe("https://img.shields.io/badge/badges-rolled-white");
   });
 
-  test("should throw with an invalid provider", () => {
+  test("should throw with an invalid provider", async () => {
     const config = {
       badges: [
         {
@@ -124,6 +133,8 @@ describe("Badge", () => {
       ],
     };
     const context = new RunContext();
+    await context.compute();
+
     expect(() => {
       new Badge(
         config.badges[0],

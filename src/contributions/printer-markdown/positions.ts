@@ -1,6 +1,6 @@
 import nav from "./tree-navigator.js";
 import test from "./node-tests.js";
-import { after, before, concat } from "./utils";
+import { after, before, concat } from "./utils.js";
 
 import { Positions } from "./types/index.js";
 

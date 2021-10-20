@@ -5,9 +5,13 @@ export class Run {
   modified: string;
   filePath?: string;
   matches: boolean;
-  constructor(source?: string, config?: Config) {
-    const context = new RunContext(config);
-    const target = new Target(context.settings, source);
+
+  private config?: Config;
+
+  public async exec() {
+    const context = new RunContext(this.config);
+    await context.compute();
+    const target = new Target(context.settings, this.original);
     const printer = new Printer(context.printers, target.printer);
     const section = new BadgeSection(context);
     const markup = printer.print(
@@ -22,5 +26,10 @@ export class Run {
       filePath: target.path,
       matches: matches,
     };
+  }
+
+  constructor(source?: string, config?: Config) {
+    this.original = source;
+    this.config = config;
   }
 }

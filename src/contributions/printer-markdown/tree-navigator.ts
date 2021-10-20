@@ -1,4 +1,4 @@
-import * as find from "unist-util-find";
+import find from "unist-util-find";
 import { findAfter } from "unist-util-find-after";
 import { findBefore } from "unist-util-find-before";
 import { is } from "unist-util-is";

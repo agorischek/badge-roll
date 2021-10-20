@@ -1,8 +1,8 @@
 import { Paragraph, PhrasingContent, Root } from "mdast";
 
-import { isLast } from "../../utilities";
+import { isLast } from "../../utilities/index.js";
 
-import { Badge } from "../../types";
+import { Badge } from "../../types/index.js";
 
 function generateBadgeAst(badge: Badge): PhrasingContent {
   const badgeAst = {

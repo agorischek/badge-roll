@@ -1,11 +1,15 @@
 import { About, ContributionSet } from "../types/index.js";
 
 describe("About", () => {
-  test("should correctly retrieve the package name", async () => {
+  // test.only("duh", () => {
+  //   expect(true).toBe(false);
+  // });
+  test.only("should correctly retrieve the package name", async () => {
     const contributions = new ContributionSet();
     await contributions.load();
     const config = {};
     const about = new About(config, contributions);
+    console.log("package name is" + about.packageName);
     expect(about.packageName).toBe("badge-roll");
   });
   test("should correctly retrieve the user name", async () => {
