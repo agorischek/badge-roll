@@ -1,9 +1,13 @@
 import { Plugin } from "../types/index.js";
 import { contributionsPath } from "../options/index.js";
 
-export function loadModule(name: string, isInternal: boolean): Promise<Plugin> {
+export async function loadModule(
+  name: string,
+  isInternal: boolean
+): Promise<Plugin> {
   if (isInternal) {
-    return import(`${contributionsPath}/${name}`);
+    const module = await import(`${contributionsPath}/${name}`);
+    return module.default;
   } else {
     throw new Error("External plugins not yet supported.");
   }

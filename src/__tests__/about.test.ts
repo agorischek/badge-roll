@@ -1,24 +1,30 @@
 import { About, ContributionSet } from "../types/index.js";
 
 describe("About", () => {
-  const contributions = new ContributionSet();
-  contributions.load();
-  console.log(contributions);
-
-  test("should correctly retrieve the package name", () => {
-    const about = new About({}, contributions);
+  test("should correctly retrieve the package name", async () => {
+    const contributions = new ContributionSet();
+    await contributions.load();
+    const config = {};
+    const about = new About(config, contributions);
     expect(about.packageName).toBe("badge-roll");
   });
-  test("should correctly retrieve the user name", () => {
-    const about = new About({}, contributions);
+  test("should correctly retrieve the user name", async () => {
+    const contributions = new ContributionSet();
+    await contributions.load();
+    const config = {};
+    const about = new About(config, contributions);
     expect(about.user).toBe("agorischek");
   });
-  test("should correctly overwrite a value", () => {
+  test("should correctly overwrite a value", async () => {
+    const contributions = new ContributionSet();
+    await contributions.load();
     const config = { about: { name: "wrong-name" } };
     const about = new About(config, contributions);
     expect(about.packageName).toBe("badge-roll");
   });
-  test("should pass through an arbitrary property", () => {
+  test("should pass through an arbitrary property", async () => {
+    const contributions = new ContributionSet();
+    await contributions.load();
     const config = { about: { arbitraryProperty: "something" } };
     const about = new About(config, contributions);
     expect(about.arbitraryProperty).toBe("something");
