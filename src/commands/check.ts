@@ -1,10 +1,12 @@
 import { Run } from "../types/index.js";
 import { log } from "../utilities/index.js";
 
-export function checkCmd(): void {
+export async function checkCmd(): Promise<void> {
   log("Checking badges...");
 
   const run = new Run();
+  await run.exec();
+
   const matches = run.matches;
 
   if (matches) console.log("Target file badges matched config!");

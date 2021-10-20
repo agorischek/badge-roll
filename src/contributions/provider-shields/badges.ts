@@ -16,7 +16,7 @@ import {
   jsdelivr,
   npm,
   runkit,
-} from "./services";
+} from "./services/index.js";
 
 export const badges = merge(
   {},

@@ -1,4 +1,4 @@
-import nav from "./tree-navigator";
+import nav from "./tree-navigator.js";
 
 import { Location, BadgeFinderState } from "./types/index.js";
 import { NodeAnalysis } from "./types/classes/node-analysis.js";
