@@ -7,6 +7,8 @@
     "/src/utilities/log.ts",
     "/src/utilities/write-file.ts"
   ],
+  "transform": {},
+  "extensionsToTreatAsEsm": [".ts"],
   "coverageThreshold": {
     "global": {
       "branches": 80,
