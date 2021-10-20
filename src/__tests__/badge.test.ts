@@ -1,4 +1,4 @@
-import { Badge, RunContext, Settings } from "../types";
+import { Badge, RunContext, Settings } from "../types/index.js";
 
 describe("Badge", () => {
   test("should resolve display string", () => {

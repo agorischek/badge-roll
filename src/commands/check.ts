@@ -1,6 +1,9 @@
 import { Run } from "../types/index.js";
+import { log } from "../utilities/index.js";
 
 export function checkCmd(): void {
+  log("Checking badges...");
+
   const run = new Run();
   const matches = run.matches;
 

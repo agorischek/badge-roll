@@ -33,7 +33,7 @@
     "lint": "eslint . --max-warnings=0 && remark . --frail && prettier \".\" --check && npm run cli:lib:check",
     "lint:fix": "eslint . --fix && remark . --output && prettier \".\" --write && node lib/cli.js affix",
     "test": "npm run build && npm run test:unit && npm run lint && npm run dep:review",
-    "test:unit": "jest",
+    "test:unit": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:unit:coverage": "jest --collect-coverage",
     "test:unit:mutate": "stryker run"
   },
@@ -134,5 +134,13 @@
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0",
     "npm": ">= 4.0.0"
+  },
+  "wallaby": {
+    "autoDetect": true,
+    "env": {
+      "params": {
+        "runner": "--experimental-vm-modules"
+      }
+    }
   }
 }

@@ -1,6 +1,6 @@
-import { Config, Run } from "../types";
+import { Config, Run } from "../types/index.js";
 
-import { runSchema } from "../schemas";
+import { runSchema } from "../schemas/index.js";
 
 describe("Run", () => {
   test("should resolve context without any inputs", () => {

@@ -1,4 +1,4 @@
-import { configSchema } from "../schemas";
+import { configSchema } from "../schemas/index.js";
 
 describe("Config schema", () => {
   test("should require a badges property", () => {

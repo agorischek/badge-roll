@@ -1,4 +1,4 @@
-import { Printer, RunContext } from "../types";
+import { Printer, RunContext } from "../types/index.js";
 
 const section = {
   badges: [

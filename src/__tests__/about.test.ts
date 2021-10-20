@@ -1,7 +1,9 @@
-import { About, ContributionSet } from "../types";
+import { About, ContributionSet } from "../types/index.js";
 
 describe("About", () => {
   const contributions = new ContributionSet();
+  contributions.load();
+  console.log(contributions);
 
   test("should correctly retrieve the package name", () => {
     const about = new About({}, contributions);

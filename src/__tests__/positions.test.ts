@@ -1,4 +1,4 @@
-import { affix } from "..";
+import { affix } from "../index.js";
 
 const config = {
   badges: [{ id: "npm/v" }],

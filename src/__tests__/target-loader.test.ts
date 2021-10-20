@@ -1,4 +1,4 @@
-import { loadTarget } from "../loaders/target-loader";
+import { loadTarget } from "../loaders/target-loader.js";
 
 describe("Target Loader", () => {
   test("Should load the default target", () => {

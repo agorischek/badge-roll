@@ -1,4 +1,4 @@
-import { check } from "..";
+import { check } from "../index.js";
 
 const placeholderBadge =
   '[![Example](https://img.shields.io/example)](https://www.npmjs.com/example "Example")';

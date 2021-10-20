@@ -1,4 +1,4 @@
-import * as configLocations from "../options/config-locations";
+import * as configLocations from "../options/index.js";
 
 describe("Config locations", () => {
   test("has a package property", () => {

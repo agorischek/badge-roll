@@ -1,5 +1,5 @@
-import { badgeDefinitionSchema } from "../schemas";
-import { loadModule } from "../loaders";
+import { badgeDefinitionSchema } from "../schemas/index.js";
+import { loadModule } from "../loaders/index.js";
 
 describe("Badge definition schema", () => {
   test("should be a schema", () => {

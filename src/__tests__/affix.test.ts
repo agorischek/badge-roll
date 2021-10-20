@@ -1,4 +1,4 @@
-import { affix } from "..";
+import { affix } from "../index.js";
 
 const placeholderBadge =
   '[![Example](https://img.shields.io/example)](https://www.npmjs.com/example "Example")';
