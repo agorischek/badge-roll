@@ -19,13 +19,13 @@ export function affixBadgeSection(
 
   const processor = unified().use(markdown);
   const tree: Root = processor.parse(doc);
-  const treeWithParents = nav.parents(tree);
+  const treeWithParents: Root = nav.parents(tree) as Root;
   const anchor: PossibleParent =
     positions[position].findAnchor(treeWithParents);
 
   if (anchor && isParent(anchor)) {
     const badgeSectionLocation = findBadgeSection(
-      tree,
+      treeWithParents,
       anchor,
       separator,
       position

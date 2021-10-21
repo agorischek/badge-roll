@@ -27,7 +27,8 @@ export function findBadgeSection(
       } else if (
         currentNode.isParagraph &&
         position === "below-lead" &&
-        state.paragraphCount === 0
+        state.paragraphCount === 0 &&
+        currentNode.isParent
       ) {
         state.countParagraph();
         state.stepForward();

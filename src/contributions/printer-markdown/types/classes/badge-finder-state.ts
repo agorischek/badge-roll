@@ -20,6 +20,7 @@ export class BadgeFinderState {
   lastBadge: Node;
   paragraphCount: number;
   searchComplete: boolean;
+
   constructor(starter: PossibleParent, starterParent: Parent) {
     this.previousNode = null;
     this.currentNode = starter;
@@ -33,6 +34,7 @@ export class BadgeFinderState {
     this.searchComplete = false;
     this.paragraphCount = 0;
   }
+
   rememberBadge(): void {
     if (this.firstBadge === null) {
       this.firstBadge = this.currentNode;
@@ -42,6 +44,7 @@ export class BadgeFinderState {
   stepForward(): void {
     this.previousNode = this.currentNode;
     this.currentNode = this.nextNode;
+
     this.nextNode = findAfter(this.currentParent, this.currentNode);
   }
   stepDown(): void {

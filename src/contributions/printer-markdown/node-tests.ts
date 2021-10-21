@@ -80,7 +80,7 @@ export function isLink(node: Node): boolean {
 }
 
 export function isParent(node: PossibleParent): node is Parent {
-  return node.children ? true : false;
+  return node && node.children ? true : false;
 }
 
 function isRoot(node: Node): boolean {
