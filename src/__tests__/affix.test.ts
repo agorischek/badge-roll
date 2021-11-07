@@ -6,7 +6,7 @@ const placeholderBadge =
 const expectedBadge =
   '[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")';
 
-describe.skip("Affix function", () => {
+describe("Affix function", () => {
   test("should affix one badge with simple badge definition", async () => {
     const config = { badges: ["npm/v"] };
     const source = `# Title\n\n${placeholderBadge}`;
@@ -82,15 +82,17 @@ describe.skip("Affix function", () => {
     expect(modified).toBe(expected);
   });
 
-  // test.skip("should throw if position is current but there are no badges", async () => {
-  //   const config = {
-  //     badges: [{ id: "npm/v" }],
-  //     settings: { position: "current" },
-  //   };
-  //   expect(async () => {
-  //     await affix("# Title\n\nTest content", config);
-  //   }).toThrow();
-  // });
+  test("should throw if position is current but there are no badges", async () => {
+    const source = "# Title\n\nTest content";
+    const config = {
+      badges: [{ id: "npm/v" }],
+      settings: { position: "current" },
+    };
+    expect.assertions(1);
+    await expect(affix(source, config)).rejects.toThrow(
+      "Couldn't find anchor in target file"
+    );
+  });
 
   test("should affix using the alternate `md` printer", async () => {
     const config = { badges: [{ id: "npm/v" }], settings: { printer: "md" } };
@@ -100,17 +102,23 @@ describe.skip("Affix function", () => {
     expect(modified).toBe(expected);
   });
 
-  // test.skip("should throw when requesting a provider that doesn't exist", async () => {
-  //   const config = {
-  //     badges: [{ id: "npm/v", provider: "not-a/real-provider" }],
-  //   };
-  //   const source = "";
-  //   expect(async () => await affix(source, config)).toThrow();
-  // });
+  test("should throw when requesting a provider that doesn't exist", async () => {
+    const config = {
+      badges: [{ id: "npm/v", provider: "not-a/real-provider" }],
+    };
+    const source = "";
+    expect.assertions(1);
+    await expect(affix(source, config)).rejects.toThrow(
+      '"badges[0].provider" is not allowed'
+    );
+  });
 
-  // test.skip("should throw when requesting a badge that doesn't exist", async () => {
-  //   const config = { badges: [{ id: "not-a/real-badge" }] };
-  //   const source = "";
-  //   expect(async () => await affix(source, config)).toThrow();
-  // });
+  test("should throw when requesting a badge that doesn't exist", async () => {
+    const config = { badges: [{ id: "not-a/real-badge" }] };
+    const source = "";
+    expect.assertions(1);
+    await expect(affix(source, config)).rejects.toThrow(
+      'Badge "not-a/real-badge" is not defined for provider shields.'
+    );
+  });
 });
