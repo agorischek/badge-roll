@@ -2,9 +2,7 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.202.3/containers/typescript-node
 {
   "name": "Node.js & TypeScript",
-  "runArgs": [
-    "--init"
-  ],
+  "runArgs": ["--init"],
   "build": {
     "dockerfile": "Dockerfile",
     // Update 'VARIANT' to pick a Node version: 16, 14, 12.
@@ -18,10 +16,10 @@
   "settings": {},
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [
-	"dbaeumer.vscode-eslint",
-	"esbenp.prettier-vscode",
-	"wallabyjs.wallaby-vscode"
-],
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "wallabyjs.wallaby-vscode"
+  ],
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
   // Use 'postCreateCommand' to run commands after the container is created.
