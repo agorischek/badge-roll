@@ -1,7 +1,9 @@
 ignores:
+  - "@babel/*"
   - "@stryker-mutator/jest-runner"
   - "@types/jest"
   - "babel-jest"
+  - mdast
   - remark-lint
   - remark-preset-*
   - prettier-plugin-*
