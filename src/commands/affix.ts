@@ -6,9 +6,9 @@ export async function affixCmd(): Promise<void> {
 
   const run = new Run();
   await run.exec();
-  const modified = run.modified;
+  const { filePath, modified } = run;
 
-  writeFile(run.filePath, modified);
+  writeFile(filePath, modified);
 
   log("Done!");
 }
