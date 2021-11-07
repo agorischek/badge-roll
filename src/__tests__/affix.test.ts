@@ -6,7 +6,7 @@ const placeholderBadge =
 const expectedBadge =
   '[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")';
 
-describe("Affix function", () => {
+describe.skip("Affix function", () => {
   test("should affix one badge with simple badge definition", async () => {
     const config = { badges: ["npm/v"] };
     const source = `# Title\n\n${placeholderBadge}`;
@@ -82,15 +82,15 @@ describe("Affix function", () => {
     expect(modified).toBe(expected);
   });
 
-  test.skip("should throw if position is current but there are no badges", async () => {
-    const config = {
-      badges: [{ id: "npm/v" }],
-      settings: { position: "current" },
-    };
-    expect(async () => {
-      await affix("# Title\n\nTest content", config);
-    }).toThrow();
-  });
+  // test.skip("should throw if position is current but there are no badges", async () => {
+  //   const config = {
+  //     badges: [{ id: "npm/v" }],
+  //     settings: { position: "current" },
+  //   };
+  //   expect(async () => {
+  //     await affix("# Title\n\nTest content", config);
+  //   }).toThrow();
+  // });
 
   test("should affix using the alternate `md` printer", async () => {
     const config = { badges: [{ id: "npm/v" }], settings: { printer: "md" } };
@@ -100,17 +100,17 @@ describe("Affix function", () => {
     expect(modified).toBe(expected);
   });
 
-  test.skip("should throw when requesting a provider that doesn't exist", async () => {
-    const config = {
-      badges: [{ id: "npm/v", provider: "not-a/real-provider" }],
-    };
-    const source = "";
-    expect(async () => await affix(source, config)).toThrow();
-  });
+  // test.skip("should throw when requesting a provider that doesn't exist", async () => {
+  //   const config = {
+  //     badges: [{ id: "npm/v", provider: "not-a/real-provider" }],
+  //   };
+  //   const source = "";
+  //   expect(async () => await affix(source, config)).toThrow();
+  // });
 
-  test.skip("should throw when requesting a badge that doesn't exist", async () => {
-    const config = { badges: [{ id: "not-a/real-badge" }] };
-    const source = "";
-    expect(async () => await affix(source, config)).toThrow();
-  });
+  // test.skip("should throw when requesting a badge that doesn't exist", async () => {
+  //   const config = { badges: [{ id: "not-a/real-badge" }] };
+  //   const source = "";
+  //   expect(async () => await affix(source, config)).toThrow();
+  // });
 });

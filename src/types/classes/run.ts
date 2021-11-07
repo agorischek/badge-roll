@@ -5,8 +5,7 @@ export class Run {
   modified: string;
   filePath?: string;
   matches: boolean;
-
-  private config?: Config;
+  config?: Config;
 
   public async exec() {
     const context = new RunContext(this.config);

@@ -7,6 +7,8 @@
     "/src/utilities/log.ts",
     "/src/utilities/write-file.ts"
   ],
+  "maxWorkers": 20,
+  "maxConcurrency": 20,
   "transform": {},
   "extensionsToTreatAsEsm": [".ts"],
   "coverageThreshold": {

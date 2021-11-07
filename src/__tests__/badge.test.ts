@@ -123,25 +123,25 @@ describe("Badge", () => {
     expect(badge.url).toBe("https://img.shields.io/badge/badges-rolled-white");
   });
 
-  test("should throw with an invalid provider", async () => {
-    const config = {
-      badges: [
-        {
-          id: "badge-roll",
-          provider: "not-a-real-provider",
-        },
-      ],
-    };
-    const context = new RunContext();
-    await context.compute();
+  // test.skip("should throw with an invalid provider", async () => {
+  //   const config = {
+  //     badges: [
+  //       {
+  //         id: "badge-roll",
+  //         provider: "not-a-real-provider",
+  //       },
+  //     ],
+  //   };
+  //   const context = new RunContext();
+  //   await context.compute();
 
-    expect(() => {
-      new Badge(
-        config.badges[0],
-        context.settings,
-        context.about,
-        context.providers
-      );
-    }).toThrow();
-  });
+  //   expect(() => {
+  //     new Badge(
+  //       config.badges[0],
+  //       context.settings,
+  //       context.about,
+  //       context.providers
+  //     );
+  //   }).toThrow();
+  // });
 });
