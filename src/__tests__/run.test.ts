@@ -1,5 +1,4 @@
-// import { Config } from "../types/index.js";
-import { Run } from "../types/index.js";
+import { Config, Run } from "../types/index.js";
 
 import { runSchema } from "../schemas/index.js";
 
@@ -10,21 +9,20 @@ describe("Run", () => {
     expect(run).toMatchSchema(runSchema);
   });
 
-  // test.skip("should throw with null badges", async () => {
-  //   const source = "";
-  //   const config: Config = { badges: null };
-  //   expect(async () => {
-  //     const run = new Run(source, config);
-  //     await run.exec();
-  //   }).toThrow();
-  // });
+  test("should throw with null badges", async () => {
+    const source = "";
+    const config: Config = { badges: null };
+    const run = new Run(source, config);
 
-  // test.skip("should throw with empty badges", async () => {
-  //   const source = "";
-  //   const config: Config = { badges: [] };
-  //   return expect(async () => {
-  //     const run = new Run(source, config);
-  //     await run.exec();
-  //   }).toThrow();
-  // });
+    expect.assertions(1);
+    await expect(run.exec()).rejects.toThrow('"badges" must be an array');
+  });
+
+  test("should throw with empty badges", async () => {
+    const source = "";
+    const config: Config = { badges: [] };
+    const run = new Run(source, config);
+    expect.assertions(1);
+    await expect(run.exec()).rejects.toThrow("No badges specified.");
+  });
 });
