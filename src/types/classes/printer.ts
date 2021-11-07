@@ -1,4 +1,4 @@
-import { Badge, PrinterList, SettingsData } from "..";
+import { Badge, PrinterList, SettingsData } from "../index.js";
 
 export class Printer {
   print: (

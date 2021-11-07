@@ -1,4 +1,4 @@
-import { QueryParams } from "..";
+import { QueryParams } from "../index.js";
 
 export type BadgeDefinition = {
   details?: string;

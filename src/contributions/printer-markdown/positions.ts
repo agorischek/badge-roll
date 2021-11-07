@@ -1,9 +1,8 @@
-import nav from "./tree-navigator";
+import nav from "./tree-navigator.js";
+import test from "./node-tests.js";
+import { after, before, concat } from "./utils.js";
 
-import test from "./node-tests";
-import { after, before, concat } from "./utils";
-
-import { Positions } from "./types";
+import { Positions } from "./types/index.js";
 
 const anchors = {
   h1: {

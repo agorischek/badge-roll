@@ -1,1 +1,1 @@
-export { affix, check } from "./api";
+export { affix, check } from "./api/index.js";

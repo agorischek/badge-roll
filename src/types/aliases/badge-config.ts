@@ -1,4 +1,4 @@
-import { About, QueryParams } from "..";
+import { About, QueryParams } from "../index.js";
 
 export type BadgeConfig = SimpleBadgeConfig | FullBadgeConfig;
 

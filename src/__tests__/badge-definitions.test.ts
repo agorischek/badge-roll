@@ -1,5 +1,5 @@
-import { badgeDefinitionSchema } from "../schemas";
-import { loadModule } from "../loaders";
+import { badgeDefinitionSchema } from "../schemas/index.js";
+import { loadModule } from "../loaders/index.js";
 
 describe("Badge definition schema", () => {
   test("should be a schema", () => {
@@ -23,13 +23,12 @@ describe("Badge definition schema", () => {
 });
 
 describe("Shields badge definitions", () => {
-  testBadgeDefinitions("shields");
-});
-
-function testBadgeDefinitions(providerName: string) {
-  const data = loadModule("provider-" + providerName, true);
-  const badges = Object.entries(data.providers[providerName].badges);
-  test.each(badges)("%s should be valid", (badgeName, badgeDefinition) => {
-    expect(badgeDefinition).toMatchSchema(badgeDefinitionSchema);
+  test("Should be valid", async () => {
+    const providerName = "shields";
+    const data = await loadModule("provider-" + providerName, true);
+    const badges = data.providers[providerName].badges;
+    for (const name in badges) {
+      expect(badges[name]).toMatchSchema(badgeDefinitionSchema);
+    }
   });
-}
+});

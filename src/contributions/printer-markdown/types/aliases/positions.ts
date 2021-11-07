@@ -1,6 +1,6 @@
 import { Node } from "unist";
 
-import { Location } from "..";
+import { Location } from "../index.js";
 
 export type Positions = {
   [position: string]: Position;

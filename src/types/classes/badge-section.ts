@@ -1,4 +1,4 @@
-import { Badge, RunContext } from "..";
+import { Badge, RunContext } from "../index.js";
 
 export class BadgeSection {
   badges: Array<Badge>;

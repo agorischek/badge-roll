@@ -1,9 +1,9 @@
-const find = require("unist-util-find");
-const findAfter = require("unist-util-find-after");
-const findBefore = require("unist-util-find-before");
-import is from "unist-util-is";
-const parents = require("unist-util-parents");
-const position = require("unist-util-position");
+import find from "unist-util-find";
+import { findAfter } from "unist-util-find-after";
+import { findBefore } from "unist-util-find-before";
+import { is } from "unist-util-is";
+import { parents } from "unist-util-parents";
+import { position } from "unist-util-position";
 import { select, matches } from "unist-util-select";
 
 export default {

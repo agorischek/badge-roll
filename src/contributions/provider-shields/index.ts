@@ -1,4 +1,4 @@
-import { badges } from "./badges";
+import { badges } from "./badges.js";
 
 export default {
   providers: {

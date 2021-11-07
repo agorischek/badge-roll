@@ -1,6 +1,10 @@
-import { Config } from "../types";
+import { Config } from "../types/index.js";
+import { log } from "../utilities/index.js";
 
-export function loadConfigCmd(): Config {
+export async function loadConfigCmd() {
+  log("Loading config...");
+
   const config = new Config();
-  return config;
+
+  log(config);
 }

@@ -1,7 +1,7 @@
-import unified from "unified";
+import { unified } from "unified";
 import markdown from "remark-parse";
 
-import { getFirstChild } from "../utils";
+import { getFirstChild, getFirstGrandchildren } from "../utils";
 
 import { NodeAnalysis } from "../types";
 
@@ -29,7 +29,7 @@ describe("Node Analysis", () => {
   test("should detect a badge", () => {
     const source = `[![Example](https://img.shields.io/example)](https://example.org "Example")`;
     const parsed = parse(source);
-    const grandChild = getFirstChild(getFirstChild(parsed));
+    const grandChild = getFirstGrandchildren(parsed)[0];
     const analysis = new NodeAnalysis(grandChild);
     expect(analysis.isBadge).toBeTruthy();
   });
@@ -37,7 +37,7 @@ describe("Node Analysis", () => {
   test("should detect a GitHub badge", () => {
     const source = `[![Example](https://github.com)](https://example.org "Example")`;
     const parsed = parse(source);
-    const grandChild = getFirstChild(getFirstChild(parsed));
+    const grandChild = getFirstGrandchildren(parsed)[0];
     const analysis = new NodeAnalysis(grandChild);
     expect(analysis.isBadge).toBeTruthy();
   });
@@ -45,7 +45,7 @@ describe("Node Analysis", () => {
   test("should detect a Gitter badge", () => {
     const source = `[![Example](https://badges.gitter.im)](https://example.org "Example")`;
     const parsed = parse(source);
-    const grandChild = getFirstChild(getFirstChild(parsed));
+    const grandChild = getFirstGrandchildren(parsed)[0];
     const analysis = new NodeAnalysis(grandChild);
     expect(analysis.isBadge).toBeTruthy();
   });
@@ -53,7 +53,7 @@ describe("Node Analysis", () => {
   test("should detect an Azure DevOps badge", () => {
     const source = `[![Example](https://dev.azure.com/)](https://example.org "Example")`;
     const parsed = parse(source);
-    const grandChild = getFirstChild(getFirstChild(parsed));
+    const grandChild = getFirstGrandchildren(parsed)[0];
     const analysis = new NodeAnalysis(grandChild);
     expect(analysis.isBadge).toBeTruthy();
   });
@@ -61,7 +61,7 @@ describe("Node Analysis", () => {
   test("should not detect a random image as a badge", () => {
     const source = `[![Example](https://example.org)](https://example.org "Example")`;
     const parsed = parse(source);
-    const grandChild = getFirstChild(getFirstChild(parsed));
+    const grandChild = getFirstGrandchildren(parsed)[0];
     const analysis = new NodeAnalysis(grandChild);
     expect(analysis.isBadge).toBeFalsy();
   });
@@ -69,7 +69,7 @@ describe("Node Analysis", () => {
   test("should detect an AppVeyor badge", () => {
     const source = `[![Example](https://ci.appveyor.com/api/projects/status/)](https://example.org "Example")`;
     const parsed = parse(source);
-    const grandChild = getFirstChild(getFirstChild(parsed));
+    const grandChild = getFirstGrandchildren(parsed)[0];
     const analysis = new NodeAnalysis(grandChild);
     expect(analysis.isBadge).toBeTruthy();
   });

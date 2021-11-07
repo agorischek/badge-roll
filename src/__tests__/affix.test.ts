@@ -1,4 +1,4 @@
-import { affix } from "..";
+import { affix } from "../index.js";
 
 const placeholderBadge =
   '[![Example](https://img.shields.io/example)](https://www.npmjs.com/example "Example")';
@@ -7,66 +7,68 @@ const expectedBadge =
   '[![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")';
 
 describe("Affix function", () => {
-  test("should affix one badge with simple badge definition", () => {
-    const config = { badges: [{ id: "npm/v" }] };
-    const source = `# Title\n\n${placeholderBadge}`;
-    const modified = affix(source, config);
-    const expected = `# Title\n\n${expectedBadge}`;
-    expect(modified).toBe(expected);
-  });
-  test("should affix one badge with object badge definition", () => {
+  test("should affix one badge with simple badge definition", async () => {
     const config = { badges: ["npm/v"] };
     const source = `# Title\n\n${placeholderBadge}`;
-    const modified = affix(source, config);
+    const modified = await affix(source, config);
     const expected = `# Title\n\n${expectedBadge}`;
     expect(modified).toBe(expected);
   });
-  test("should render a badge with no target content", () => {
+
+  test("should affix one badge with object badge definition", async () => {
     const config = { badges: [{ id: "npm/v" }] };
-    const modified = affix("", config);
+    const source = `# Title\n\n${placeholderBadge}`;
+    const modified = await affix(source, config);
+    const expected = `# Title\n\n${expectedBadge}`;
+    expect(modified).toBe(expected);
+  });
+
+  test("should render a badge with no target content", async () => {
+    const config = { badges: [{ id: "npm/v" }] };
+    const modified = await affix("", config);
     const expected = `${expectedBadge}`;
     expect(modified).toBe(expected);
   });
 
-  test("should render two badges with no target content", () => {
+  test("should render two badges with no target content", async () => {
     const config = {
       badges: [{ id: "npm/v" }, { id: "npm/v" }],
     };
-    const modified = affix("", config);
+    const modified = await affix("", config);
     const expected = `${expectedBadge} ${expectedBadge}`;
     expect(modified).toBe(expected);
   });
 
-  test("should render two badges using different ID notation", () => {
+  test("should render two badges using different ID notation", async () => {
     const config = {
       badges: ["npm/v", { id: "npm/v" }],
     };
-    const modified = affix("", config);
+    const modified = await affix("", config);
     const expected = `${expectedBadge} ${expectedBadge}`;
     expect(modified).toBe(expected);
   });
 
-  test("should render two badges with newline separator and no target content", () => {
+  test("should render two badges with newline separator and no target content", async () => {
     const config = {
       badges: [{ id: "npm/v" }, { id: "npm/v" }],
       settings: { separator: "newline" },
     };
-    const modified = affix("", config);
+    const modified = await affix("", config);
     const expected = `${expectedBadge}\n${expectedBadge}`;
     expect(modified).toBe(expected);
   });
 
-  test("should render two badges with space separator and no target content", () => {
+  test("should render two badges with space separator and no target content", async () => {
     const config = {
       badges: [{ id: "npm/v" }, { id: "npm/v" }],
       settings: { separator: "space" },
     };
-    const modified = affix("", config);
+    const modified = await affix("", config);
     const expected = `${expectedBadge} ${expectedBadge}`;
     expect(modified).toBe(expected);
   });
 
-  test("should detect various badge providers", () => {
+  test("should detect various badge providers", async () => {
     const source = `[![Example](https://badges.gitter.im/user/Lobby.svg)](https://example.org "Example")
     [![Example](https://github.com/project/repo/workflows/main/badge.svg)](https://example.org "Example")
     [![Example](https://img.shields.io/example)](https://example.org "Example")
@@ -75,40 +77,48 @@ describe("Affix function", () => {
       badges: [{ id: "npm/v" }],
       settings: { position: "current" },
     };
-    const modified = affix(source, config);
+    const modified = await affix(source, config);
     const expected = expectedBadge;
     expect(modified).toBe(expected);
   });
 
-  test("should throw if position is current but there are no badges", () => {
+  test("should throw if position is current but there are no badges", async () => {
+    const source = "# Title\n\nTest content";
     const config = {
       badges: [{ id: "npm/v" }],
       settings: { position: "current" },
     };
-    expect(() => {
-      affix("# Title\n\nTest content", config);
-    }).toThrow();
+    expect.assertions(1);
+    await expect(affix(source, config)).rejects.toThrow(
+      "Couldn't find anchor in target file"
+    );
   });
 
-  test("should affix using the alternate `md` printer", () => {
+  test("should affix using the alternate `md` printer", async () => {
     const config = { badges: [{ id: "npm/v" }], settings: { printer: "md" } };
     const source = `# Title\n\n${placeholderBadge}`;
-    const modified = affix(source, config);
+    const modified = await affix(source, config);
     const expected = `# Title\n\n${expectedBadge}`;
     expect(modified).toBe(expected);
   });
 
-  test("should throw when requesting a provider that doesn't exist", () => {
+  test("should throw when requesting a provider that doesn't exist", async () => {
     const config = {
       badges: [{ id: "npm/v", provider: "not-a/real-provider" }],
     };
     const source = "";
-    expect(() => affix(source, config)).toThrow();
+    expect.assertions(1);
+    await expect(affix(source, config)).rejects.toThrow(
+      '"badges[0].provider" is not allowed'
+    );
   });
 
-  test("should throw when requesting a badge that doesn't exist", () => {
+  test("should throw when requesting a badge that doesn't exist", async () => {
     const config = { badges: [{ id: "not-a/real-badge" }] };
     const source = "";
-    expect(() => affix(source, config)).toThrow();
+    expect.assertions(1);
+    await expect(affix(source, config)).rejects.toThrow(
+      'Badge "not-a/real-badge" is not defined for provider shields.'
+    );
   });
 });

@@ -1,0 +1,32 @@
+{
+  "preset": "ts-jest/presets/default-esm",
+  "testEnvironment": "node",
+  "coveragePathIgnorePatterns": [
+    "/node_modules/",
+    "/commands/",
+    "/src/utilities/log.ts",
+    "/src/utilities/write-file.ts"
+  ],
+  "maxWorkers": 20,
+  "maxConcurrency": 20,
+  "transform": {},
+  "extensionsToTreatAsEsm": [".ts"],
+  "coverageThreshold": {
+    "global": {
+      "branches": 80,
+      "functions": 90,
+      "lines": 90,
+      "statements": -20
+    }
+  },
+  "globals": {
+    "ts-jest": {
+      "useESM": true
+    }
+  },
+  "moduleNameMapper": {
+    "^(\\.{1,2}/.*)\\.js$": "$1"
+  },
+  "setupFilesAfterEnv": ["./jest.setup.ts"],
+  "testPathIgnorePatterns": ["/lib/"]
+}

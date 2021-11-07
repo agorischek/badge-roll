@@ -1,2 +1,2 @@
-export * from "./badge-finder-state";
-export * from "./node-analysis";
+export * from "./badge-finder-state.js";
+export * from "./node-analysis.js";

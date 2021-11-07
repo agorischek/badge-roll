@@ -1,4 +1,4 @@
-import { About, Context } from "../../types/";
+import { About, Context } from "../../types/index.js";
 
 export default {
   about: function (about: About, context: Context): About {

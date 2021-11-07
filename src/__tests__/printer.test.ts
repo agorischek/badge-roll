@@ -1,4 +1,4 @@
-import { Printer, RunContext } from "../types";
+import { Printer, RunContext } from "../types/index.js";
 
 const section = {
   badges: [
@@ -19,11 +19,13 @@ const section = {
 };
 
 describe("Printer", () => {
-  test("should throw if unavailable printer is requested", () => {
-    const run = new RunContext();
-    const printer = new Printer(run.printers, "not-a-real-printer");
+  test.only("should throw if unavailable printer is requested", async () => {
+    const context = new RunContext();
+    await context.compute();
+    const printer = new Printer(context.printers, "not-a-real-printer");
+
     expect(() => {
-      printer.print(section.badges, run.settings);
+      printer.print(section.badges, context.settings);
     }).toThrow();
   });
 });

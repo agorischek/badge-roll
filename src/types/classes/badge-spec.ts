@@ -1,7 +1,8 @@
-import { BadgeDefinition, QueryParams } from "..";
-import { merge } from "lodash";
+import lodash from "lodash";
+const { merge } = lodash;
 
-import { badgeSpecSchema } from "../../schemas";
+import { badgeSpecSchema } from "../../schemas/index.js";
+import { BadgeDefinition, QueryParams } from "../index.js";
 
 export class BadgeSpec {
   details: string;

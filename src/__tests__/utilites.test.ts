@@ -5,7 +5,7 @@ import {
   isLast,
   readFile,
   stringifyQuery,
-} from "../utilities";
+} from "../utilities/index.js";
 
 describe("Combine", () => {
   test("should merge two objects", () => {

@@ -1,17 +1,17 @@
-import { Node } from "unist";
+import { Paragraph, PhrasingContent, Root } from "mdast";
 
-import { isLast } from "../../utilities";
+import { isLast } from "../../utilities/index.js";
 
-import { Badge } from "../../types";
+import { Badge } from "../../types/index.js";
 
-function generateBadgeAst(badge: Badge): Node {
+function generateBadgeAst(badge: Badge): PhrasingContent {
   const badgeAst = {
-    type: "link",
+    type: "link" as const,
     url: badge.to,
     title: badge.display,
     children: [
       {
-        type: "image",
+        type: "image" as const,
         url: badge.url,
         alt: badge.display,
       },
@@ -21,19 +21,14 @@ function generateBadgeAst(badge: Badge): Node {
 }
 
 export function generateBadgeSectionAst(
-  badges: Array<Badge>,
+  badges: Badge[],
   separator: string
-): Node {
-  const separatorAst = {
-    type: "text",
-    value: separator,
-  };
-
+): Root {
   const badgeReducer = (
-    accumulator: Array<Node>,
+    accumulator: PhrasingContent[],
     badge: Badge,
     index: number,
-    badges: Array<Badge>
+    badges: Badge[]
   ) => {
     const badgeAst = generateBadgeAst(badge);
     if (isLast(index, badges)) {
@@ -43,9 +38,22 @@ export function generateBadgeSectionAst(
     }
   };
 
-  const badgeSectionAst = {
-    type: "paragraph",
-    children: badges.reduce(badgeReducer, []),
+  const separatorAst: PhrasingContent = {
+    type: "text" as const,
+    value: separator,
   };
+
+  const badgesAst: PhrasingContent[] = badges.reduce(badgeReducer, []);
+
+  const badgesParagraphAst: Paragraph = {
+    type: "paragraph" as const,
+    children: badgesAst,
+  };
+
+  const badgeSectionAst = {
+    type: "root" as const,
+    children: [badgesParagraphAst],
+  };
+
   return badgeSectionAst;
 }

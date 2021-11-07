@@ -1,21 +1,27 @@
-const findAfter = require("unist-util-find-after");
+import { findAfter } from "unist-util-find-after";
 
 import { Node } from "unist";
+import { Parent, Content } from "mdast";
 
-import test from "../../node-tests";
-import { getFirstChild } from "../../utils";
+import test from "../../node-tests.js";
+import { getFirstChild } from "../../utils.js";
+
+interface PossibleParent extends Node {
+  children?: Content[];
+}
 
 export class BadgeFinderState {
-  currentParent: Node;
-  previousNode: Node;
-  currentNode: Node;
-  nextNode: Node;
+  currentParent: Parent;
+  previousNode: PossibleParent;
+  currentNode: PossibleParent;
+  nextNode: PossibleParent;
   mostRecentBadge: Node;
   firstBadge: Node;
   lastBadge: Node;
   paragraphCount: number;
   searchComplete: boolean;
-  constructor(starter: Node, starterParent: Node) {
+
+  constructor(starter: PossibleParent, starterParent: Parent) {
     this.previousNode = null;
     this.currentNode = starter;
     this.firstBadge = test.isBadge(starter) ? starter : null;
@@ -28,6 +34,7 @@ export class BadgeFinderState {
     this.searchComplete = false;
     this.paragraphCount = 0;
   }
+
   rememberBadge(): void {
     if (this.firstBadge === null) {
       this.firstBadge = this.currentNode;
@@ -37,11 +44,14 @@ export class BadgeFinderState {
   stepForward(): void {
     this.previousNode = this.currentNode;
     this.currentNode = this.nextNode;
+
     this.nextNode = findAfter(this.currentParent, this.currentNode);
   }
   stepDown(): void {
     this.previousNode = this.currentNode;
-    this.currentParent = this.previousNode;
+    this.currentParent = this.previousNode.children
+      ? (this.previousNode as Parent)
+      : null;
     this.currentNode = getFirstChild(this.currentParent);
     this.nextNode = findAfter(this.currentParent, this.currentNode);
   }

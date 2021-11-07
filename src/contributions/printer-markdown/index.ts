@@ -1,6 +1,6 @@
-import { processMarkdown } from "./markup-processor";
+import { processMarkdown } from "./markup-processor.js";
 
-import { Badge, Settings } from "../../types";
+import { Badge, Settings } from "../../types/index.js";
 
 export default {
   printers: {

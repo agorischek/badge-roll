@@ -1,6 +1,6 @@
 {
   "name": "badge-roll",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Configurable README Badge Automator",
   "keywords": [
     "badges"
@@ -12,8 +12,9 @@
     "name": "Alex Gorischek",
     "email": "alex.gorischek@gmail.com"
   },
-  "main": "lib/index.js",
-  "bin": "lib/cli.js",
+  "type": "module",
+  "exports": "./lib/index.js",
+  "bin": "./lib/cli.js",
   "files": [
     "lib"
   ],
@@ -32,14 +33,9 @@
     "lint": "eslint . --max-warnings=0 && remark . --frail && prettier \".\" --check && npm run cli:lib:check",
     "lint:fix": "eslint . --fix && remark . --output && prettier \".\" --write && node lib/cli.js affix",
     "test": "npm run build && npm run test:unit && npm run lint && npm run dep:review",
-    "test:unit": "jest",
-    "test:unit:coverage": "jest --collect-coverage",
+    "test:unit": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:unit:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --collect-coverage",
     "test:unit:mutate": "stryker run"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.ts": "eslint --cache --fix",
@@ -80,60 +76,71 @@
     }
   },
   "dependencies": {
-    "commander": "^8.2.0",
+    "commander": "^8.3.0",
     "cosmiconfig": "^7.0.1",
     "glob": "^7.2.0",
     "joi": "^17.4.2",
     "lodash": "^4.17.21",
     "parse-github-url": "^1.0.2",
-    "read-pkg": "^5.2.0",
-    "remark-parse": "^9.0.0",
-    "remark-stringify": "^9.0.1",
-    "unified": "^9.2.1",
+    "read-pkg": "^7.0.0",
+    "remark-parse": "^10.0.0",
+    "remark-stringify": "^10.0.1",
+    "unified": "^10.1.0",
     "unist-util-find": "^1.0.2",
-    "unist-util-find-after": "^3.0.0",
-    "unist-util-find-before": "^2.0.5",
-    "unist-util-is": "^4.1.0",
-    "unist-util-parents": "^1.0.3",
-    "unist-util-position": "^3.1.0",
-    "unist-util-select": "^3.0.4",
+    "unist-util-find-after": "^4.0.0",
+    "unist-util-find-before": "^3.0.0",
+    "unist-util-is": "^5.1.1",
+    "unist-util-parents": "^2.0.0",
+    "unist-util-position": "^4.0.1",
+    "unist-util-select": "^4.0.1",
     "url-parse": "^1.5.3",
     "yaml": "^1.10.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.8",
-    "@babel/preset-env": "^7.15.8",
-    "@babel/preset-typescript": "^7.15.0",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.0",
     "@stryker-mutator/core": "^5.4.1",
     "@stryker-mutator/jest-runner": "^5.4.1",
     "@types/jest": "^27.0.2 ",
-    "@types/lodash": "^4.14.175",
+    "@types/lodash": "^4.14.176",
     "@types/parse-github-url": "^1.0.0",
+    "@types/unist": "^2.0.6",
     "@types/url-parse": "^1.4.4",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
-    "babel-jest": "^27.2.5",
+    "@typescript-eslint/eslint-plugin": "^5.3.0",
+    "@typescript-eslint/parser": "^5.3.0",
+    "babel-jest": "^27.3.1",
     "depcheck": "^1.4.2",
-    "eslint": "^8.0.1",
+    "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-xo": "^0.39.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "husky": "^4.2.3",
-    "jest": "^27.2.5",
+    "eslint-plugin-unicorn": "^38.0.0",
+    "jest": "^27.3.1",
     "jest-joi": "^1.1.11",
-    "lint-staged": "^11.2.3",
-    "npm-check-updates": "^11.8.5",
+    "lint-staged": "^11.2.6",
+    "npm-check-updates": "^12.0.0",
     "prettier": "^2.4.1",
     "prettier-plugin-packagejson": "^2.2.13",
-    "remark-cli": "^9.0.0",
-    "remark-gfm": "^1.0.0",
-    "remark-lint": "^8.0.0",
-    "remark-preset-lint-recommended": "^5.0.0",
+    "remark-cli": "^10.0.0",
+    "remark-gfm": "^3.0.1",
+    "remark-lint": "^9.1.0",
+    "remark-preset-lint-recommended": "^6.1.1",
     "ts-jest": "^27.0.7",
-    "ts-node": "^10.3.0",
-    "typescript": "^4.4.4"
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4",
+    "utility-types": "^3.10.0"
   },
   "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0",
     "npm": ">= 4.0.0"
+  },
+  "wallaby": {
+    "autoDetect": true,
+    "env": {
+      "params": {
+        "runner": "--experimental-vm-modules"
+      }
+    }
   }
 }

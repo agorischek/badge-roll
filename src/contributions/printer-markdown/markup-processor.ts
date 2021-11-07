@@ -1,14 +1,14 @@
-import unified from "unified";
+import { unified } from "unified";
 import stringify from "remark-stringify";
 
-import { Node } from "unist";
+import { Root } from "mdast";
 
-import { removeTrailingNewLine } from "./utils";
-import { generateBadgeSectionAst } from "./tree-generator";
-import { separators } from "./separators";
-import { affixBadgeSection } from "./badge-affixer";
+import { removeTrailingNewLine } from "./utils.js";
+import { generateBadgeSectionAst } from "./tree-generator.js";
+import { separators } from "./separators.js";
+import { affixBadgeSection } from "./badge-affixer.js";
 
-import { Badge, Settings } from "../../types";
+import { Badge, Settings } from "../../types/index.js";
 
 export function processMarkdown(
   badgeSection: Array<Badge>,
@@ -33,7 +33,7 @@ export function processMarkdown(
   }
 }
 
-function generateMarkdown(node: Node) {
+function generateMarkdown(node: Root) {
   const generator = unified().use(stringify);
   const generated = generator.stringify(node);
   return generated;

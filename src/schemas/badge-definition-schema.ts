@@ -1,7 +1,7 @@
 import Joi from "joi";
 const { alternatives, boolean, object, string } = Joi.types();
 
-import { any } from "./patterns";
+import { any } from "./patterns.js";
 
 export const badgeDefinitionSchema = object.keys({
   details: string,

@@ -1,3 +1,3 @@
-import { SettingsData } from "..";
+import { SettingsData } from "../index.js";
 
 export type SettingsContribution = SettingsData;

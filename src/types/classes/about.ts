@@ -1,6 +1,6 @@
-import { loadPackage } from "../../loaders/package-loader";
+import { loadPackage } from "../../loaders/package-loader.js";
 
-import { Config, Context, ContributionSet } from "..";
+import { Config, Context, ContributionSet } from "../index.js";
 
 export class About {
   [property: string]: string;

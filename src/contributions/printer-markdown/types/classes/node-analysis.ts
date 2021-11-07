@@ -1,6 +1,7 @@
-const is = require("unist-util-is");
+import { is } from "unist-util-is";
 import { Node } from "unist";
-import test from "../../node-tests";
+
+import test from "../../node-tests.js";
 
 export class NodeAnalysis {
   exists: boolean;
@@ -10,6 +11,7 @@ export class NodeAnalysis {
   isSeparator: boolean;
   isBadge: boolean;
   isRoot: boolean;
+  isParent: boolean;
   constructor(node: Node, separator?: string) {
     this.exists = Boolean(node);
     this.isParagraph = is(node, "paragraph");
@@ -18,5 +20,6 @@ export class NodeAnalysis {
     this.isSeparator = test.isSpecificText(node, separator);
     this.isBadge = test.isBadge(node);
     this.isRoot = test.isRoot(node);
+    this.isParent = test.isParent(node);
   }
 }

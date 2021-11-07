@@ -6,7 +6,7 @@ import {
   About,
   ProvidersDirectory,
   PrinterList,
-} from "..";
+} from "../index.js";
 
 export class RunContext {
   settings: Settings;
@@ -14,21 +14,22 @@ export class RunContext {
   providers: ProvidersDirectory;
   printers: PrinterList;
   badges: Array<BadgeConfig>;
-  constructor(configData?: Config) {
-    const config = new Config(configData);
+
+  private config: Config;
+
+  public async compute() {
     const contributions = new ContributionSet();
-    const settings = new Settings(config, contributions);
-    const about = new About(config, contributions);
-    const providers = new ProvidersDirectory(contributions);
-    const printers = new PrinterList(contributions);
-    const badges = config.badges;
-    if (!badges || badges.length < 1) throw new Error("No badges specified.");
-    return {
-      about,
-      settings,
-      providers,
-      printers,
-      badges,
-    };
+    await contributions.load();
+    this.settings = new Settings(this.config, contributions);
+    this.about = new About(this.config, contributions);
+    this.providers = new ProvidersDirectory(contributions);
+    this.printers = new PrinterList(contributions);
+    this.badges = this.config.badges;
+    if (!this.badges || this.badges.length < 1)
+      throw new Error("No badges specified.");
+  }
+
+  constructor(configData?: Config) {
+    this.config = new Config(configData);
   }
 }

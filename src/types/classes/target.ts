@@ -1,6 +1,6 @@
-import { Settings } from ".";
-import { loadTarget } from "../../loaders";
-import { writeFile } from "../../utilities";
+import { Settings } from "./index.js";
+import { loadTarget } from "../../loaders/index.js";
+import { writeFile } from "../../utilities/index.js";
 
 export class Target {
   originalContent: string;

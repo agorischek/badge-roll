@@ -1,13 +1,13 @@
-import nav from "./tree-navigator";
+import nav from "./tree-navigator.js";
 
-import { Location, BadgeFinderState } from "./types";
-import { NodeAnalysis } from "./types/classes/node-analysis";
+import { Location, BadgeFinderState } from "./types/index.js";
+import { NodeAnalysis } from "./types/classes/node-analysis.js";
 
-import { Node } from "unist";
+import { Parent, Root } from "mdast";
 
 export function findBadgeSection(
-  tree: Node,
-  startingNode: Node,
+  tree: Root,
+  startingNode: Parent,
   separator: string,
   position: string
 ): Location {
@@ -27,7 +27,8 @@ export function findBadgeSection(
       } else if (
         currentNode.isParagraph &&
         position === "below-lead" &&
-        state.paragraphCount === 0
+        state.paragraphCount === 0 &&
+        currentNode.isParent
       ) {
         state.countParagraph();
         state.stepForward();
