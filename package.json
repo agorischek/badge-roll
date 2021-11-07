@@ -34,7 +34,7 @@
     "lint:fix": "eslint . --fix && remark . --output && prettier \".\" --write && node lib/cli.js affix",
     "test": "npm run build && npm run test:unit && npm run lint && npm run dep:review",
     "test:unit": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "test:unit:coverage": "jest --collect-coverage",
+    "test:unit:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --collect-coverage",
     "test:unit:mutate": "stryker run"
   },
   "lint-staged": {
