@@ -22,7 +22,7 @@ jobs:
         run: npm run build
 
       - name: Test
-        run: npm run test:coverage
+        run: npm run test:unit:coverage
 
       - name: Lint
         run: npm run lint
