@@ -9,4 +9,9 @@ export const github = {
     to: "https://github.com/:user/:repo/actions/workflows/:workflowFile+workflow",
     display: "Workflow",
   },
+  "github/actions/workflow/status": {
+    details: ":user/:repo/:workflow",
+    to: "https://github.com/:user/:repo/actions/workflows/:workflow",
+    display: "Workflow",
+  },
 };

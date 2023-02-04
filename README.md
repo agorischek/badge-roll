@@ -7,7 +7,7 @@
 Configurable README Badge Automator
 
 [![Version](https://img.shields.io/npm/v/badge-roll)](https://www.npmjs.com/package/badge-roll "Version")
-[![Workflow](https://img.shields.io/github/workflow/status/agorischek/badge-roll/CI)](https://github.com/agorischek/badge-roll/actions/workflows/ci.yml "Workflow")
+[![Workflow](https://img.shields.io/github/actions/workflow/status/agorischek/badge-roll/.github/workflows/ci.yml)](https://github.com/agorischek/badge-roll/actions/workflows/.github/workflows/ci.yml "Workflow")
 [![License](https://img.shields.io/github/license/agorischek/badge-roll)](https://github.com/agorischek/badge-roll/blob/main/LICENSE "License")
 [![Coverage](https://img.shields.io/codecov/c/github/agorischek/badge-roll)](https://codecov.io/gh/agorischek/badge-roll "Coverage")
 [![Badges](https://img.shields.io/badge/badges-rolled-white)](https://github.com/agorischek/badge-roll "Badges")
@@ -18,7 +18,7 @@ Configurable README Badge Automator
 
 badges:
   - npm/v
-  - github/workflow/status
+  - github/actions/workflow/status
   - github/license
   - codecov/c
   - badge-roll
@@ -30,7 +30,7 @@ settings:
 
 about:
   branch: main
-  workflow: ci
+  workflow: .github/workflows/ci.yml
 ```
 
 ## Setup
