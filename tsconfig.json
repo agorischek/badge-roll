@@ -9,6 +9,7 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "skipLibCheck": true
   }
 }

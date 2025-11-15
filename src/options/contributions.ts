@@ -5,7 +5,7 @@ export const contributions = {
     "about-registry",
     "about-github-workflows",
   ],
-  printers: ["printer-markdown"],
+  printers: ["printer-markdown", "printer-html"],
   providers: ["provider-shields"],
   settings: ["settings-default"],
 };
