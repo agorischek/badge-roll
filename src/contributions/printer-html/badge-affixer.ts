@@ -17,7 +17,7 @@ export function affixBadgeSection(
 ): string {
   if (!positions[position]) throw new Error(`Unknown position ${position}`);
 
-  const processor = unified().use(rehypeParse as any);
+  const processor = unified().use(rehypeParse as any, { fragment: true });
   const tree: Root = processor.parse(doc) as Root;
   const treeWithParents: Root = nav.parents(tree) as Root;
   const anchor: PossibleParent =
