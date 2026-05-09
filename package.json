@@ -6,7 +6,10 @@
     "badges"
   ],
   "homepage": "https://github.com/agorischek/badge-roll",
-  "repository": "https://agorischek@github.com/agorischek/badge-roll.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://agorischek@github.com/agorischek/badge-roll.git"
+  },
   "license": "MIT",
   "author": {
     "name": "Alex Gorischek",
@@ -14,7 +17,9 @@
   },
   "type": "module",
   "exports": "./lib/index.js",
-  "bin": "./lib/cli.js",
+  "bin": {
+    "badge-roll": "lib/cli.js"
+  },
   "files": [
     "lib"
   ],
