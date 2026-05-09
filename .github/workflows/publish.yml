@@ -1,0 +1,46 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  npm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6.0.2
+
+      - uses: actions/setup-node@v6.4.0
+        with:
+          node-version: 24
+          registry-url: "https://registry.npmjs.org"
+          package-manager-cache: false
+
+      - name: Install
+        run: npm ci
+
+      - name: Verify tag matches package version
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          tag_version="${GITHUB_REF_NAME#v}"
+          package_version="$(node -p "JSON.parse(require('node:fs').readFileSync('package.json', 'utf8')).version")"
+          if [ "$tag_version" != "$package_version" ]; then
+            echo "Tag version $tag_version does not match package.json version $package_version"
+            exit 1
+          fi
+
+      - name: Test
+        run: npm test
+
+      - name: Preview package
+        run: npm pack --dry-run
+
+      - name: Publish to npm
+        run: npm publish
