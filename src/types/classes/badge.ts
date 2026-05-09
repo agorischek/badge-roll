@@ -27,7 +27,7 @@ export class Badge {
     badgeConfig: BadgeConfig,
     settings: SettingsData,
     globalAbout: About,
-    providers: ProvidersDirectory
+    providers: ProvidersDirectory,
   ) {
     const badge: BadgeConfig =
       typeof badgeConfig === "string" ? { id: badgeConfig } : badgeConfig;
@@ -55,7 +55,7 @@ export class Badge {
     const queryParams = combine(
       badgeSpec.options,
       badge.options,
-      style ? { style: style } : null
+      style ? { style: style } : null,
     );
     const queryString = stringifyQuery(queryParams);
 
@@ -66,7 +66,7 @@ export class Badge {
       `${basePath}`,
       `/${badgePath}`,
       details ? `/${detailsPath}` : "",
-      queryString ? `?${queryString}` : ""
+      queryString ? `?${queryString}` : "",
     );
 
     return {

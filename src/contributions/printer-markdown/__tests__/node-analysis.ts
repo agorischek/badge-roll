@@ -1,11 +1,12 @@
 import { unified } from "unified";
 import markdown from "remark-parse";
 
-import { getFirstChild, getFirstGrandchildren } from "../utils";
+import { getFirstChild, getFirstGrandchildren } from "../utils.js";
 
-import { NodeAnalysis } from "../types";
+import { NodeAnalysis } from "../types/index.js";
 
-const parse = unified().use(markdown).parse;
+const processor = unified().use(markdown);
+const parse = (source: string) => processor.parse(source);
 
 describe("Node Analysis", () => {
   test("should detect a node from empty content", () => {

@@ -1,4 +1,4 @@
-import glob from "glob";
+import { globSync } from "glob";
 import yaml from "yaml";
 import fs from "fs";
 
@@ -7,8 +7,8 @@ import { About } from "../../types/index.js";
 export default {
   about: function (about: About): About {
     const basePath = "./.github/workflows/";
-    const paths = glob.sync(`${basePath}**/*.yml`, null);
-    paths.map((path) => {
+    const paths = globSync(`${basePath}**/*.yml`);
+    paths.map((path: string) => {
       const id = path.match(/^.*\/(.+).yml$/)[1];
       const content = fs.readFileSync(path, "utf8");
       const parsed = yaml.parse(content);

@@ -13,6 +13,6 @@ type Position = {
     doc: string,
     badges: string,
     anchorLocation: Location,
-    badgeSectionLocation: Location
+    badgeSectionLocation: Location,
   ) => string;
 };

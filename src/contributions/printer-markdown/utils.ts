@@ -8,7 +8,9 @@ export function getFirstChild(node: Parent): Node {
   if (isParent(node)) {
     const firstChild: Node = nav.select(":first-child", node);
     return firstChild ? firstChild : null;
-  } else null;
+  }
+
+  return null;
 }
 export function getFirstGrandchildren(node: Parent): Array<Node> {
   if (isParent(node)) {
@@ -18,15 +20,19 @@ export function getFirstGrandchildren(node: Parent): Array<Node> {
         ? [].concat(firstChild.children)
         : [];
       return grandchildren;
-    } else null;
-  } else null;
+    }
+
+    return null;
+  }
+
+  return null;
 }
 
 export function removeTrailingNewLine(markup: string): string {
   const trailingNewlinePattern = /^([^]*?)\n*$/s;
   if (markup.match(trailingNewlinePattern)) {
     const markupWithOutTrailingNewLine = markup.match(
-      trailingNewlinePattern
+      trailingNewlinePattern,
     )[1];
     return markupWithOutTrailingNewLine;
   } else {

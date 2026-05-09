@@ -3,6 +3,10 @@ import test from "./node-tests.js";
 import { after, before, concat } from "./utils.js";
 
 import { Positions } from "./types/index.js";
+import { Parent, RootContent } from "mdast";
+import { Node } from "unist";
+
+type NodeWithParent = Node & { parent: Parent };
 
 const anchors = {
   h1: {
@@ -25,7 +29,7 @@ export const positions: Positions = {
     relation: "below",
     findAnchor: (tree) => nav.find(tree, anchors.root),
     affix: (source, badges, anchorLoc, badgesLoc) => {
-      if (badgesLoc.end) {
+      if (badgesLoc?.end) {
         const tail = after(badgesLoc.end).in(source);
         return concat(badges, tail);
       } else return concat(badges, br, source);
@@ -36,20 +40,20 @@ export const positions: Positions = {
     findAnchor: (tree) => nav.find(tree, anchors.h1),
     affix: (source, badges, anchorLoc, badgesLoc) => {
       const head = before(anchorLoc.end).in(source);
-      const tail = after(badgesLoc.end || anchorLoc.end).in(source);
+      const tail = after(badgesLoc?.end || anchorLoc.end).in(source);
       return concat(head, br, badges, tail);
     },
   },
   "below-lead": {
     relation: "below",
     findAnchor: (tree) => {
-      const h1 = nav.find(tree, anchors.h1);
-      const lead = nav.findAfter(h1.parent, h1, "paragraph");
+      const h1 = nav.find(tree, anchors.h1) as NodeWithParent;
+      const lead = nav.findAfter(h1.parent, h1 as RootContent, "paragraph");
       return lead;
     },
     affix: (source, badges, anchorLoc, badgesLoc) => {
       const head = before(anchorLoc.end).in(source);
-      const tail = after(badgesLoc.end || anchorLoc.end).in(source);
+      const tail = after(badgesLoc?.end || anchorLoc.end).in(source);
       return concat(head, br, badges, tail);
     },
   },
@@ -59,7 +63,7 @@ export const positions: Positions = {
     affix: (source, badges, anchorLoc, badgesLoc) => {
       if (badgesLoc.start === null || badgesLoc.end === null)
         throw new Error(
-          "Badge section position was set to `current`, but no badges were found in current target file."
+          "Badge section position was set to `current`, but no badges were found in current target file.",
         );
       const head = before(badgesLoc.start).in(source);
       const tail = after(badgesLoc.end).in(source);

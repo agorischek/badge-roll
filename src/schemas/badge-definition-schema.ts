@@ -16,6 +16,6 @@ export const badgeDefinitionSchema = object.keys({
       path: string,
       to: string,
       display: string,
-    })
+    }),
   ),
 });

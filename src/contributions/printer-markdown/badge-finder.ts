@@ -4,14 +4,17 @@ import { Location, BadgeFinderState } from "./types/index.js";
 import { NodeAnalysis } from "./types/classes/node-analysis.js";
 
 import { Parent, Root } from "mdast";
+import { Node } from "unist";
+
+type NodeWithParent = Node & { parent: Parent };
 
 export function findBadgeSection(
   tree: Root,
   startingNode: Parent,
   separator: string,
-  position: string
+  position: string,
 ): Location {
-  const starter = nav.find(tree, startingNode);
+  const starter = startingNode as unknown as NodeWithParent;
 
   if (starter) {
     const state = new BadgeFinderState(starter, starter.parent);
@@ -42,6 +45,8 @@ export function findBadgeSection(
         state.stepForward();
       else state.complete();
     }
+
+    if (!state.firstBadge || !state.lastBadge) return null;
 
     const badgeSectionStart = nav.position(state.firstBadge).start.offset;
     const badgeSectionEnd = nav.position(state.lastBadge).end.offset;

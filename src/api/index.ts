@@ -1,2 +1,2 @@
-export * from "./affix";
-export * from "./check";
+export * from "./affix.js";
+export * from "./check.js";

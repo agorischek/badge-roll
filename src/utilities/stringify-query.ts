@@ -7,7 +7,7 @@ export function stringifyQuery(queryParams: QueryParams): string {
     return value === false
       ? acc
       : acc
-      ? `${acc}&${stringified}`
-      : `${stringified}`;
+        ? `${acc}&${stringified}`
+        : `${stringified}`;
   }, "");
 }

@@ -10,7 +10,7 @@ import { Root, TableCell, TableRow } from "mdast";
 
 import providerContribution from "./index.js";
 
-import { BadgeDefinition, ProviderDefinition } from "../../types";
+import { BadgeDefinition, ProviderDefinition } from "../../types/index.js";
 
 const defaultPlaceholder = "—";
 
@@ -46,11 +46,11 @@ class Row implements TableRow {
 
 const flattenBadgeDefinition = (
   badge: BadgeDefinition,
-  id: string
+  id: string,
 ): BadgeRowDefinition[] => {
   const main = merge(badge, { id: id, variation: defaultPlaceholder });
   const variations = map(badge.variations, (variation, id) =>
-    merge({}, main, variation, { variation: id })
+    merge({}, main, variation, { variation: id }),
   );
   const all = [main, ...variations];
   return all;
@@ -59,7 +59,7 @@ const flattenBadgeDefinition = (
 const provider: ProviderDefinition = providerContribution.providers.shields;
 
 const badges = flatMap(provider.badges, (badge, id) =>
-  flattenBadgeDefinition(badge, id)
+  flattenBadgeDefinition(badge, id),
 );
 const sortedBadges = sortBy(badges, (badge) => badge.id);
 
@@ -67,7 +67,7 @@ const header = new Row(["id", "variation", "details", "to"]);
 
 const badgeDefinitions = map(
   sortedBadges,
-  (badge) => new Row([badge.id, badge.variation, badge.details, badge.to])
+  (badge) => new Row([badge.id, badge.variation, badge.details, badge.to]),
 );
 
 const table: Root = {

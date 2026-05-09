@@ -7,14 +7,14 @@ export default {
     md: function (
       badgeSection: Array<Badge>,
       settings: Settings,
-      target?: string
+      target?: string,
     ): string {
       return processMarkdown(badgeSection, settings, target);
     },
     markdown: function (
       badgeSection: Array<Badge>,
       settings: Settings,
-      target?: string
+      target?: string,
     ): string {
       return processMarkdown(badgeSection, settings, target);
     },

@@ -12,6 +12,6 @@ export const badgesSchema = array.items(
         to: string,
         about: object.unknown(),
       })
-      .required()
-  )
+      .required(),
+  ),
 );

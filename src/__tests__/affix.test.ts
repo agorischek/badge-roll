@@ -90,7 +90,7 @@ describe("Affix function", () => {
     };
     expect.assertions(1);
     await expect(affix(source, config)).rejects.toThrow(
-      "Couldn't find anchor in target file"
+      "Couldn't find anchor in target file",
     );
   });
 
@@ -109,7 +109,7 @@ describe("Affix function", () => {
     const source = "";
     expect.assertions(1);
     await expect(affix(source, config)).rejects.toThrow(
-      '"badges[0].provider" is not allowed'
+      '"badges[0].provider" is not allowed',
     );
   });
 
@@ -118,7 +118,7 @@ describe("Affix function", () => {
     const source = "";
     expect.assertions(1);
     await expect(affix(source, config)).rejects.toThrow(
-      'Badge "not-a/real-badge" is not defined for provider shields.'
+      'Badge "not-a/real-badge" is not defined for provider shields.',
     );
   });
 });

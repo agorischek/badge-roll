@@ -13,7 +13,7 @@ import { Badge, Settings } from "../../types/index.js";
 export function processMarkdown(
   badgeSection: Array<Badge>,
   settings: Settings,
-  target?: string
+  target?: string,
 ): string {
   const separator = separators[settings.separator];
   const badgeSectionAst = generateBadgeSectionAst(badgeSection, separator);
@@ -25,7 +25,7 @@ export function processMarkdown(
       target,
       markup,
       separator,
-      settings.position
+      settings.position,
     );
     return modifiedTarget;
   } else {

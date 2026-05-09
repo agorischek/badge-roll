@@ -9,7 +9,9 @@
   ],
   "maxWorkers": 20,
   "maxConcurrency": 20,
-  "transform": {},
+  "transform": {
+    "^.+\\.tsx?$": ["ts-jest", { "useESM": true }]
+  },
   "extensionsToTreatAsEsm": [".ts"],
   "coverageThreshold": {
     "global": {
@@ -17,11 +19,6 @@
       "functions": 90,
       "lines": 90,
       "statements": -20
-    }
-  },
-  "globals": {
-    "ts-jest": {
-      "useESM": true
     }
   },
   "moduleNameMapper": {

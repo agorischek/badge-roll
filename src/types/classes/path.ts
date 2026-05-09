@@ -50,7 +50,7 @@ export function parsePath(unparsed: string): Array<PathSegment> {
       return {
         kind: "literal",
         name: segment,
-        suffixes: [],
+        suffixes: [] as string[],
       };
   });
   return path;

@@ -27,11 +27,11 @@ export class BadgeSpec {
     if (result.error) {
       if (variation)
         throw new Error(
-          `Definition for badge "${id}" variation "${variation}" is invalid. ${result.error}`
+          `Definition for badge "${id}" variation "${variation}" is invalid. ${result.error}`,
         );
       else
         throw new Error(
-          `Definition for badge "${id}" is invalid. ${result.error}`
+          `Definition for badge "${id}" is invalid. ${result.error}`,
         );
     }
 

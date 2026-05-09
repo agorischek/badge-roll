@@ -11,7 +11,7 @@ export class ProvidersDirectory {
       (providers: ProvidersDirectory, contribution) => {
         return merge(providers, contribution);
       },
-      {}
+      {},
     );
 
     return providers;

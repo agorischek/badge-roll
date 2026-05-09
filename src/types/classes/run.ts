@@ -21,7 +21,7 @@ export class Run {
     this.modified = printer.print(
       section.badges,
       context.settings,
-      this.original
+      this.original,
     );
     this.matches = this.original === this.modified;
   }

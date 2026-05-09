@@ -4,8 +4,10 @@ ignores:
   - "@types/jest"
   - "babel-jest"
   - mdast
+  - remark-cli
   - remark-lint
   - remark-preset-*
+  - rimraf
   - prettier-plugin-*
   - ts-jest
   - unist

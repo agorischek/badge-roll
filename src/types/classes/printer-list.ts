@@ -7,7 +7,7 @@ export class PrinterList {
   [printer: string]: (
     badgeSection: Array<Badge>,
     settings: SettingsData,
-    target?: string
+    target?: string,
   ) => string;
 
   constructor(contributions: ContributionSet) {
@@ -15,7 +15,7 @@ export class PrinterList {
       (printers: PrinterList, contribution) => {
         return merge(printers, contribution);
       },
-      {}
+      {},
     );
 
     return printers;

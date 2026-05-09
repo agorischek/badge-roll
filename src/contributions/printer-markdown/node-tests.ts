@@ -1,4 +1,3 @@
-import { matches } from "unist-util-select";
 import { is } from "unist-util-is";
 
 import { Node } from "unist";
@@ -21,15 +20,19 @@ export default {
 };
 
 export function isBadge(node: PossibleParent): boolean {
-  if (node === null) return null;
+  if (!node) return false;
   if (isParent(node)) {
     const firstChild = getFirstChild(node);
 
-    // isLink(node);
-    // hasNoGrandchildren(node);
+    if (!hasExactlyOneChild(node)) return false;
+    if (isBadgeImg(firstChild)) return true;
+    if (isLink(firstChild) && isParent(firstChild))
+      return (
+        hasExactlyOneChild(firstChild) && isBadgeImg(getFirstChild(firstChild))
+      );
+  }
 
-    return hasExactlyOneChild(node) && isBadgeImg(firstChild);
-  } else null;
+  return false;
 }
 
 export function hasExactlyOneChild(node: Parent): boolean {
@@ -40,8 +43,14 @@ export function hasNoGrandchildren(node: Parent): boolean {
   return node ? getFirstGrandchildren(node).length === 0 : null;
 }
 
-function badgeSelector(providerUrl: string) {
-  return `image[url^=${providerUrl}]:empty`;
+function isProviderImage(node: Node, providerUrl: string): boolean {
+  const image = node as Node & { url?: string; children?: unknown[] };
+  return (
+    is(node, "image") &&
+    typeof image.url === "string" &&
+    image.url.startsWith(providerUrl) &&
+    (!image.children || image.children.length === 0)
+  );
 }
 
 export function isBadgeImg(node: Node): boolean {
@@ -55,28 +64,26 @@ export function isBadgeImg(node: Node): boolean {
 }
 
 export function isShieldsImg(node: Node): boolean {
-  return node ? matches(badgeSelector("https://img.shields.io"), node) : null;
+  return node ? isProviderImage(node, "https://img.shields.io") : null;
 }
 export function isAzureDevopsImg(node: Node): boolean {
-  return node ? matches(badgeSelector("https://dev.azure.com/"), node) : null;
+  return node ? isProviderImage(node, "https://dev.azure.com/") : null;
 }
 
 export function isGithubImg(node: Node): boolean {
-  return node ? matches(badgeSelector("https://github.com"), node) : null;
+  return node ? isProviderImage(node, "https://github.com") : null;
 }
 
 export function isGitterImg(node: Node): boolean {
-  return node ? matches(badgeSelector("https://badges.gitter.im"), node) : null;
+  return node ? isProviderImage(node, "https://badges.gitter.im") : null;
 }
 
 export function isAppveyorImg(node: Node): boolean {
-  return node
-    ? matches(badgeSelector("https://ci.appveyor.com/api"), node)
-    : null;
+  return node ? isProviderImage(node, "https://ci.appveyor.com/api") : null;
 }
 
 export function isLink(node: Node): boolean {
-  return node ? is("link", node) : null;
+  return node ? is(node, "link") : null;
 }
 
 export function isParent(node: PossibleParent): node is Parent {

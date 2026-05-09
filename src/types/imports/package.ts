@@ -1,1 +1,1 @@
-export { NormalizedPackageJson as Package } from "read-pkg";
+export type { NormalizedPackageJson as Package } from "read-pkg";

@@ -17,7 +17,7 @@ export class Settings {
       (settings: SettingsData, contribution) => {
         return merge(settings, contribution);
       },
-      {}
+      {},
     );
     const settings = merge(contributedSettings, config.settings);
     return settings;

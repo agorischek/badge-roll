@@ -13,13 +13,13 @@ export function affixBadgeSection(
   doc: string,
   newBadgeSection: string,
   separator: string,
-  position: string
+  position: string,
 ): string {
   if (!positions[position]) throw new Error(`Unknown position ${position}`);
 
   const processor = unified().use(markdown);
   const tree: Root = processor.parse(doc);
-  const treeWithParents: Root = nav.parents(tree) as Root;
+  const treeWithParents: Root = nav.parents(tree) as unknown as Root;
   const anchor: PossibleParent =
     positions[position].findAnchor(treeWithParents);
 
@@ -28,7 +28,7 @@ export function affixBadgeSection(
       treeWithParents,
       anchor,
       separator,
-      position
+      position,
     );
     const anchorLocation = {
       start: nav.position(anchor).start.offset,
@@ -39,7 +39,7 @@ export function affixBadgeSection(
       doc,
       newBadgeSection,
       anchorLocation,
-      badgeSectionLocation
+      badgeSectionLocation,
     );
   } else {
     throw new Error("Couldn't find anchor in target file");

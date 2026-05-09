@@ -10,7 +10,7 @@ describe("Badge", () => {
       config.badges[0],
       context.settings,
       context.about,
-      context.providers
+      context.providers,
     );
     expect(badge.display).toBe("Version");
   });
@@ -24,10 +24,10 @@ describe("Badge", () => {
       config.badges[0],
       context.settings,
       context.about,
-      context.providers
+      context.providers,
     );
     expect(badge.url).toBe(
-      "https://img.shields.io/npm/v/badge-roll?style=flat"
+      "https://img.shields.io/npm/v/badge-roll?style=flat",
     );
   });
 
@@ -45,7 +45,7 @@ describe("Badge", () => {
       config.badges[0],
       settings,
       context.about,
-      context.providers
+      context.providers,
     );
     expect(badge.style).toBe("flat");
   });
@@ -70,10 +70,10 @@ describe("Badge", () => {
       config.badges[0],
       context.settings,
       context.about,
-      context.providers
+      context.providers,
     );
     expect(badge.queryString).toBe(
-      "failed_label=bad&passed_label=good&skipped_label=meh"
+      "failed_label=bad&passed_label=good&skipped_label=meh",
     );
   });
 
@@ -96,10 +96,10 @@ describe("Badge", () => {
       config.badges[0],
       context.settings,
       context.about,
-      context.providers
+      context.providers,
     );
     expect(badge.url).toBe(
-      "https://img.shields.io/appveyor/build/agorischek/badge-roll/my-branch"
+      "https://img.shields.io/appveyor/build/agorischek/badge-roll/my-branch",
     );
   });
 
@@ -118,7 +118,7 @@ describe("Badge", () => {
       config.badges[0],
       context.settings,
       context.about,
-      context.providers
+      context.providers,
     );
     expect(badge.url).toBe("https://img.shields.io/badge/badges-rolled-white");
   });
@@ -141,7 +141,7 @@ describe("Badge", () => {
         config.badges[0],
         context.settings,
         context.about,
-        context.providers
+        context.providers,
       );
     }).toThrow('Provider "not-a-real-provider" is not registered.');
   });

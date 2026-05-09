@@ -4,7 +4,7 @@ export class Printer {
   print: (
     badgeSection: Array<Badge>,
     settings: SettingsData,
-    target?: string
+    target?: string,
   ) => string;
   constructor(printers: PrinterList, printerId: string) {
     if (printers[printerId]) {

@@ -1,7 +1,7 @@
 import { findAfter } from "unist-util-find-after";
 
 import { Node } from "unist";
-import { Parent, Content } from "mdast";
+import { Parent, Content, RootContent } from "mdast";
 
 import test from "../../node-tests.js";
 import { getFirstChild } from "../../utils.js";
@@ -29,7 +29,7 @@ export class BadgeFinderState {
     this.lastBadge = null;
     this.currentParent = starterParent;
     this.nextNode = starterParent
-      ? findAfter(this.currentParent, this.currentNode)
+      ? findAfter(this.currentParent, this.currentNode as RootContent)
       : null;
     this.searchComplete = false;
     this.paragraphCount = 0;
@@ -45,7 +45,10 @@ export class BadgeFinderState {
     this.previousNode = this.currentNode;
     this.currentNode = this.nextNode;
 
-    this.nextNode = findAfter(this.currentParent, this.currentNode);
+    this.nextNode = findAfter(
+      this.currentParent,
+      this.currentNode as RootContent,
+    );
   }
   stepDown(): void {
     this.previousNode = this.currentNode;
@@ -53,7 +56,10 @@ export class BadgeFinderState {
       ? (this.previousNode as Parent)
       : null;
     this.currentNode = getFirstChild(this.currentParent);
-    this.nextNode = findAfter(this.currentParent, this.currentNode);
+    this.nextNode = findAfter(
+      this.currentParent,
+      this.currentNode as RootContent,
+    );
   }
   countParagraph(): void {
     this.paragraphCount++;

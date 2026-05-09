@@ -22,13 +22,13 @@ function generateBadgeAst(badge: Badge): PhrasingContent {
 
 export function generateBadgeSectionAst(
   badges: Badge[],
-  separator: string
+  separator: string,
 ): Root {
   const badgeReducer = (
     accumulator: PhrasingContent[],
     badge: Badge,
     index: number,
-    badges: Badge[]
+    badges: Badge[],
   ) => {
     const badgeAst = generateBadgeAst(badge);
     if (isLast(index, badges)) {

@@ -33,5 +33,5 @@ export const badges = merge(
   github,
   jsdelivr,
   npm,
-  runkit
+  runkit,
 );

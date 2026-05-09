@@ -1,5 +1,4 @@
-import { cosmiconfigSync } from "cosmiconfig";
-import { CosmiconfigResult } from "cosmiconfig/dist/types";
+import { cosmiconfigSync, CosmiconfigResult } from "cosmiconfig";
 
 import { filePaths, packageProperty } from "../options/index.js";
 import { configSchema } from "../schemas/index.js";

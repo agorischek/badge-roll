@@ -3,7 +3,7 @@ import {
   PrintersContribution,
   ProvidersContribution,
   SettingsContribution,
-} from "..";
+} from "../index.js";
 
 export type Plugin = {
   about?: AboutContribution;
