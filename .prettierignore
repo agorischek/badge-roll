@@ -2,3 +2,4 @@ lib
 coverage
 reports
 package-lock.json
+.github/workflows/*.lock.yml
