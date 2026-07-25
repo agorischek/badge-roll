@@ -101,6 +101,9 @@
     "url-parse": "^1.5.10",
     "yaml": "^2.8.4"
   },
+  "overrides": {
+    "qs": "6.15.3"
+  },
   "devDependencies": {
     "@babel/core": "^7.29.0",
     "@babel/preset-env": "^7.29.5",
