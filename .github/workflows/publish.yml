@@ -7,8 +7,12 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   id-token: write
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   npm:
@@ -27,8 +31,11 @@ jobs:
         run: npm ci
 
       - name: Verify tag matches package version
-        if: startsWith(github.ref, 'refs/tags/')
         run: |
+          if [ "$GITHUB_REF_TYPE" != "tag" ]; then
+            echo "Publish must run against an immutable tag"
+            exit 1
+          fi
           tag_version="${GITHUB_REF_NAME#v}"
           package_version="$(node -p "JSON.parse(require('node:fs').readFileSync('package.json', 'utf8')).version")"
           if [ "$tag_version" != "$package_version" ]; then
@@ -43,4 +50,21 @@ jobs:
         run: npm pack --dry-run
 
       - name: Publish to npm
-        run: npm publish
+        run: |
+          package_name="$(node -p "JSON.parse(require('node:fs').readFileSync('package.json', 'utf8')).name")"
+          package_version="$(node -p "JSON.parse(require('node:fs').readFileSync('package.json', 'utf8')).version")"
+          if npm view "${package_name}@${package_version}" version >/dev/null 2>&1; then
+            echo "${package_name}@${package_version} is already published"
+          else
+            npm publish
+          fi
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            echo "GitHub Release $GITHUB_REF_NAME already exists"
+          else
+            gh release create "$GITHUB_REF_NAME" --generate-notes --verify-tag
+          fi
