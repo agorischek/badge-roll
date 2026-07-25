@@ -123,7 +123,7 @@ describe("Badge", () => {
     expect(badge.url).toBe("https://img.shields.io/badge/badges-rolled-white");
   });
 
-  test.only("should throw with an invalid provider", async () => {
+  test("should throw with an invalid provider", async () => {
     const config = {
       badges: [
         {
