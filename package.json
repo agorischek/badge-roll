@@ -102,6 +102,7 @@
     "yaml": "^2.8.4"
   },
   "overrides": {
+    "katex": "0.18.2",
     "qs": "6.15.3"
   },
   "devDependencies": {
